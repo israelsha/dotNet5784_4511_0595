@@ -1,5 +1,5 @@
 ﻿using System;
-namespace stage0;
+namespace Stage0;
 partial class Program
 {
     private static void Main(string[] args)
