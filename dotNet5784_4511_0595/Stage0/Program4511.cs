@@ -1,4 +1,6 @@
-﻿partial class Program
+﻿using System;
+namespace stage0;
+partial class Program
 {
     private static void Main(string[] args)
     {
