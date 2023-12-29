@@ -3,4 +3,4 @@ hi
 Mini windows project by Eliya and Israel
 goodby Israel
 how are u?
-i'm fine
+i'm seek
