@@ -3,21 +3,19 @@ using System.Xml;
 
 namespace DO;
 
+/// <param name="Id"></param>
+/// <param name="Email"></param>
+/// <param name="Cost"></param>
+/// <param name="Name"></param>
+/// <param name="Level"></param>
 public record Engineer
+(
+    int Id,
+    string Email,
+    double Cost,     //daily cost of the engineer, including salary, workplace, tools
+    string Name,
+    DO.EngineerExperience Level
+)
 {
-    int Id;
-    string Email;
-    double Cost;  //daily cost of the engineer, including salary, workplace, tools
-    string Name;
-    DO.EngineerExperience Level;
-
-    public Engineer() { Id = 0; Email = ""; Cost = 0.0; Name = ""; Level = EngineerExperience.Beginner; }
-
-    public Engineer(int id, string email, double cost, string name)
-    {
-        Id = id;
-        Email = email;
-        Cost = cost;
-        Name = name;
-    }
+    public Engineer() : this(0, "", 0.0, "", EngineerExperience.Beginner) { }
 }

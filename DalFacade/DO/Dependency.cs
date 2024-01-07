@@ -4,17 +4,15 @@ using System.Xml.Linq;
 
 namespace DO;
 
+/// <param name="Id"></param>
+/// <param name="DependentTask"></param>
+/// <param name="DependsOnTask"></param>
 public record Dependency
+    (
+    int Id,
+    int? DependentTask = null,
+    int? DependsOnTask = null
+    )
 {
-    int Id;
-    int? DependentTask = null;
-    int? DependsOnTask = null;
-    public Dependency() { Id = 0; }
-
-    public Dependency(int id, int? dependentTask, int? dependsOnTask)
-    {
-        Id = id;
-        DependentTask = dependentTask;
-        DependsOnTask = dependsOnTask;
-    }
+    public Dependency() : this(0) { }
 }
