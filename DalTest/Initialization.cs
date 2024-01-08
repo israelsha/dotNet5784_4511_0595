@@ -19,7 +19,7 @@ public static class Initialization
         {
         "Dani Levi", "Eli Amar", "Yair Cohen",
         "Ariela Levin", "Dina Klein", "Shira Israelof"
-    };
+        };
         Random rnd = new Random();
         foreach (var _name in EngineerNames)
         {
@@ -37,5 +37,24 @@ public static class Initialization
             s_dalEngineer!.Create(Eng);
         }
     }
-}
+
+
+    private static void createDependencies()
+    {
+        int _id = 10;
+        int _DependentTask =3;
+        int _DependsOnTask =2;
+        for (int i = 0; i < 40; i++)
+        {
+            if(_DependentTask > _DependsOnTask)
+            {
+               
+            }
+            Dependency dep = new Dependency(_id, _DependentTask, _DependsOnTask);
+            s_dalDependency!.Create(dep);
+
+            _id++;
+        }
+    }
+    }
 
