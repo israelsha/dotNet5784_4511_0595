@@ -95,6 +95,32 @@ public static class Initialization
         }
     }
 
+
+    private static void createDependencies()
+    {
+        int _id = 10;
+        int _DependentTask = 3;
+        int _DependsOnTask = 2;
+        for (int i = 0; i < 40; i++)
+        {
+            if (_DependentTask > _DependsOnTask)
+            {
+
+            }
+            Dependency dep = new Dependency(_id, _DependentTask, _DependsOnTask);
+            s_dalDependency!.Create(dep);
+
+            _id++;
+        }
+    }
+
+
+
+
+   
+
+
+
     private static void createEngineers()
     {
         string[] EngineerNames =
