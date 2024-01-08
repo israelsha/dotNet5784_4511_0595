@@ -8,11 +8,11 @@ internal static class DataSource
 {
     internal static class Config        //class for run numbers
     {
-        internal const int startTaskId = 1000;
+        internal const int startTaskId = 100;
         private static int nextTaskId = startTaskId;
         internal static int NextTaskId { get => nextTaskId++; }
 
-        internal const int startDependencyId = 1000;
+        internal const int startDependencyId = 100;
         private static int nextDependencyId = startDependencyId;
         internal static int NextDependencyId { get => nextDependencyId++; }
     }
