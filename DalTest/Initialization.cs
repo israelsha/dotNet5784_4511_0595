@@ -68,7 +68,7 @@ public static class Initialization
             "","Identification, assessment, and mitigation of potential risks.","Designing systems considering human interaction for optimal usability.",""
         };
         Random rnd = new Random();
-        for (int i = 0; i < _Alias.Length; i++)
+        for (int i = 0; i < 19; i++)
         {
             DateTime _CreatedAtDate = DateTime.Now;
             DateTime? _StartDate = _CreatedAtDate + TimeSpan.FromDays(rnd.Next(1, 100)) + TimeSpan.FromHours(rnd.Next(0, 24)) + TimeSpan.FromSeconds((rnd.Next(0, 3600)));
@@ -120,7 +120,7 @@ public static class Initialization
                 _id = rnd.Next(200000000, 400000000);
             while (s_dalEngineer!.Read(_id) != null);
 
-            string? _email = EngineerNames[_id].Take(3) + (_id % 100000).ToString() + "@gmail.com";
+            string? _email = (_id % 10000).ToString() + "@gmail.com";
 
             DO.EngineerExperience _level = EngineerExperience.Beginner + rnd.Next(0, 5);
             double _cost = 200 + ((int)_level) * 50 + (double)(rnd.Next(-100,300)/3);
