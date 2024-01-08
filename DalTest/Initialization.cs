@@ -4,10 +4,6 @@ using DalApi;
 using DO;
 using System;
 using Dal;
-using System.Data.Common;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Runtime.ConstrainedExecution;
-using System.Threading;
 
 public static class Initialization
 {
@@ -89,7 +85,7 @@ public static class Initialization
             string? _Remarks = RamarksTasks[i];
             int? _EngineerId = 0;
 
-            Task task = new Task(10 + i, _Alias[i], DescriptionTasks[i], _CreatedAtDate, _IsMilestone, _RequiredEffortTime, _Copmlexity,
+            Task task = new Task(100 + i, _Alias[i], DescriptionTasks[i], _CreatedAtDate, _IsMilestone, _RequiredEffortTime, _Copmlexity,
                 _StartDate, _ScheduledDate, _DeadlineDate, _CompleteDate, _Deliverables, _Remarks, _EngineerId);
             s_dalTask!.Create(task);
         }
@@ -98,28 +94,16 @@ public static class Initialization
 
     private static void createDependencies()
     {
-        int _id = 10;
-        int _DependentTask = 3;
-        int _DependsOnTask = 2;
+        Random rnd = new Random();
         for (int i = 0; i < 40; i++)
-        {
-            if (_DependentTask > _DependsOnTask)
-            {
+        { 
+            int _DependentTask = 101 + i / 2 - i / 38;
+            int _DependsOnTask = rnd.Next(100, _DependentTask);
 
-            }
-            Dependency dep = new Dependency(_id, _DependentTask, _DependsOnTask);
+            Dependency dep = new Dependency(0, _DependentTask, _DependsOnTask);
             s_dalDependency!.Create(dep);
-
-            _id++;
         }
     }
-
-
-
-
-   
-
-
 
     private static void createEngineers()
     {
@@ -147,22 +131,21 @@ public static class Initialization
     }
 
 
-    private static void createDependencies()
-    {
-        int _id = 10;
-        int _DependentTask =3;
-        int _DependsOnTask =2;
-        for (int i = 0; i < 40; i++)
-        {
-            if(_DependentTask > _DependsOnTask)
-            {
-               
-            }
-            Dependency dep = new Dependency(_id, _DependentTask, _DependsOnTask);
-            s_dalDependency!.Create(dep);
 
-            _id++;
-        }
+    public static void Do(ITask? dalTask, IEngineer? dalEngineer, IDependency? dalDependency)
+    {
+        s_dalTask = dalTask ?? throw new NullReferenceException("DAL can not be null!");
+        s_dalEngineer = dalEngineer ?? throw new NullReferenceException("DAL can not be null!");
+        s_dalDependency = dalDependency ?? throw new NullReferenceException("DAL can not be null!");
+
+        createTasks();
+        createDependencies();
+        createEngineers();
     }
-    }
+
+}
+
+
+
+
 
