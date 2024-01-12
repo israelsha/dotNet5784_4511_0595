@@ -3,7 +3,7 @@ using DalApi;
 using DO;
 using System.Collections.Generic;
 
-public class DependencyImplementation : IDependency
+internal class DependencyImplementation : IDependency
 {
     public int Create(Dependency item)
     {
@@ -46,4 +46,6 @@ public class DependencyImplementation : IDependency
         }
         else throw new Exception($"Dependency with ID={item.Id} does Not exist");
     }
+    public IDependency Dependency => new DependencyImplementation();
+
 }

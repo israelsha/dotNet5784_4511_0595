@@ -3,7 +3,7 @@ using DalApi;
 using DO;
 using System.Collections.Generic;
 
-public class TaskImplementation : ITask
+internal class TaskImplementation : ITask
 {
     public int Create(Task item)
     {
@@ -48,4 +48,6 @@ public class TaskImplementation : ITask
         else throw new Exception($"Task with ID={item.Id} does Not exist");
 
     }
+
+    public ITask Task => new TaskImplementation();
 }
