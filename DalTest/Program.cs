@@ -27,6 +27,10 @@ namespace DalTest
             return int.Parse(Console.ReadLine());
         }
 
+        /// <summary>
+        /// get all parameter for Engineer
+        /// </summary>
+        /// <returns></returns>
         static DO.Engineer GetEngineer()
         {
             Console.Write("Enter Engineer's details:");
@@ -45,6 +49,10 @@ namespace DalTest
             return item;    
         }
 
+        /// <summary>
+        /// get all parameter for Task
+        /// </summary>
+        /// <returns></returns>
         static DO.Task GetTask()
         {
             Console.WriteLine("Enter Task details:");
@@ -88,6 +96,9 @@ namespace DalTest
 
         }
 
+        /// /// <summary>
+        /// get all parameter for Dependency
+        /// </summary>
         static DO.Dependency GetDependency()
         {
             Console.WriteLine("Enter Dependency details:");
@@ -100,6 +111,10 @@ namespace DalTest
             return item;
         }
 
+        /// <summary>
+        /// print all Engineer parameter
+        /// </summary>
+        /// <param name="eng"></param>
         static void printEng(DO.Engineer? eng)
         {
             if(eng != null)
@@ -112,6 +127,10 @@ namespace DalTest
             }
         }
 
+        /// <summary>
+        ///  print all Task parameter
+        /// </summary>
+        /// <param name="tsk"></param>
         static void printTask(DO.Task? tsk)
         {
             if (tsk != null)
@@ -133,6 +152,10 @@ namespace DalTest
             }
         }
 
+        /// <summary>
+        ///  print all Dependency parameter
+        /// </summary>
+        /// <param name="dep"></param>
         static void printDep(DO.Dependency? dep)
         {
             if (dep != null)
@@ -143,15 +166,18 @@ namespace DalTest
             }
         }
 
-        static int choiceActivate(int choice1 ,int choice2)
+        /// <summary>
+        /// get from user his 2 choices, choice1 - what action to do, choice2 - Engineer/Task/Dependsy
+        /// </summary>
+               static int choiceActivate(int choice1 ,int choice2)
         {
             do
             {
                 switch (choice1)
                 {
-                    case 1:
+                    case 1:     //exit
                         break;
-                    case 2:
+                    case 2:     //creat 
                         if (choice2 == 1)
                             s_dalEngineer.Create(GetEngineer());
                         else if (choice2 == 2)
@@ -159,7 +185,7 @@ namespace DalTest
                         else if (choice2 == 3)
                             s_dalDependency.Create(GetDependency());   
                             break;
-                    case 3:
+                    case 3:     //read
                         if (choice2 == 1)
                         {
                             Console.Write("Enter Engineer's ID: ");
@@ -176,7 +202,7 @@ namespace DalTest
                             printDep(s_dalDependency.Read(int.Parse(Console.ReadLine())));
                         }
                         break;
-                    case 4:
+                    case 4:      //read all
                         if (choice2 == 1)
                             foreach (var item1 in s_dalEngineer.ReadAll())
                             {
@@ -197,7 +223,7 @@ namespace DalTest
                                 Console.WriteLine();
                             }
                         break;
-                    case 5:
+                    case 5:     //update
                         if (choice2 == 1)
                             s_dalEngineer.Update(GetEngineer());
                         else if (choice2 == 2)
@@ -205,7 +231,7 @@ namespace DalTest
                         else if (choice2 == 3)
                             s_dalDependency.Update(GetDependency());
                         break;
-                    case 6:
+                    case 6:    // delete
                         if (choice2 == 1)
                         {
                             Console.Write("Enter Engineer's ID: ");
@@ -222,7 +248,7 @@ namespace DalTest
                             s_dalDependency.Delete(int.Parse(Console.ReadLine()));
                         }
                         break;
-                    default:
+                    default:    //if the user choose wrong number 
                         Console.WriteLine("ERORR: choose numbers betwin 1-6");
                         choice1 = int.Parse(Console.ReadLine());
                         break;
@@ -250,19 +276,19 @@ namespace DalTest
                         {
                         case 0:
                             break;
-                        case 1:
+                        case 1:     //engineer
                             int choice1= optionsSubMenu("engineer");
                             choiceActivate(choice1, 1);
                             break;
-                        case 2:
+                        case 2:     //task
                             int choice2 = optionsSubMenu("task");
                             choiceActivate(choice2, 2);
                             break;
-                        case 3:
+                        case 3:     //dependsy
                             int choice3 = optionsSubMenu("Dependency");
                             choiceActivate(choice3, 3);
                             break;
-                        default:
+                        default:   //if the user choose wrong number 
                             Console.WriteLine("ERROR: choose number between 1-3");
                             i = int.Parse(Console.ReadLine());  
                             break;                            
