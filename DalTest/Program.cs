@@ -1,20 +1,13 @@
 ﻿using Dal;
-using DalApi;
-using DO;
-using System.Data.Common;
-using System.Diagnostics;
-using System.Linq.Expressions;
-using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace DalTest
 {
     internal class Program
     {
-        private static ITask? s_dalTask = new TaskImplementation();
-        private static IEngineer? s_dalEngineer = new EngineerImplementation();
-        private static IDependency? s_dalDependency = new DependencyImplementation();
-       
+
+        static readonly IDal s_dal = new DalList(); //stage 2
+
         static int optionsSubMenu(string type)  //Main sub menu options 
         {
             Console.WriteLine("Select the method you want to perform");
@@ -31,7 +24,6 @@ namespace DalTest
         /// <summary>
         /// get all parameter for Engineer
         /// </summary>
-        /// <returns></returns>
         static DO.Engineer GetEngineer()
         {
             Console.Write("Enter Engineer's details:");
@@ -53,7 +45,6 @@ namespace DalTest
         /// <summary>
         /// get all parameter for Task
         /// </summary>
-        /// <returns></returns>
         static DO.Task GetTask()
         {
             Console.WriteLine("Enter Task details:");
@@ -61,17 +52,22 @@ namespace DalTest
             Console.Write("Alias: ");
             string alias = Console.ReadLine()??"";
 
-            Console.Write("\nDescription: ");
+            Console.Write("Description: ");
             string description = Console.ReadLine() ?? "";
 
-            Console.Write("\nIs Milestone (true/false): ");
-            bool isMilestone = bool.Parse(Console.ReadLine());
+            Console.Write("Is Milestone (true/false): ");
+            string ?isMilestoneCheck = Console.ReadLine();
+            bool isMilestone = false;
+            if (isMilestoneCheck == "1" || isMilestoneCheck == "true")
+                isMilestone = true;
 
-            
-            Console.Write("\nRequired Effort Time (days): ");
+
+
+
+            Console.Write("Required Effort Time (days): ");
             TimeSpan requiredEffortTime = TimeSpan.FromDays(double.Parse(Console.ReadLine()));
 
-            Console.Write("\nScheduled Date (in the format dd/mm/yyyy): "); //receive Scheduled Date (additional)
+            Console.Write("Scheduled Date (in the format dd/mm/yyyy): "); //receive Scheduled Date (additional)
             string? startDateInput = Console.ReadLine();
             DateTime? ScheduledDate = null;
             do
@@ -83,13 +79,13 @@ namespace DalTest
                 }
                 else
                 {
-                    Console.WriteLine("Invalid date. enter a date in the correct format, to continue without Scheduled Date press 0");
+                    Console.Write("Invalid date. enter a date in the correct format, to continue without Scheduled Date press 0");
                     startDateInput = Console.ReadLine();
                 }
             } while (startDateInput != "0");
 
 
-            Console.Write("\nDeadLine Date (in the format dd/mm/yyyy): ");  //receive deadline Date (additional)
+            Console.Write("DeadLine Date (in the format dd/mm/yyyy): ");  //receive deadline Date (additional)
             DateTime? deadLine = null;
             string? dateOfEnding = Console.ReadLine();
             do
@@ -101,19 +97,19 @@ namespace DalTest
                 }
                 else
                 {
-                    Console.WriteLine("Invalid date. enter a date in the correct format, to continue without Deadline press 0");
+                    Console.Write("Invalid date. enter a date in the correct format, to continue without Deadline press 0: ");
                     dateOfEnding = Console.ReadLine();
                 }
             } while (dateOfEnding != "0");
 
 
-            Console.WriteLine("\nEnter Task's complexity, Rating between 1-5: ");
+            Console.Write("Enter Task's complexity, Rating between 1-5: ");
             DO.EngineerExperience complexity = (DO.EngineerExperience)(int.Parse(Console.ReadLine()) % 5 + 1);
 
-            Console.Write("\nDeliverables: ");
+            Console.Write("Deliverables: ");
             string? deliverables = Console.ReadLine();
 
-            Console.Write("\nEngineer ID: ");
+            Console.Write("Engineer ID: ");
             int engineerID = int.Parse(Console.ReadLine());
 
             DO.Task item = new DO.Task(0, alias, description, DateTime.Now, isMilestone, requiredEffortTime,
@@ -195,7 +191,7 @@ namespace DalTest
         /// <summary>
         /// get from user his 2 choices, choice1 - what action to do, choice2 - Engineer/Task/Dependsy
         /// </summary>
-               static int choiceActivate(int choice1 ,int choice2)
+        static int choiceActivate(int choice1, int choice2)
         {
             do
             {
@@ -205,45 +201,46 @@ namespace DalTest
                         break;
                     case 2:     //creat 
                         if (choice2 == 1)
-                            s_dalEngineer.Create(GetEngineer());
+                            try { s_dal.Engineer.Create(GetEngineer()); }//try to create new enguneer
+                            catch(Exception ex) {  Console.WriteLine(ex); }
                         else if (choice2 == 2)
-                            s_dalTask.Create(GetTask());
+                            s_dal.Task.Create(GetTask());
                         else if (choice2 == 3)
-                            s_dalDependency.Create(GetDependency());   
-                            break;
+                            s_dal.Dependency.Create(GetDependency());
+                        break;
                     case 3:     //read
                         if (choice2 == 1)
                         {
                             Console.Write("Enter Engineer's ID: ");
-                            printEng(s_dalEngineer.Read(int.Parse(Console.ReadLine())));
+                            printEng(s_dal.Engineer.Read(int.Parse(Console.ReadLine())));
                         }
                         else if (choice2 == 2)
                         {
                             Console.Write("Enter Task's ID: ");
-                            printTask(s_dalTask.Read(int.Parse(Console.ReadLine())));
+                            printTask(s_dal.Task.Read(int.Parse(Console.ReadLine())));
                         }
                         else if (choice2 == 3)
                         {
                             Console.Write("Enter Dependency's ID: ");
-                            printDep(s_dalDependency.Read(int.Parse(Console.ReadLine())));
+                            printDep(s_dal.Dependency.Read(int.Parse(Console.ReadLine())));
                         }
                         break;
                     case 4:      //read all
                         if (choice2 == 1)
-                            foreach (var item1 in s_dalEngineer.ReadAll())
+                            foreach (var item1 in s_dal.Engineer.ReadAll())
                             {
                                 printEng(item1);
                                 Console.WriteLine();
                             }
                         else if (choice2 == 2)
-                            foreach (var item2 in s_dalTask.ReadAll())
+                            foreach (var item2 in s_dal.Task.ReadAll())
                             {
                                 printTask(item2);
                                 Console.WriteLine();
                             }
 
                         else if (choice2 == 3)
-                            foreach (var item3 in s_dalDependency.ReadAll())
+                            foreach (var item3 in s_dal.Dependency.ReadAll())
                             {
                                 printDep(item3);
                                 Console.WriteLine();
@@ -251,27 +248,27 @@ namespace DalTest
                         break;
                     case 5:     //update
                         if (choice2 == 1)
-                            s_dalEngineer.Update(GetEngineer());
+                            s_dal.Engineer.Update(GetEngineer());
                         else if (choice2 == 2)
-                            s_dalTask.Update(GetTask());
+                            s_dal.Task.Update(GetTask());
                         else if (choice2 == 3)
-                            s_dalDependency.Update(GetDependency());
+                            s_dal.Dependency.Update(GetDependency());
                         break;
                     case 6:    // delete
                         if (choice2 == 1)
                         {
                             Console.Write("Enter Engineer's ID: ");
-                            s_dalEngineer.Delete(int.Parse(Console.ReadLine()));
+                            s_dal.Engineer.Delete(int.Parse(Console.ReadLine()));
                         }
                         else if (choice2 == 2)
                         {
                             Console.Write("Enter Task's ID: ");
-                            s_dalTask.Delete(int.Parse(Console.ReadLine()));
+                            s_dal.Task.Delete(int.Parse(Console.ReadLine()));
                         }
                         else if (choice2 == 3)
                         {
                             Console.Write("Enter Dependency's ID: ");
-                            s_dalDependency.Delete(int.Parse(Console.ReadLine()));
+                            s_dal.Dependency.Delete(int.Parse(Console.ReadLine()));
                         }
                         break;
                     default:    //if the user choose wrong number 
@@ -288,12 +285,14 @@ namespace DalTest
         {
             try
             {
-                Initialization.Do(s_dalTask, s_dalEngineer, s_dalDependency);
+                //Initialization.Do(s_dalTask, s_dalEngineer, s_dalDependency);
+                Initialization.Do(s_dal); //stage 2
+
                 int i = 0;
                
                 do
                 {
-                    Console.WriteLine("\nto exit press 0");
+                    Console.WriteLine("to exit press 0");
                     Console.WriteLine("for Engineers Press 1");
                     Console.WriteLine("for Tasks Press 2");
                     Console.WriteLine("for Dependencies Press 3");
@@ -319,6 +318,7 @@ namespace DalTest
                             i = int.Parse(Console.ReadLine());  
                             break;                            
                           }
+                    Console.WriteLine();
                 } while (i != 0);
 
 

@@ -2,9 +2,12 @@
 using DalApi;
 using DO;
 using System.Collections.Generic;
+using System.Linq;
 
 internal class TaskImplementation : ITask
 {
+    public ITask Task => new TaskImplementation();
+
     public int Create(Task item)
     {
         //for entities with auto id
@@ -21,20 +24,33 @@ internal class TaskImplementation : ITask
         {
             DataSource.Tasks.Remove(obj);
         }
-        else throw new Exception($"Task with ID={id} does Not exist");
+        else throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
 
     }
 
     public Task? Read(int id)
     {
-        return DataSource.Tasks.Find(Task => Task.Id == id);
+        return DataSource.Tasks.FirstOrDefault(Task => Task.Id == id);
     }
 
-    public List<Task> ReadAll() 
+    public Task? Read(Func<Task, bool> filter)
     {
-        List<Task> list = new List<Task>();
-        list.AddRange(DataSource.Tasks);
-        return new List<Task>(DataSource.Tasks);
+        var obj = from item in DataSource.Tasks
+                  where filter(item)
+                  select item;
+        return obj.FirstOrDefault();
+    }
+
+    public IEnumerable<Task> ReadAll(Func<Task, bool>? filter = null) 
+    {
+        if (filter != null)
+        {
+            return from item in DataSource.Tasks
+                   where filter(item)
+                   select item;
+        }
+        return from item in DataSource.Tasks
+               select item;
     }
 
     public void Update(Task item)
@@ -45,9 +61,8 @@ internal class TaskImplementation : ITask
             DataSource.Tasks.Remove(obj);
             DataSource.Tasks.Add(item);
         }
-        else throw new Exception($"Task with ID={item.Id} does Not exist");
+        else throw new DalDoesNotExistException($"Task with ID={item.Id} does Not exist");
 
     }
 
-    public ITask Task => new TaskImplementation();
 }
