@@ -86,26 +86,27 @@ public static class Initialization
         }
     }
 
-
     private static void createDependencies()
     {
         Random rnd = new Random();
         for (int i = 0; i < 40; i++)
         { 
-            int _DependentTask = 101 + i / 2 - i / 38;
-            int _DependsOnTask = rnd.Next(100, _DependentTask);
+            int _DependentTask = 100 + i / 2 ;
+            int _DependsOnTask = 100 + (7 * i) % 19 + 1;
 
+                //rnd.Next(100, _DependentTask);
             Dependency dep = new Dependency(0, _DependentTask, _DependsOnTask);
             s_dal!.dependency.Create(dep);
         }
     }
+
     private static void createEngineers()
     {
         string[] EngineerNames =
         {
         "Dani Levi", "Eli Amar", "Yair Cohen",
         "Ariela Levin", "Dina Klein", "Shira Israelof"
-    };
+        };
         Random rnd = new Random();
         foreach (var _name in EngineerNames)
         {

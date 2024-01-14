@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DalTest
 {
@@ -66,20 +67,45 @@ namespace DalTest
             Console.Write("\nIs Milestone (true/false): ");
             bool isMilestone = bool.Parse(Console.ReadLine());
 
-            // Allowing the user to add optional details
             
             Console.Write("\nRequired Effort Time (days): ");
             TimeSpan requiredEffortTime = TimeSpan.FromDays(double.Parse(Console.ReadLine()));
 
-            Console.WriteLine("\nScheduled Date: ");
-            DateTime? dateOfBegining;
+            Console.Write("\nScheduled Date (in the format dd/mm/yyyy): "); //receive Scheduled Date (additional)
             string? startDateInput = Console.ReadLine();
-            dateOfBegining = DateTime.Parse(startDateInput);
+            DateTime? ScheduledDate = null;
+            do
+            {
+                if (DateTime.TryParse(startDateInput, out var date))
+                {
+                    ScheduledDate = DateTime.Parse(startDateInput);
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid date. enter a date in the correct format, to continue without Scheduled Date press 0");
+                    startDateInput = Console.ReadLine();
+                }
+            } while (startDateInput != "0");
 
-            Console.WriteLine("\nDeadLine Date: ");
-            DateTime? dateOfEnding;
-            string? deadLine = Console.ReadLine();
-            dateOfEnding = DateTime.Parse(deadLine);
+
+            Console.Write("\nDeadLine Date (in the format dd/mm/yyyy): ");  //receive deadline Date (additional)
+            DateTime? deadLine = null;
+            string? dateOfEnding = Console.ReadLine();
+            do
+            {
+                if (DateTime.TryParse(dateOfEnding, out var date))
+                {
+                    deadLine = DateTime.Parse(dateOfEnding);
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid date. enter a date in the correct format, to continue without Deadline press 0");
+                    dateOfEnding = Console.ReadLine();
+                }
+            } while (dateOfEnding != "0");
+
 
             Console.WriteLine("\nEnter Task's complexity, Rating between 1-5: ");
             DO.EngineerExperience complexity = (DO.EngineerExperience)(int.Parse(Console.ReadLine()) % 5 + 1);
@@ -91,7 +117,7 @@ namespace DalTest
             int engineerID = int.Parse(Console.ReadLine());
 
             DO.Task item = new DO.Task(0, alias, description, DateTime.Now, isMilestone, requiredEffortTime,
-                complexity, null, dateOfBegining, dateOfEnding, null, deliverables, null, engineerID); ;
+                complexity, null, ScheduledDate, deadLine, null, deliverables, null, engineerID); ;
             return item;
 
         }
