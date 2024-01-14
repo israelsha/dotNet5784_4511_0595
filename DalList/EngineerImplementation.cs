@@ -1,12 +1,11 @@
-﻿
-namespace Dal;
+﻿namespace Dal;
 using DalApi;
 using DO;
 using System.Collections.Generic;
 
 
 
-public class EngineerImplementation : IEngineer
+internal class EngineerImplementation : IEngineer
 {
     public int Create(Engineer item)
     {
@@ -49,4 +48,6 @@ public class EngineerImplementation : IEngineer
         }
         else throw new Exception($"Engineer with ID={item.Id} does Not exist");
     }
+    public IEngineer Engineer => new EngineerImplementation();
+
 }

@@ -10,11 +10,14 @@ namespace DalTest
 {
     internal class Program
     {
-        private static ITask? s_dalTask = new TaskImplementation();
-        private static IEngineer? s_dalEngineer = new EngineerImplementation();
-        private static IDependency? s_dalDependency = new DependencyImplementation();
-       
-        static int optionsSubMenu(string type)  //Main sub menu options 
+    //    private static ITask? s_dalTask = new TaskImplementation();
+    //    private static IEngineer? s_dalEngineer = new EngineerImplementation();
+    //    private static IDependency? s_dalDependency = new DependencyImplementation();
+    static readonly IDal s_dal = new DalList(); //stage 2
+
+
+
+    static int optionsSubMenu(string type)  //Main sub menu options 
         {
             Console.WriteLine("Select the method you want to perform");
             Console.WriteLine("to exsit Press 1");
@@ -179,45 +182,45 @@ namespace DalTest
                         break;
                     case 2:     //creat 
                         if (choice2 == 1)
-                            s_dalEngineer.Create(GetEngineer());
+                            s_dal.Engineer.Create(GetEngineer());
                         else if (choice2 == 2)
-                            s_dalTask.Create(GetTask());
+                            s_dal.Task.Create(GetTask());
                         else if (choice2 == 3)
-                            s_dalDependency.Create(GetDependency());   
+                            s_dal.Dependency.Create(GetDependency());   
                             break;
                     case 3:     //read
                         if (choice2 == 1)
                         {
                             Console.Write("Enter Engineer's ID: ");
-                            printEng(s_dalEngineer.Read(int.Parse(Console.ReadLine())));
+                            printEng(s_dal.Engineer.Read(int.Parse(Console.ReadLine())));
                         }
                         else if (choice2 == 2)
                         {
                             Console.Write("Enter Task's ID: ");
-                            printTask(s_dalTask.Read(int.Parse(Console.ReadLine())));
+                            printTask(s_dal.Task.Read(int.Parse(Console.ReadLine())));
                         }
                         else if (choice2 == 3)
                         {
                             Console.Write("Enter Dependency's ID: ");
-                            printDep(s_dalDependency.Read(int.Parse(Console.ReadLine())));
+                            printDep(s_dal.Dependency.Read(int.Parse(Console.ReadLine())));
                         }
                         break;
                     case 4:      //read all
                         if (choice2 == 1)
-                            foreach (var item1 in s_dalEngineer.ReadAll())
+                            foreach (var item1 in s_dal.Engineer.ReadAll())
                             {
                                 printEng(item1);
                                 Console.WriteLine();
                             }
                         else if (choice2 == 2)
-                            foreach (var item2 in s_dalTask.ReadAll())
+                            foreach (var item2 in s_dal.Task.ReadAll())
                             {
                                 printTask(item2);
                                 Console.WriteLine();
                             }
 
                         else if (choice2 == 3)
-                            foreach (var item3 in s_dalDependency.ReadAll())
+                            foreach (var item3 in s_dal.Dependency.ReadAll())
                             {
                                 printDep(item3);
                                 Console.WriteLine();
@@ -225,27 +228,27 @@ namespace DalTest
                         break;
                     case 5:     //update
                         if (choice2 == 1)
-                            s_dalEngineer.Update(GetEngineer());
+                            s_dal.Engineer.Update(GetEngineer());
                         else if (choice2 == 2)
-                            s_dalTask.Update(GetTask());
+                            s_dal.Task.Update(GetTask());
                         else if (choice2 == 3)
-                            s_dalDependency.Update(GetDependency());
+                            s_dal.Dependency.Update(GetDependency());
                         break;
                     case 6:    // delete
                         if (choice2 == 1)
                         {
                             Console.Write("Enter Engineer's ID: ");
-                            s_dalEngineer.Delete(int.Parse(Console.ReadLine()));
+                            s_dal.Engineer.Delete(int.Parse(Console.ReadLine()));
                         }
                         else if (choice2 == 2)
                         {
                             Console.Write("Enter Task's ID: ");
-                            s_dalTask.Delete(int.Parse(Console.ReadLine()));
+                            s_dal.Task.Delete(int.Parse(Console.ReadLine()));
                         }
                         else if (choice2 == 3)
                         {
                             Console.Write("Enter Dependency's ID: ");
-                            s_dalDependency.Delete(int.Parse(Console.ReadLine()));
+                            s_dal.Dependency.Delete(int.Parse(Console.ReadLine()));
                         }
                         break;
                     default:    //if the user choose wrong number 
@@ -262,7 +265,7 @@ namespace DalTest
         {
             try
             {
-                Initialization.Do(s_dalTask, s_dalEngineer, s_dalDependency);
+                Initialization.Do(s_dal);
                 int i = 0;
                
                 do

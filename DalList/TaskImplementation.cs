@@ -3,7 +3,7 @@ using DalApi;
 using DO;
 using System.Collections.Generic;
 
-public class TaskImplementation : ITask
+internal class TaskImplementation : ITask
 {
     public int Create(Task item)
     {
@@ -30,7 +30,7 @@ public class TaskImplementation : ITask
         return DataSource.Tasks.Find(Task => Task.Id == id);
     }
 
-    public List<Task> ReadAll() 
+    public List<Task> ReadAll()
     {
         List<Task> list = new List<Task>();
         list.AddRange(DataSource.Tasks);
@@ -40,7 +40,7 @@ public class TaskImplementation : ITask
     public void Update(Task item)
     {
         Task? obj = DataSource.Tasks.Find(Task => Task.Id == item.Id);
-        if (obj!=null)  // we find it
+        if (obj != null)  // we find it
         {
             DataSource.Tasks.Remove(obj);
             DataSource.Tasks.Add(item);
@@ -48,4 +48,6 @@ public class TaskImplementation : ITask
         else throw new Exception($"Task with ID={item.Id} does Not exist");
 
     }
+
+    public ITask Task => new TaskImplementation();
 }

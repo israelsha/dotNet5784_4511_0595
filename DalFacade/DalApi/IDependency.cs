@@ -1,7 +1,7 @@
 ﻿
 namespace DalApi;
 using DO;
-public interface IDependency : ICrud<Dependency> { }
+public interface IDependency : ICrud <Dependency> { }
 //{
 //    int Create(Dependency item);     //Creates new entity object in DAL
 //    Dependency? Read(int id);        //Reads entity object by its ID 
