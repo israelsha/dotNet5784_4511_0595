@@ -1,6 +1,5 @@
 ﻿namespace DO;
 
-
 /// <param name="Id"></param>
 /// <param name="Alias"></param>
 /// <param name="Description"></param>

@@ -1,24 +1,14 @@
 ﻿using Dal;
-using DalApi;
-using DO;
-using System.Data.Common;
-using System.Diagnostics;
-using System.Linq.Expressions;
-using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace DalTest
 {
     internal class Program
     {
-    //    private static ITask? s_dalTask = new TaskImplementation();
-    //    private static IEngineer? s_dalEngineer = new EngineerImplementation();
-    //    private static IDependency? s_dalDependency = new DependencyImplementation();
-    static readonly IDal s_dal = new DalList(); //stage 2
 
+        static readonly IDal s_dal = new DalList(); //stage 2
 
-
-    static int optionsSubMenu(string type)  //Main sub menu options 
+        static int optionsSubMenu(string type)  //Main sub menu options 
         {
             Console.WriteLine("Select the method you want to perform");
             Console.WriteLine("to exsit Press 1");
@@ -34,7 +24,6 @@ namespace DalTest
         /// <summary>
         /// get all parameter for Engineer
         /// </summary>
-        /// <returns></returns>
         static DO.Engineer GetEngineer()
         {
             Console.Write("Enter Engineer's details:");
@@ -56,7 +45,6 @@ namespace DalTest
         /// <summary>
         /// get all parameter for Task
         /// </summary>
-        /// <returns></returns>
         static DO.Task GetTask()
         {
             Console.WriteLine("Enter Task details:");
@@ -64,17 +52,22 @@ namespace DalTest
             Console.Write("Alias: ");
             string alias = Console.ReadLine()??"";
 
-            Console.Write("\nDescription: ");
+            Console.Write("Description: ");
             string description = Console.ReadLine() ?? "";
 
-            Console.Write("\nIs Milestone (true/false): ");
-            bool isMilestone = bool.Parse(Console.ReadLine());
+            Console.Write("Is Milestone (true/false): ");
+            string ?isMilestoneCheck = Console.ReadLine();
+            bool isMilestone = false;
+            if (isMilestoneCheck == "1" || isMilestoneCheck == "true")
+                isMilestone = true;
 
-            
-            Console.Write("\nRequired Effort Time (days): ");
+
+
+
+            Console.Write("Required Effort Time (days): ");
             TimeSpan requiredEffortTime = TimeSpan.FromDays(double.Parse(Console.ReadLine()));
 
-            Console.Write("\nScheduled Date (in the format dd/mm/yyyy): "); //receive Scheduled Date (additional)
+            Console.Write("Scheduled Date (in the format dd/mm/yyyy): "); //receive Scheduled Date (additional)
             string? startDateInput = Console.ReadLine();
             DateTime? ScheduledDate = null;
             do
@@ -86,13 +79,13 @@ namespace DalTest
                 }
                 else
                 {
-                    Console.WriteLine("Invalid date. enter a date in the correct format, to continue without Scheduled Date press 0");
+                    Console.Write("Invalid date. enter a date in the correct format, to continue without Scheduled Date press 0");
                     startDateInput = Console.ReadLine();
                 }
             } while (startDateInput != "0");
 
 
-            Console.Write("\nDeadLine Date (in the format dd/mm/yyyy): ");  //receive deadline Date (additional)
+            Console.Write("DeadLine Date (in the format dd/mm/yyyy): ");  //receive deadline Date (additional)
             DateTime? deadLine = null;
             string? dateOfEnding = Console.ReadLine();
             do
@@ -104,19 +97,19 @@ namespace DalTest
                 }
                 else
                 {
-                    Console.WriteLine("Invalid date. enter a date in the correct format, to continue without Deadline press 0");
+                    Console.Write("Invalid date. enter a date in the correct format, to continue without Deadline press 0: ");
                     dateOfEnding = Console.ReadLine();
                 }
             } while (dateOfEnding != "0");
 
 
-            Console.WriteLine("\nEnter Task's complexity, Rating between 1-5: ");
+            Console.Write("Enter Task's complexity, Rating between 1-5: ");
             DO.EngineerExperience complexity = (DO.EngineerExperience)(int.Parse(Console.ReadLine()) % 5 + 1);
 
-            Console.Write("\nDeliverables: ");
+            Console.Write("Deliverables: ");
             string? deliverables = Console.ReadLine();
 
-            Console.Write("\nEngineer ID: ");
+            Console.Write("Engineer ID: ");
             int engineerID = int.Parse(Console.ReadLine());
 
             DO.Task item = new DO.Task(0, alias, description, DateTime.Now, isMilestone, requiredEffortTime,
@@ -198,7 +191,7 @@ namespace DalTest
         /// <summary>
         /// get from user his 2 choices, choice1 - what action to do, choice2 - Engineer/Task/Dependsy
         /// </summary>
-               static int choiceActivate(int choice1 ,int choice2)
+        static int choiceActivate(int choice1, int choice2)
         {
             do
             {
@@ -307,7 +300,7 @@ namespace DalTest
                
                 do
                 {
-                    Console.WriteLine("\nto exit press 0");
+                    Console.WriteLine("to exit press 0");
                     Console.WriteLine("for Engineers Press 1");
                     Console.WriteLine("for Tasks Press 2");
                     Console.WriteLine("for Dependencies Press 3");
@@ -333,6 +326,7 @@ namespace DalTest
                             i = int.Parse(Console.ReadLine());  
                             break;                            
                           }
+                    Console.WriteLine();
                 } while (i != 0);
 
 

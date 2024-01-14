@@ -82,7 +82,7 @@ public static class Initialization
 
             Task task = new Task(100 + i, _Alias[i], DescriptionTasks[i], _CreatedAtDate, _IsMilestone, _RequiredEffortTime, _Copmlexity,
                 _StartDate, _ScheduledDate, _DeadlineDate, _CompleteDate, _Deliverables, _Remarks, _EngineerId);
-            s_dal!.Task.Create(task);    
+            s_dal!.Task.Create(task); 
         }
     }
 
@@ -94,7 +94,6 @@ public static class Initialization
             int _DependentTask = 100 + i / 2 ;
             int _DependsOnTask = 100 + (7 * i) % 19 + 1;
 
-                //rnd.Next(100, _DependentTask);
             Dependency dep = new Dependency(0, _DependentTask, _DependsOnTask);
             s_dal!.Dependency.Create(dep);
         }

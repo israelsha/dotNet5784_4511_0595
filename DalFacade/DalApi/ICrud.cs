@@ -9,9 +9,8 @@ public interface ICrud<T> where T : class
     public void Delete(int id);
 
     public T? Read(int id);
-
-    public List<T> ReadAll();
-
+    T? Read(Func<T, bool> filter);
+    IEnumerable<T?> ReadAll(Func<T, bool>? filter = null); 
     public void Update(T item);
 
 }

@@ -9,4 +9,3 @@ public interface ITask : ICrud <Task> { }
 //    void Update(Task item); //Updates entity object
 //    void Delete(int id); //Deletes an object by its Id
 
-//}
