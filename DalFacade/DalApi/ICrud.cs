@@ -1,4 +1,5 @@
-﻿using System;
+﻿namespace DalApi;
+using DO;
 
 
 public interface ICrud<T> where T : class
@@ -14,4 +15,5 @@ public interface ICrud<T> where T : class
     public void Update(T item);
 
 }
+
 

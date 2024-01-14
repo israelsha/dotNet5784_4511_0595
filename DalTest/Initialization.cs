@@ -82,23 +82,24 @@ public static class Initialization
 
             Task task = new Task(100 + i, _Alias[i], DescriptionTasks[i], _CreatedAtDate, _IsMilestone, _RequiredEffortTime, _Copmlexity,
                 _StartDate, _ScheduledDate, _DeadlineDate, _CompleteDate, _Deliverables, _Remarks, _EngineerId);
-            s_dal!.Task.Create(task);
+            s_dal!.Task.Create(task);    
         }
     }
-
 
     private static void createDependencies()
     {
         Random rnd = new Random();
         for (int i = 0; i < 40; i++)
-        {
-            int _DependentTask = 101 + i / 2 - i / 38;
-            int _DependsOnTask = rnd.Next(100, _DependentTask);
+        { 
+            int _DependentTask = 100 + i / 2 ;
+            int _DependsOnTask = 100 + (7 * i) % 19 + 1;
 
+                //rnd.Next(100, _DependentTask);
             Dependency dep = new Dependency(0, _DependentTask, _DependsOnTask);
-            s_dal!.Dependency.Create(dep);
+            s_dal!.dependency.Create(dep);
         }
     }
+
     private static void createEngineers()
     {
         string[] EngineerNames =
@@ -119,7 +120,7 @@ public static class Initialization
             DO.EngineerExperience _level = EngineerExperience.Beginner + rnd.Next(0, 5);
             double _cost = 200 + ((int)_level) * 50 + (double)(rnd.Next(-100, 300) / 3);
 
-            Engineer Eng = new Engineer(_id, _email, _cost, _name, _level);
+            Engineer Eng=new Engineer(_id, _email, _cost, _name, _level);
             s_dal!.Engineer.Create(Eng);
         }
     }
@@ -133,7 +134,3 @@ public static class Initialization
     }
 
 }
-
-
-
-
