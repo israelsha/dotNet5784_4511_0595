@@ -96,7 +96,7 @@ public static class Initialization
 
                 //rnd.Next(100, _DependentTask);
             Dependency dep = new Dependency(0, _DependentTask, _DependsOnTask);
-            s_dal!.dependency.Create(dep);
+            s_dal!.Dependency.Create(dep);
         }
     }
 

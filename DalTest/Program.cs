@@ -208,7 +208,10 @@ namespace DalTest
                         break;
                     case 2:     //creat 
                         if (choice2 == 1)
-                            s_dal.Engineer.Create(GetEngineer());
+                            try
+                                {
+                                s_dal.Engineer.Create(GetEngineer()); }
+                            catch (Exception ex) { Console.WriteLine(ex); }
                         else if (choice2 == 2)
                             s_dal.Task.Create(GetTask());
                         else if (choice2 == 3)
@@ -253,29 +256,37 @@ namespace DalTest
                             }
                         break;
                     case 5:     //update
-                        if (choice2 == 1)
-                            s_dal.Engineer.Update(GetEngineer());
-                        else if (choice2 == 2)
-                            s_dal.Task.Update(GetTask());
-                        else if (choice2 == 3)
-                            s_dal.Dependency.Update(GetDependency());
+                        try
+                            {
+                            if (choice2 == 1)
+                                s_dal.Engineer.Update(GetEngineer());
+                            else if (choice2 == 2)
+                                s_dal.Task.Update(GetTask());
+                            else if (choice2 == 3)
+                                s_dal.Dependency.Update(GetDependency());
+                        }
+                        catch (Exception ex) { Console.WriteLine(ex); }
                         break;
                     case 6:    // delete
-                        if (choice2 == 1)
+                        try
                         {
-                            Console.Write("Enter Engineer's ID: ");
-                            s_dal.Engineer.Delete(int.Parse(Console.ReadLine()));
+                            if (choice2 == 1)
+                            {
+                                Console.Write("Enter Engineer's ID: ");
+                                s_dal.Engineer.Delete(int.Parse(Console.ReadLine()));
+                            }
+                            else if (choice2 == 2)
+                            {
+                                Console.Write("Enter Task's ID: ");
+                                s_dal.Task.Delete(int.Parse(Console.ReadLine()));
+                            }
+                            else if (choice2 == 3)
+                            {
+                                Console.Write("Enter Dependency's ID: ");
+                                s_dal.Dependency.Delete(int.Parse(Console.ReadLine()));
+                            }
                         }
-                        else if (choice2 == 2)
-                        {
-                            Console.Write("Enter Task's ID: ");
-                            s_dal.Task.Delete(int.Parse(Console.ReadLine()));
-                        }
-                        else if (choice2 == 3)
-                        {
-                            Console.Write("Enter Dependency's ID: ");
-                            s_dal.Dependency.Delete(int.Parse(Console.ReadLine()));
-                        }
+                        catch (Exception ex) { Console.WriteLine(ex); }
                         break;
                     default:    //if the user choose wrong number 
                         Console.WriteLine("ERORR: choose numbers betwin 1-6");
