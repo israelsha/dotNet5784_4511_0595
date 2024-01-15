@@ -5,12 +5,8 @@
     "\\DalFacade\\DalApi",
     "\\DalFacade\\DO",
     "\\DalList",
-    "\\DalTest",
-    "\\dotNet5784_4511_0595",
-    "\\dotNet5784_4511_0595\\DalList",
-    "\\dotNet5784_4511_0595\\DalTest",
-    "\\dotNet5784_4511_0595\\Stage0"
+    "\\DalTest"
   ],
-  "SelectedNode": "\\DalFacade\\DalApi\\IEngineer.cs",
+  "SelectedNode": "\\dotNet5784_4511_0595.sln",
   "PreviewInSolutionExplorer": false
 }
