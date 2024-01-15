@@ -6,8 +6,11 @@ using Dal;
 public static class Initialization
 {
     private static IDal? s_dal; //stage 2
-
     private static readonly Random s_rand = new();
+
+    /// <summary>
+    /// create 20 tasks
+    /// </summary>
     private static void createTasks()
     {
         string[] _Alias =
@@ -86,6 +89,9 @@ public static class Initialization
         }
     }
 
+    /// <summary>
+    /// create 40 Dependencies
+    /// </summary>
     private static void createDependencies()
     {
         Random rnd = new Random();
@@ -99,6 +105,9 @@ public static class Initialization
         }
     }
 
+    /// <summary>
+    /// create 6 engineers
+    /// </summary>
     private static void createEngineers()
     {
         string[] EngineerNames =
@@ -126,7 +135,7 @@ public static class Initialization
 
     public static void Do(IDal dal) //stage 2
     {
-        s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
+        s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); 
         createTasks();
         createDependencies();
         createEngineers();
