@@ -4,6 +4,8 @@ using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Xml.Linq;
 
 internal class DependencyImplementation :IDependency
 {
@@ -12,9 +14,11 @@ internal class DependencyImplementation :IDependency
     public int Create(Dependency item)
     {
         //for entities with auto id
+       XElement Dependencies  = XMLTools.LoadListFromXMLElement(s_dependencies_xml); //get list of dependencies
         int id = Config.NextDependencyId;
         Dependency copy = item with { Id = id };
-        DataSource.Dependencies.Add(copy);
+        Dependencies.Add(copy);
+        XMLTools.SaveListToXMLElement(Dependencies, s_dependencies_xml);
         return id;
     }
 
