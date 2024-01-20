@@ -4,6 +4,7 @@ using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 internal class DependencyImplementation :IDependency
 {
@@ -11,11 +12,8 @@ internal class DependencyImplementation :IDependency
 
     public int Create(Dependency item)
     {
-        //for entities with auto id
-        int id = Config.NextDependencyId;
-        Dependency copy = item with { Id = id };
-        DataSource.Dependencies.Add(copy);
-        return id;
+        XElement Dependcies=XMLTools.LoadListFromXMLElement(s_dependencies_xml);   
+
     }
 
     public void Delete(int id)
@@ -25,12 +23,15 @@ internal class DependencyImplementation :IDependency
 
     public Dependency? Read(int id)
     {
-        throw new NotImplementedException();
+        XElement? dependencyElem = XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().FirstOrDefault(st => (int?)st.Element("Id") == id);
+        //XElenent
+        return dependencyElem is null ? null : XMLTools.ToEnumNullable<Dependency>(dependencyElem, s_dependencies_xml);
+
     }
 
     public Dependency? Read(Func<Dependency, bool> filter)
     {
-        throw new NotImplementedException();
+        return XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().Select(s => getDependency(s)).FirstOrDefault(filter);
     }
 
     public IEnumerable<Dependency?> ReadAll(Func<Dependency, bool>? filter = null)
