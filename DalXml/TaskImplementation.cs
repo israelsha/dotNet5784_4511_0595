@@ -4,6 +4,7 @@ using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 
 internal class TaskImplementation :ITask
 {
@@ -16,26 +17,52 @@ internal class TaskImplementation :ITask
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        List<Task> arrTasks = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
+        Task? obj = arrTasks.Find(Task => Task.Id == id);
+        if (obj != null)
+        {
+            arrTasks.Remove(obj);
+            XMLTools.SaveListToXMLSerializer<Task>(arrTasks, s_tasks_xml);
+        }
+        else throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
     }
 
-    public Task? Read(int id)
+        public Task? Read(int id)
     {
-        throw new NotImplementedException();
+        return XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml).FirstOrDefault(Task => Task.Id == id);
     }
 
     public Task? Read(Func<Task, bool> filter)
     {
-        throw new NotImplementedException();
+        var obj = from item in XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml)
+                  where filter(item)
+                  select item;
+        return obj.FirstOrDefault();
     }
 
     public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null)
     {
-        throw new NotImplementedException();
+        if (filter != null)
+        {
+            return from item in XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml)
+                   where filter(item)
+                   select item;
+        }
+        return from item in XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml)
+               select item;
     }
 
     public void Update(Task item)
     {
-        throw new NotImplementedException();
+        List<Task> arrTasks = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
+        Task? obj = arrTasks.Find(Task => Task.Id == item.Id);
+        if (obj != null)  // we find it
+        {
+            arrTasks.Remove(obj);
+            arrTasks.Add(item);
+            XMLTools.SaveListToXMLSerializer<Task>(arrTasks, s_tasks_xml);
+        }
+        else throw new DalDoesNotExistException($"Task with ID={item.Id} does Not exist");
+
     }
 }
