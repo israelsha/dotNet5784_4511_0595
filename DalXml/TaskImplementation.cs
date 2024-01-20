@@ -4,14 +4,20 @@ using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 
 internal class TaskImplementation :ITask
 {
     readonly string s_tasks_xml = "tasks";
 
-    public int Create(Task item)
+    public int Create(Task item)        //for entities with auto id
     {
-        throw new NotImplementedException();
+        List<Task> arrTask = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml); //get list of task
+        int id = Config.NextTaskId;
+        Task copy = item with { Id = id };
+        arrTask.Add(copy);
+        XMLTools.SaveListToXMLSerializer<Task>(arrTask, s_tasks_xml);
+        return item.Id;
     }
 
     public void Delete(int id)
