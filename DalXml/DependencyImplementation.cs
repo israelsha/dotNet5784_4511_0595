@@ -12,7 +12,7 @@ internal class DependencyImplementation :IDependency
     public int Create(Dependency item)
     {
         //for entities with auto id
-        int id = DataSource.Config.NextDependencyId;
+        int id = Config.NextDependencyId;
         Dependency copy = item with { Id = id };
         DataSource.Dependencies.Add(copy);
         return id;

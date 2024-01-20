@@ -19,8 +19,6 @@ public class DalDeletionImpossible : Exception
 }
 
 
-
-
 [Serializable]
 public class DalXMLFileLoadCreateException : Exception
 {
