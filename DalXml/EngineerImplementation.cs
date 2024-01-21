@@ -23,12 +23,12 @@ internal class EngineerImplementation : IEngineer
 
     public void Delete(int id)
     {
-        List<Engineer> lsEngineers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);//get list of engineers
-        Engineer? obj = lsEngineers.Find(Engineer => Engineer.Id == id);
+        List<Engineer> lsEngneers = XMLTools.LoadListFromXMLSerializer<Engineer>(s_engineers_xml);//get list of engineers
+        Engineer? obj = lsEngneers.Find(Engineer => Engineer.Id == id);
         if(obj != null)  //we find it
         {
-            lsEngineers.Remove(obj);
-            XMLTools.SaveListToXMLSerializer<Engineer>(lsEngineers, s_engineers_xml);
+            lsEngneers.Remove(obj);
+            XMLTools.SaveListToXMLSerializer<Engineer>(lsEngneers, s_engineers_xml);
         }
         else throw new DalDoesNotExistException($"Engineer with ID={id} does Not exist");
     }
