@@ -1,10 +1,8 @@
-﻿
-namespace Dal;
+﻿namespace Dal;
 using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 
 internal class TaskImplementation :ITask
 {
@@ -32,7 +30,7 @@ internal class TaskImplementation :ITask
         else throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
     }
 
-        public Task? Read(int id)
+    public Task? Read(int id)
     {
         return XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml).FirstOrDefault(Task => Task.Id == id);
     }
