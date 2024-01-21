@@ -29,7 +29,9 @@ internal class DependencyImplementation :IDependency
 
     public Dependency? Read(int id)
     {
-        throw new NotImplementedException();
+        XElement? dependencyElem = XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().FirstOrDefault(st => (int?)st.Element("Id") == id);
+        //XElenent
+        return dependencyElem is null ? null : getDependency(dependencyElem);
     }
 
     public Dependency? Read(Func<Dependency, bool> filter)
