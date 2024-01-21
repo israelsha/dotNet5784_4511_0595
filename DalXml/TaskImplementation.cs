@@ -12,36 +12,62 @@ internal class TaskImplementation :ITask
 
     public int Create(Task item)        //for entities with auto id
     {
-        List<Task> arrTask = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml); //get list of task
+        List<Task> lsTask = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml); //get list of tasks
         int id = Config.NextTaskId;
         Task copy = item with { Id = id };
-        arrTask.Add(copy);
-        XMLTools.SaveListToXMLSerializer<Task>(arrTask, s_tasks_xml);
+        lsTask.Add(copy);
+        XMLTools.SaveListToXMLSerializer<Task>(lsTask, s_tasks_xml);
         return item.Id;
     }
 
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        List<Task> lsTasks = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
+        Task? obj = lsTasks.Find(Task => Task.Id == id);
+        if (obj != null)
+        {
+            lsTasks.Remove(obj);
+            XMLTools.SaveListToXMLSerializer<Task>(lsTasks, s_tasks_xml);
+        }
+        else throw new DalDoesNotExistException($"Task with ID={id} does Not exist");
     }
 
-    public Task? Read(int id)
+        public Task? Read(int id)
     {
-        throw new NotImplementedException();
+        return XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml).FirstOrDefault(Task => Task.Id == id);
     }
 
     public Task? Read(Func<Task, bool> filter)
     {
-        throw new NotImplementedException();
+        var obj = from item in XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml)
+                  where filter(item)
+                  select item;
+        return obj.FirstOrDefault();
     }
 
     public IEnumerable<Task?> ReadAll(Func<Task, bool>? filter = null)
     {
-        throw new NotImplementedException();
+        if (filter != null)
+        {
+            return from item in XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml)
+                   where filter(item)
+                   select item;
+        }
+        return from item in XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml)
+               select item;
     }
 
     public void Update(Task item)
     {
-        throw new NotImplementedException();
+        List<Task> lsTasks = XMLTools.LoadListFromXMLSerializer<Task>(s_tasks_xml);
+        Task? obj = lsTasks.Find(Task => Task.Id == item.Id);
+        if (obj != null)  // we find it
+        {
+            lsTasks.Remove(obj);
+            lsTasks.Add(item);
+            XMLTools.SaveListToXMLSerializer<Task>(lsTasks, s_tasks_xml);
+        }
+        else throw new DalDoesNotExistException($"Task with ID={item.Id} does Not exist");
+
     }
 }
