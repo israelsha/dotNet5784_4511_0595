@@ -1,11 +1,8 @@
-﻿
-namespace Dal;
+﻿namespace Dal;
 using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using System.Xml.Serialization;
 
 internal class EngineerImplementation : IEngineer
 {

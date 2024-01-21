@@ -1,5 +1,4 @@
-﻿
-namespace Dal;
+﻿namespace Dal;
 
 /// <summary>
 /// The database of the data layer
