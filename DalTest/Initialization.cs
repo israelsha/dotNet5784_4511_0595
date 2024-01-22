@@ -3,6 +3,8 @@ using DO;
 using System;
 using Dal;
 using System.Data.Common;
+using System.Reflection.Metadata.Ecma335;
+using System.Xml.Linq;
 
 public static class Initialization
 {
@@ -47,7 +49,7 @@ public static class Initialization
           "Developing algorithms and models for machine learning applications.",
            "Designing, building, and maintaining robots for various applications."
         };
-        int[] arrDifficulty = new int[] { 1, 2, 4, 3, 3, 3, 4, 5, 3, 5, 4, 4, 2, 2, 2, 3, 2, 1, 1, 4 };
+        int[] arrDifficulty = new int[] { 0, 1, 3, 2, 2, 2, 3, 4, 2, 4, 3, 3, 1, 1, 1, 2, 1, 0, 0, 3 };
         string[] prudoctTasks = new string[]
         {
             "Detailed project plan","Automated data processing system","Integration process documentation",
@@ -66,6 +68,10 @@ public static class Initialization
             ,"Strategies to reduce energy consumption and enhance efficiency.","Implementation of automated systems for process efficiency.",
             "","Identification, assessment, and mitigation of potential risks.","Designing systems considering human interaction for optimal usability.",""
         };
+
+        int[] _EngineerId = { 324567891, 389012345,398765432,201987654,201987654,201987654,398765432,213074522,201987654,213074522,
+            398765432,398765432,389012345, 389012345,389012345,201987654,389012345,201987654, 235678901,398765432 };
+
         Random rnd = new Random();
         for (int i = 0; i < 19; i++)
         {
@@ -82,10 +88,9 @@ public static class Initialization
             DateTime? _DeadlineDate = _CompleteDate + TimeSpan.FromDays((rnd.Next(0, 30)));
             string? _Deliverables = prudoctTasks[i];
             string? _Remarks = RamarksTasks[i];
-            int? _EngineerId = 0;
 
             Task task = new Task(100 + i, _Alias[i], DescriptionTasks[i], _CreatedAtDate, _IsMilestone, _RequiredEffortTime, _Copmlexity,
-                _StartDate, _ScheduledDate, _DeadlineDate, _CompleteDate, _Deliverables, _Remarks, _EngineerId);
+                _StartDate, _ScheduledDate, _DeadlineDate, _CompleteDate, _Deliverables, _Remarks, _EngineerId[i]);
             s_dal!.Task.Create(task); 
         }
     }
@@ -113,24 +118,22 @@ public static class Initialization
     {
         string[] EngineerNames =
         {
-        "Dani Levi", "Eli Amar", "Yair Cohen",
-        "Ariela Levin", "Dina Klein", "Shira Israelof"
-    };
+        "Dani Levi", "Eli Amar", "Shira Israelof" ,
+        "Ariela Levin", "Israel Shaashua","Dina Klein"
+        };
+        int[] _id = { 324567891, 389012345, 201987654, 398765432, 213074522, 235678901 };
+        int i = 0;
         Random rnd = new Random();
         foreach (var _name in EngineerNames)
         {
-            int _id;
-            do
-                _id = rnd.Next(200000000, 400000000);
-            while (s_dal!.Engineer.Read(_id) != null);
+            string? _email = (_id[i] % 10000).ToString() + "@gmail.com";
 
-            string? _email = (_id % 10000).ToString() + "@gmail.com";
-
-            DO.EngineerExperience _level = EngineerExperience.Beginner + rnd.Next(0, 5);
+            DO.EngineerExperience _level = EngineerExperience.Beginner + i % 5;
             double _cost = 200 + ((int)_level) * 50 + (double)(rnd.Next(-100, 300) / 3);
 
-            Engineer Eng=new Engineer(_id, _email, _cost, _name, _level);
+            Engineer Eng=new Engineer(_id[i], _email, _cost, _name, _level);
             s_dal!.Engineer.Create(Eng);
+            i++;
         }
     }
 
@@ -142,4 +145,18 @@ public static class Initialization
         createEngineers();
     }
 
+    public static void initialize()
+    {
+        const string s_xml_dir = @"..\xml\";
+        
+        XElement x_task = new XElement("ArrayOfTask");
+        x_task.Save($"{s_xml_dir + "tasks"}.xml");
+
+        XElement x_eng = new XElement("ArrayOfEngineer");
+        x_eng.Save($"{s_xml_dir + "engineers"}.xml");
+
+        XElement x_dep = new XElement("ArrayOfDependency");
+        x_dep.Save($"{s_xml_dir + "dependencies"}.xml");
+
+    }
 }

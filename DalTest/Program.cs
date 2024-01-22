@@ -6,17 +6,17 @@ namespace DalTest
     internal class Program
     {
 
-        static readonly IDal s_dal = new DalList(); //stage 2
+        static readonly IDal s_dal = new DalXml(); //stage 3
 
         static int optionsSubMenu(string type)  //Main sub menu options 
         {
             Console.WriteLine("Please press which action you want to take:");
-            Console.WriteLine("1 - Exit");
-            Console.WriteLine($"2 - Add a new {type} to the list");
-            Console.WriteLine($"3 - Present an {type} by ID");
-            Console.WriteLine($"4 - Display all {type}");
-            Console.WriteLine($"5 - Update {type} data");
-            Console.WriteLine($"6 - Delete an existing {type} from a list");
+            Console.WriteLine("0 - Exit");
+            Console.WriteLine($"1 - Add a new {type} to the list");
+            Console.WriteLine($"2 - Present an {type} by ID");
+            Console.WriteLine($"3 - Display all {type}");
+            Console.WriteLine($"4 - Update {type} data");
+            Console.WriteLine($"5 - Delete an existing {type} from a list");
 
             return int.Parse(Console.ReadLine());
         }
@@ -76,7 +76,7 @@ namespace DalTest
                 }
                 else//user enter invalid date
                 {
-                    Console.Write("Invalid date. enter a date in the correct format, to continue without Scheduled Date press 0");
+                    Console.Write("Invalid date. enter a date in the correct format, to continue without Scheduled Date press 0: ");
                     startDateInput = Console.ReadLine();
                 }
             } while (startDateInput != "0");//Continues as long as an invalid date is entered
@@ -188,9 +188,9 @@ namespace DalTest
             {
                 switch (userChoice)
                 {
-                    case 1:     //exit
+                    case 0:     //exit
                         break;
-                    case 2: //creat 
+                    case 1: //creat 
                         if (EngTaskDep == 1)
                             try{ s_dal.Engineer.Create(GetEngineer()); } //try to craete new Engineer
                             catch (Exception ex) { Console.WriteLine(ex.Message); } //ID is allredy exist
@@ -199,7 +199,7 @@ namespace DalTest
                         else if (EngTaskDep == 3)
                             s_dal.Dependency.Create(GetDependency());   
                             break;
-                    case 3: //read
+                    case 2: //read
                         if (EngTaskDep == 1)
                         {
                             Console.Write("Enter Engineer's ID: ");
@@ -216,7 +216,7 @@ namespace DalTest
                             printDep(s_dal.Dependency.Read(int.Parse(Console.ReadLine())));
                         }
                         break;
-                    case 4: //read all
+                    case 3: //read all
                         if (EngTaskDep == 1)
                             foreach (var item1 in s_dal.Engineer.ReadAll())
                             {
@@ -237,7 +237,7 @@ namespace DalTest
                                 Console.WriteLine();
                             }
                         break;
-                    case 5: //update
+                    case 4: //update
                         try
                             {
                             if (EngTaskDep == 1)
@@ -249,7 +249,7 @@ namespace DalTest
                         }
                         catch (Exception ex) { Console.WriteLine(ex.Message); }
                         break;
-                    case 6: //delete
+                    case 5: //delete
                         try
                         {
                             if (EngTaskDep == 1)
@@ -275,7 +275,7 @@ namespace DalTest
                         userChoice = int.Parse(Console.ReadLine());
                         break;
                 }
-            } while (userChoice < 1 || userChoice > 6);
+            } while (userChoice < 0 || userChoice > 5);
 
             return 1;
         }
@@ -284,7 +284,6 @@ namespace DalTest
         {
             try
             {
-                Initialization.Do(s_dal);
                 int i = 0;
                
                 do
@@ -293,6 +292,7 @@ namespace DalTest
                     Console.WriteLine("Press - 1 for Engineers");
                     Console.WriteLine("Press - 2 for Tasks");
                     Console.WriteLine("Press - 3 for Dependencies");
+                    Console.WriteLine("Press - 4 for Initialize data");
                     i = int.Parse(Console.ReadLine());
                         switch (i)
                         {
@@ -309,6 +309,15 @@ namespace DalTest
                         case 3:     //dependsy
                             int choice3 = optionsSubMenu("Dependency");
                             choiceActivate(choice3, 3);
+                            break;
+                        case 4:
+                            Console.Write("Would you like to create Initial data? (Y/N) "); //stage 3
+                            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
+                            if (ans == "Y")
+                            {
+                                Initialization.initialize();
+                                Initialization.Do(s_dal);
+                            }
                             break;
                         default:   //if the user choose wrong number 
                             Console.WriteLine("ERROR: choose number between 1-3");
