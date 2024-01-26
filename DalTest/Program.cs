@@ -1,4 +1,6 @@
 ﻿using Dal;
+using System.Diagnostics;
+using DalApi;
 
 
 namespace DalTest
@@ -6,8 +8,9 @@ namespace DalTest
     internal class Program
     {
 
-        static readonly IDal s_dal = new DalXml(); //stage 3
-
+        //static readonly IDal s_dal = new DalList(); //stage 2
+        //static readonly IDal s_dal = new DalXml(); //stage 3
+        static readonly IDal s_dal = Factory.Get; //stage 4
         static int optionsSubMenu(string type)  //Main sub menu options 
         {
             Console.WriteLine("Please press which action you want to take:");
@@ -316,7 +319,7 @@ namespace DalTest
                             if (ans == "Y")
                             {
                                 Initialization.initialize();
-                                Initialization.Do(s_dal);
+                                Initialization.Do();
                             }
                             break;
                         default:   //if the user choose wrong number 
