@@ -159,10 +159,10 @@ public static class Initialization
         XElement x_dep = new XElement("ArrayOfDependency", "\n");
         x_dep.Save($"{s_xml_dir + "dependencies"}.xml");
 
-        //XElement x_con_task = new XElement("NextTaskId", 100);
-        //XElement x_con_dep = new XElement("NextDependencyId", 100);
-        //XElement x_con = new XElement("config", x_con_task, x_con_dep);
-        //x_con.Save(s_xml_dir + "data - config");
+        XElement x_con_task = new XElement("NextTaskId", 100);
+        XElement x_con_dep = new XElement("NextDependencyId", 100);
+        XElement x_con = new XElement("config", x_con_task, x_con_dep);
+        x_con.Save($"{ s_xml_dir + "data-config"}.xml");
 
     }
 }
