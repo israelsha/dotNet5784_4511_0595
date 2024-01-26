@@ -8,8 +8,6 @@ namespace DalTest
         //static readonly IDal s_dal = new DalList(); //stage 2
        static readonly IDal s_dal = new DalXml(); //stage 3
 
-        static readonly IDal s_dal = new DalXml(); //stage 3
-
         static int optionsSubMenu(string type)  //Main sub menu options 
         {
             Console.WriteLine("Please press which action you want to take:");
@@ -290,12 +288,6 @@ namespace DalTest
                
                 do
                 {
-                    Console.Write("Would you like to create Initial data? (Y/N)"); //stage 3
-                    Console.WriteLine();
-                    string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
-                    if (ans == "Y") //stage 3
-                        Initialization.Do(s_dal);
-
                     Console.WriteLine("Press - 0 for exit");
                     Console.WriteLine("Press - 1 for Engineers");
                     Console.WriteLine("Press - 2 for Tasks");
@@ -320,7 +312,7 @@ namespace DalTest
                             break;
                         case 4:
                             Console.Write("Would you like to create Initial data? (Y/N) "); //stage 3
-                            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
+                            string ?ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
                             if (ans == "Y")
                             {
                                 Initialization.initialize();
