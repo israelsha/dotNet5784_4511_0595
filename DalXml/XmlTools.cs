@@ -17,7 +17,7 @@ static class XMLTools
 
     public static Dependency getDependency(XElement dependencyElem)
     {
-        int depId = ToIntNullable(dependencyElem, "ID") ?? 1;
+        int depId = ToIntNullable(dependencyElem, "ID") ?? 0;
         int ? depDependentTask = ToIntNullable(dependencyElem, "DependentTask");
         int? depDependsOnTask = ToIntNullable(dependencyElem, "DependsOnTask");
 
