@@ -5,6 +5,7 @@ using Dal;
 using System.Data.Common;
 using System.Reflection.Metadata.Ecma335;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public static class Initialization
 {
@@ -149,14 +150,19 @@ public static class Initialization
     {
         const string s_xml_dir = @"..\xml\";
         
-        XElement x_task = new XElement("ArrayOfTask");
+        XElement x_task = new XElement("ArrayOfTask","\n");
         x_task.Save($"{s_xml_dir + "tasks"}.xml");
 
-        XElement x_eng = new XElement("ArrayOfEngineer");
+        XElement x_eng = new XElement("ArrayOfEngineer","\n");
         x_eng.Save($"{s_xml_dir + "engineers"}.xml");
 
-        XElement x_dep = new XElement("ArrayOfDependency");
+        XElement x_dep = new XElement("ArrayOfDependency", "\n");
         x_dep.Save($"{s_xml_dir + "dependencies"}.xml");
+
+        //XElement x_con_task = new XElement("NextTaskId", 100);
+        //XElement x_con_dep = new XElement("NextDependencyId", 100);
+        //XElement x_con = new XElement("config", x_con_task, x_con_dep);
+        //x_con.Save(s_xml_dir + "data - config");
 
     }
 }
