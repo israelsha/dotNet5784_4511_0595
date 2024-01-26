@@ -5,8 +5,6 @@ namespace DalTest
 {
     internal class Program
     {
-        //static readonly IDal s_dal = new DalList(); //stage 2
-       static readonly IDal s_dal = new DalXml(); //stage 3
 
         static readonly IDal s_dal = new DalXml(); //stage 3
 
@@ -32,16 +30,16 @@ namespace DalTest
             Console.Write("ID: ");
             int id = int.Parse(Console.ReadLine());
             Console.Write("name: ");
-            string name=Console.ReadLine() ?? "";
+            string name = Console.ReadLine() ?? "";
             Console.Write("Email: ");
             string mail = Console.ReadLine() ?? "";
             Console.Write("cost: ");
             double price = double.Parse(Console.ReadLine());
             Console.Write("Enter Engineer's level, Rating between 1-5: ");
-            DO.EngineerExperience level=(DO.EngineerExperience)((int.Parse(Console.ReadLine())-1) % 5+1);
+            DO.EngineerExperience level = (DO.EngineerExperience)((int.Parse(Console.ReadLine()) - 1) % 5 + 1);
 
             DO.Engineer item = new DO.Engineer(id, mail, price, name, level);
-            return item;    
+            return item;
         }
 
         /// <summary>
@@ -52,13 +50,13 @@ namespace DalTest
             Console.WriteLine("Enter Task details:");
 
             Console.Write("Alias: ");
-            string alias = Console.ReadLine()??"";
+            string alias = Console.ReadLine() ?? "";
 
             Console.Write("Description: ");
             string description = Console.ReadLine() ?? "";
 
             Console.Write("Is Milestone (true/false): ");
-            string ?isMilestoneCheck = Console.ReadLine();
+            string? isMilestoneCheck = Console.ReadLine();
             bool isMilestone = false;
             if (isMilestoneCheck == "1" || isMilestoneCheck == "true")
                 isMilestone = true;
@@ -121,11 +119,11 @@ namespace DalTest
         {
             Console.WriteLine("Enter Dependency details:");
             Console.Write("Dependent Task: ");
-            int dependentTask= Console.Read();
+            int dependentTask = Console.Read();
             Console.Write("\nDependent on Task: ");
             int dependentOnTask = int.Parse(Console.ReadLine());
 
-            DO.Dependency item = new DO.Dependency(0,dependentTask,dependentOnTask);
+            DO.Dependency item = new DO.Dependency(0, dependentTask, dependentOnTask);
             return item;
         }
 
@@ -134,9 +132,9 @@ namespace DalTest
         /// </summary>
         static void printEng(DO.Engineer? eng)
         {
-            if(eng != null)
+            if (eng != null)
             {
-                Console.WriteLine($"Engineer name: { eng.Name}");
+                Console.WriteLine($"Engineer name: {eng.Name}");
                 Console.WriteLine($"Engineer ID: {eng.Id}");
                 Console.WriteLine($"Engineer mail: {eng.Email}");
                 Console.WriteLine($"Engineer price: {eng.Cost}");
@@ -194,13 +192,13 @@ namespace DalTest
                         break;
                     case 1: //creat 
                         if (EngTaskDep == 1)
-                            try{ s_dal.Engineer.Create(GetEngineer()); } //try to craete new Engineer
+                            try { s_dal.Engineer.Create(GetEngineer()); } //try to craete new Engineer
                             catch (Exception ex) { Console.WriteLine(ex.Message); } //ID is allredy exist
                         else if (EngTaskDep == 2)
                             s_dal.Task.Create(GetTask());
                         else if (EngTaskDep == 3)
-                            s_dal.Dependency.Create(GetDependency());   
-                            break;
+                            s_dal.Dependency.Create(GetDependency());
+                        break;
                     case 2: //read
                         if (EngTaskDep == 1)
                         {
@@ -241,7 +239,7 @@ namespace DalTest
                         break;
                     case 4: //update
                         try
-                            {
+                        {
                             if (EngTaskDep == 1)
                                 s_dal.Engineer.Update(GetEngineer());
                             else if (EngTaskDep == 2)
@@ -287,27 +285,21 @@ namespace DalTest
             try
             {
                 int i = 0;
-               
+
                 do
                 {
-                    Console.Write("Would you like to create Initial data? (Y/N)"); //stage 3
-                    Console.WriteLine();
-                    string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
-                    if (ans == "Y") //stage 3
-                        Initialization.Do(s_dal);
-
                     Console.WriteLine("Press - 0 for exit");
                     Console.WriteLine("Press - 1 for Engineers");
                     Console.WriteLine("Press - 2 for Tasks");
                     Console.WriteLine("Press - 3 for Dependencies");
                     Console.WriteLine("Press - 4 for Initialize data");
                     i = int.Parse(Console.ReadLine());
-                        switch (i)
-                        {
+                    switch (i)
+                    {
                         case 0:
                             break;
                         case 1:     //engineer
-                            int choice1= optionsSubMenu("Engineer");
+                            int choice1 = optionsSubMenu("Engineer");
                             choiceActivate(choice1, 1);
                             break;
                         case 2:     //task
@@ -329,13 +321,13 @@ namespace DalTest
                             break;
                         default:   //if the user choose wrong number 
                             Console.WriteLine("ERROR: choose number between 1-3");
-                            i = int.Parse(Console.ReadLine());  
-                            break;                            
-                          }
+                            i = int.Parse(Console.ReadLine());
+                            break;
+                    }
                     Console.WriteLine();
                 } while (i != 0);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
