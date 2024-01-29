@@ -7,7 +7,6 @@ namespace DalTest
 {
     internal class Program
     {
-
         //static readonly IDal s_dal = new DalList(); //stage 2
         //static readonly IDal s_dal = new DalXml(); //stage 3
         static readonly IDal s_dal = Factory.Get; //stage 4
@@ -315,7 +314,7 @@ namespace DalTest
                             break;
                         case 4:
                             Console.Write("Would you like to create Initial data? (Y/N) "); //stage 3
-                            string? ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
+                            string ?ans = Console.ReadLine() ?? throw new FormatException("Wrong input"); //stage 3
                             if (ans == "Y")
                             {
                                 Initialization.initialize();

@@ -1,9 +1,6 @@
-﻿
-using System.Diagnostics.Contracts;
+﻿namespace BO;
 
-namespace BO;
-
-enum Status
+public enum Status
 {
   Unscheduled,
   Scheduled,
@@ -12,7 +9,8 @@ enum Status
   Done
 }
 
-enum EngineerExperience {
+public enum EngineerExperience
+{
   Beginner,
   AdvancedBeginner,
   Intermediate,

@@ -2,10 +2,7 @@
 using DO;
 using System;
 using Dal;
-using System.Data.Common;
-using System.Reflection.Metadata.Ecma335;
 using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public static class Initialization
 {
