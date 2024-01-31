@@ -13,7 +13,7 @@ internal class EngineerImplementation : IEngineer
         else if (boEngineer.Cost <= 0) error = "Cost";
        error= BO.Tools.IsValidEmail(boEngineer.Email);
 
-        if(error != "") 
+        if(error != "")
         { 
             throw new BO.BlInvalidDataException($"Invalid {error}");
         }
