@@ -20,7 +20,5 @@ public interface ITask
     public void Delete(int id);
 
     //check if the all date is correct
-    public void CheckDate(int id,DateTime date);
-
-    //public BO.MilestoneInTask GetDetailedMilestoneForTask(int MilestoneId, int TaskId);//return which Milestone are in this task
+    public void CheckDate(int id, DateTime date);
 }
