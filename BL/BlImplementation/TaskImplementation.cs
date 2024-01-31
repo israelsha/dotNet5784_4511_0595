@@ -5,6 +5,7 @@ namespace BlImplementation;
 internal class TaskImplementation : ITask
 {
     private Dal.IDal _dal = DalApi.Factory.Get;
+
     public void CheckDate(int id, DateTime date)
     {
         throw new NotImplementedException();
