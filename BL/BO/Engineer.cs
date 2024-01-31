@@ -8,5 +8,5 @@ public class Engineer
   public string Email {  get; set; }   
   public EngineerExperience Level {  get; set; } 
   public double Cost { get; set; }    //daily cost of the engineer, including salary, workplace, tools'
-  public BO.TaskInEngineer? Task {  get; set; }  
+  public TaskInEngineer Task {  get; set; } 
 }

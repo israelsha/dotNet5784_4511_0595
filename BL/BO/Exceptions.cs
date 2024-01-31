@@ -30,8 +30,10 @@ public class BlAlreadyExistsException : Exception
 public class BlInvalidDataException : Exception
 {
     public BlInvalidDataException(string? message) : base(message) { }
-    public BlInvalidDataException(string message, Exception innerException)
-                : base(message, innerException) { }
 }
 
-
+[Serializable]
+public class cannotDeleteException : Exception
+{
+    public cannotDeleteException(string? message) : base(message) { }
+}
