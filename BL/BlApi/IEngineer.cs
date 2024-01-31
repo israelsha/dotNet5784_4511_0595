@@ -5,10 +5,19 @@
 /// </summary>
 public interface IEngineer
 {
+    //add new engineer
     public int Create(BO.Engineer item);
+
+    //get Id and return the engineer with this Id
     public BO.Engineer? Read(int id);
+
+    //return list of all the engineers
     public IEnumerable<BO.Engineer> ReadAll();
+
+    //updating the ingineer
     public void Update(BO.Engineer item);
+
+    //delete engineer
     public void Delete(int id);
-    public BO.TaskInEngineer GetDetailedTaskForEngineer(int EngineerId, int TaskId);//return which Task the engineer is doing
+
 }
