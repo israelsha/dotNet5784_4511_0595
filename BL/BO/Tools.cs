@@ -2,11 +2,11 @@
 using System.Net.Mail;
 internal class Tools
 {
-    public static string isValidMail(string mail)
+    public static string IsValidEmail(string email)
     {
         try
         {
-            MailAddress email = new MailAddress(mail);
+            MailAddress mailAddress = new MailAddress(email);
             return "";
         }
         catch
@@ -14,4 +14,5 @@ internal class Tools
             return "Email";
         }
     }
+
 }
