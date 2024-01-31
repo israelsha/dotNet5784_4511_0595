@@ -22,5 +22,4 @@ public interface ITask
     //check if the all date is correct
     public void CheckDate(int id,DateTime date);
 
-    //public BO.MilestoneInTask GetDetailedMilestoneForTask(int MilestoneId, int TaskId);//return which Milestone are in this task
 }
