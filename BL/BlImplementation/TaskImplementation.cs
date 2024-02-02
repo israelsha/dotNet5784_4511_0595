@@ -1,5 +1,4 @@
 ﻿using BlApi;
-using BO;
 namespace BlImplementation;
 
 internal class TaskImplementation : ITask
@@ -75,10 +74,7 @@ internal class TaskImplementation : ITask
         };
     }
 
-
-        };
-
-    }
+    
 
     public IEnumerable<BO.TaskInList> ReadAll()
     {
