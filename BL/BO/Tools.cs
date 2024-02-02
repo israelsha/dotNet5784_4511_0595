@@ -1,11 +1,14 @@
 ﻿namespace BO;
-using BlImplementation;
-using DalApi;
+
 using Dal;
 using System.Net.Mail;
+using System.Reflection.Emit;
+using System.Xml.Linq;
+
 internal class Tools
 {
-    public static string IsValidEmail(string email)
+    private static Dal.IDal _dal = DalApi.Factory.Get;
+    internal static string IsValidEmail(string email)
     {
         try
         {
@@ -18,11 +21,83 @@ internal class Tools
         }
     }
 
-    public static DO.Task? findTask(int ingineerId)
+    internal static DO.Task? findTask(int ingineerId)
     {
-        IEnumerable<DO.Task> tasks = DalApi.Factory.Get.Task.ReadAll();//bring the list of all tasks
+        IEnumerable<DO.Task> tasks = _dal.Task.ReadAll();//bring the list of all tasks
         return (from item in tasks     //select the task that this (our) engineer is doing (ie: id=EngineerId)
                 where (item.EngineerId == ingineerId)
                 select item).FirstOrDefault();
+    }
+
+    //calc the the status by the dates
+    internal static BO.Status calcStatus(DO.Task doTask)
+    {
+        if (doTask.ScheduledDate == null) return Status.Unscheduled;
+        if (doTask.StartDate == null) return Status.Scheduled;
+        if (doTask.CompleteDate == null)
+            if (DateTime.Now > doTask.DeadlineDate)
+                return Status.InJeopardy;
+            else
+                return Status.OnTrack;
+        return Status.Done;
+    }
+
+    //converting from BO.Engineer to DO.Engineer
+    internal static DO.Engineer boToDo(BO.Engineer boEngineer)
+    {
+        return new DO.Engineer
+            (boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);
+    }
+
+    //converting from DO.Engineer to BO.Engineer
+    internal static BO.Engineer doToBo(DO.Engineer doEngineer)
+    {
+        return new BO.Engineer()
+        {
+            Id = doEngineer.Id,
+            Name = doEngineer.Name,
+            Email = doEngineer.Email,
+            Task = new BO.TaskInEngineer() { Id = BO.Tools.findTask(doEngineer.Id).Id, Alias = BO.Tools.findTask(doEngineer.Id).Alias },
+            Cost = doEngineer.Cost,
+            Level = (BO.EngineerExperience)doEngineer.Level
+        };
+     }
+        
+
+
+    //converting from BO.Task to DO.Task
+    internal static DO.Task boToDo(BO.Task boTask)
+    {
+        return new DO.Task(0, boTask.Alias, boTask.Description, boTask.CreatedAtDate, false, boTask.RequiredEffortTime,
+        (DO.EngineerExperience)boTask.Status, boTask.StartDate, boTask.ScheduledDate, boTask.DeadlineDate, boTask.CompleteDate,
+        boTask.Deliverables, boTask.Remarks, boTask.Engineer.Id);
+    }
+
+    //converting from DO.Task to BO.Task
+    internal static BO.Task doToBo(DO.Task doTask)
+    {
+        return new BO.Task()
+        {
+            Id = doTask.Id,
+            Description = doTask.Description,
+            Alias = doTask.Alias,
+            CreatedAtDate = doTask.CreatedAtDate,
+            RequiredEffortTime = doTask.RequiredEffortTime,
+            StartDate = doTask.StartDate,
+            ScheduledDate = doTask.ScheduledDate,
+            DeadlineDate = doTask.DeadlineDate,
+            CompleteDate = doTask.CompleteDate,
+            Deliverables = doTask.Deliverables,
+            Remarks = doTask.Remarks,
+            Copmlexity = (BO.EngineerExperience)doTask.Copmlexity,
+            
+            Engineer = (doTask.EngineerId == null) ? null : new BO.EngineerInTask()
+            { Id = doTask.EngineerId ?? 0, Name = _dal.Engineer.Read(doTask.EngineerId ?? 0).Name },
+
+            ForecastDate = (doTask.StartDate == null || doTask.RequiredEffortTime == null) ? null : doTask.StartDate + doTask.RequiredEffortTime,
+            //Dependencies = new ,
+            Status = calcStatus(doTask)
+
+        };
     }
 }

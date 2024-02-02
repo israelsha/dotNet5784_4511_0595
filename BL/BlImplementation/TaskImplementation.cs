@@ -1,4 +1,6 @@
 ﻿using BlApi;
+using BO;
+using System.Security.Cryptography;
 namespace BlImplementation;
 
 internal class TaskImplementation : ITask
@@ -16,26 +18,22 @@ internal class TaskImplementation : ITask
         //check if one of the parameter is invalid
         string error = "";
         if (boTask.Id <= 0) error = "Id";
-        else if (boTask.Alias=="") error = "Alias";
+        else if (boTask.Alias == "") error = "Alias";
         if (error != "") //there is invalid data
-        {
             throw new BO.BlInvalidDataException($"Invalid {error}");
-        }
 
-        DO.Task doTask = new DO.Task(boTask.Id, boTask.Alias, boTask.Description, boTask.CreatedAtDate, false, boTask.RequiredEffortTime,
-            (DO.EngineerExperience)boTask.Status, boTask.StartDate, boTask.ScheduledDate, boTask.DeadlineDate, boTask.CompleteDate,
-            boTask.Deliverables, boTask.Remarks, boTask.Engineer.Id);
+        //create new Task
+        DO.Task doTask = Tools.boToDo(boTask);
+        int idTask = _dal.Task.Create(doTask);
 
-        try
+        //create new dependsies
+        foreach (var item in boTask.Dependencies)
         {
-            int idTask = _dal.Task.Create(doTask);
-            return idTask;
-        }
-        catch (DO.DalAlreadyExistsException ex)
-        {
-            throw new BO.BlAlreadyExistsException($"Task with ID={boTask.Id} already exists", ex);
+            DO.Dependency doDependency = new DO.Dependency(0, boTask.Id, item.Id);
+            _dal.Dependency.Create(doDependency);
         }
 
+        return idTask;
     }
 
     public void Delete(int id)
@@ -49,36 +47,24 @@ internal class TaskImplementation : ITask
         if (doTask == null)
             throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
 
-
-        return new BO.Task()
-        {
-            Id = id,
-            Description = doTask.Description,
-            Alias = doTask.Alias,
-            CreatedAtDate = doTask.CreatedAtDate,
-
-            RequiredEffortTime = doTask.RequiredEffortTime,
-            StartDate = doTask.StartDate,
-            ScheduledDate = doTask.ScheduledDate,
-            DeadlineDate = doTask.DeadlineDate,
-            CompleteDate = doTask.CompleteDate,
-            Deliverables = doTask.Deliverables,
-            Remarks = doTask.Remarks,
-            Copmlexity = (BO.EngineerExperience)doTask.Copmlexity
-            //Engineer=
-            //Dependencies
-            //ForecastDate= doTask.
-            //Dependencies = doTask,
-            //Status = 
-
-        };
+        return Tools.doToBo(doTask);
     }
 
-    
+
+        };
+
+    }
 
     public IEnumerable<BO.TaskInList> ReadAll()
     {
-        throw new NotImplementedException();
+        return (from DO.Task doTask in _dal.Task.ReadAll()
+                select new BO.TaskInList
+                {
+                    Id = doTask.Id,
+                    Description = doTask.Description,
+                    Alias = doTask.Alias,
+                    Status = Tools.calcStatus(doTask)
+                });
     }
 
     public void Update(BO.Task item)
