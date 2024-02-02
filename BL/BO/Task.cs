@@ -13,7 +13,7 @@ public class Task
     public BO.Status Status { get; set; }               // calculated;
     public List<BO.TaskInList> ?Dependencies { get; set; }//relevant only before schedule is built;
     public BO.MilestoneInTask? Milestone { get; set; }  //calculated when building schedule, populated if there is milestone in dependency, relevant only after schedule is built;
-    public TimeSpan ?RequiredEffortTime;                 //how many men-days needed for the task;
+    public TimeSpan? RequiredEffortTime { get; set; }   //how many men-days needed for the task;
     public DateTime ?StartDate { get; set; }            //the real start date;
     public DateTime ?ScheduledDate { get; set; }        //the planned start date;
     public DateTime ?ForecastDate { get; set; }         //calcualed planned completion date;
@@ -21,8 +21,7 @@ public class Task
     public DateTime ?CompleteDate { get; set; }         //real completion date;
     public string ?Deliverables { get; set; }           //description of deliverables for MS copmletion;
     public string ?Remarks { get; set; }                //free remarks from project meetings;
-    public BO.EngineerInTask Engineer;
-    public BO.EngineerExperience Copmlexity;            //minimum expirience for engineer to assign;
-    //public override string ToString() => this.ToStringProperty();
+    public BO.EngineerInTask? Engineer {  get; set; }   
+    public BO.EngineerExperience Copmlexity { get; set; }//minimum expirience for engineer to assign;
 
 }

@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 namespace BlImplementation;
 
 internal class EngineerImplementation : IEngineer
@@ -13,13 +14,12 @@ internal class EngineerImplementation : IEngineer
         else if (boEngineer.Cost <= 0) error = "Cost";
         error= BO.Tools.IsValidEmail(boEngineer.Email); 
         if(error != "") //there is invalid data
-        { 
             throw new BO.BlInvalidDataException($"Invalid {error}");
-        }
 
-        DO.Engineer doEngineer = new DO.Engineer(boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);                        
+                             
         try
         {
+            DO.Engineer doEngineer = Tools.boToDo(boEngineer);
             int idEngineer = _dal.Engineer.Create(doEngineer);
             return idEngineer;
         }
@@ -51,27 +51,13 @@ internal class EngineerImplementation : IEngineer
 
         DO.Task task = BO.Tools.findTask(id);
 
-        return new BO.Engineer()
-        {
-            Id = id,
-            Name = doEngineer.Name,
-            Email = doEngineer.Email,
-            Cost = doEngineer.Cost,
-            Level = (BO.EngineerExperience)doEngineer.Level,
-            Task = new BO.TaskInEngineer() { Id = task.Id, Alias = task.Alias }
-        };
-
+        return Tools.doToBo(doEngineer);
     }
 
     public IEnumerable<BO.Engineer> ReadAll()
     {
         return (from DO.Engineer doEngineer in _dal.Engineer.ReadAll()
-                select new BO.Engineer
-                {
-                    Id = doEngineer.Id,
-                    Name = doEngineer.Name,
-                    Task = new BO.TaskInEngineer() { Id = BO.Tools.findTask(doEngineer.Id).Id, Alias = BO.Tools.findTask(doEngineer.Id).Alias }
-                });
+                select Tools.doToBo(doEngineer));
     }
 
     public void Update(BO.Engineer boEngineer)
@@ -82,29 +68,37 @@ internal class EngineerImplementation : IEngineer
         else if (boEngineer.Name == "") error = "Name";
         else if (boEngineer.Cost <= 0) error = "Cost";
         error = BO.Tools.IsValidEmail(boEngineer.Email);
-        if (error != "")//there is invalid data
-        {
+        //there is invalid data
+        if (error != "")
             throw new BO.BlInvalidDataException($"Invalid {error}");
-        }
 
         //If the engineer level update is lower than the current engineer level then the level will stay the same and not be updated
         if ((int)boEngineer.Level < (int)_dal.Engineer.Read(boEngineer.Id).Level) 
             boEngineer.Level = (BO.EngineerExperience)_dal.Engineer.Read(boEngineer.Id).Level;
 
-        //////////////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////////////////
-        DO.Task task = _dal.Task.Read(boEngineer.Task.Id);
 
-        DO.Engineer doEngineer = new DO.Engineer(boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);
-        try//try to update
+        int errorId = 0;    
+        try//updating
         {
+            DO.Engineer doEngineer = new DO.Engineer(boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);
+            //tryng to update the engineer
+            errorId = doEngineer.Id;
+            error = "Engineer";
            _dal.Engineer.Update(doEngineer);
-            
+
+            //trying to update the task because the EngineerId might changed 
+            errorId = boEngineer.Task.Id;
+            error = "Task";
+            //Initializes the EngineerId in the previous task
+            DO.Task prevTask = Tools.findTask(boEngineer.Id) with { EngineerId = null };
+            _dal.Task.Update(prevTask);
+            //Enters the engineer's ID in the appropriate task
+            DO.Task updetedTask = _dal.Task.Read(boEngineer.Task.Id) with { EngineerId = boEngineer.Id };
+            _dal.Task.Update(updetedTask);
         }
         catch (DO.DalDoesNotExistException ex)
         {
-            throw new BO.BlDoesNotExistException($"Engineer with ID={doEngineer.Id} does Not exist",ex) ;
+            throw new BO.BlDoesNotExistException($"{error} with ID={errorId} does Not exist",ex) ;
         }
     }
 
