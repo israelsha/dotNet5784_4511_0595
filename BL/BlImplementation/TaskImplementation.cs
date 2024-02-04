@@ -50,11 +50,6 @@ internal class TaskImplementation : ITask
         return Tools.doToBo(doTask);
     }
 
-
-        };
-
-    }
-
     public IEnumerable<BO.TaskInList> ReadAll()
     {
         return (from DO.Task doTask in _dal.Task.ReadAll()
