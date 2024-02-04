@@ -1,17 +1,12 @@
 ﻿using BlApi;
 using BO;
-using System.Security.Cryptography;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Dal;
+using System.Xml.Linq;
 namespace BlImplementation;
 
 internal class TaskImplementation : ITask
 {
     private Dal.IDal _dal = DalApi.Factory.Get;
-
-    public void CheckDate(int id, DateTime date)
-    {
-        throw new NotImplementedException();
-    }
 
     public int Create(BO.Task boTask)
     {
@@ -48,8 +43,7 @@ internal class TaskImplementation : ITask
                 //delete all the Dependencies that is conected with this task
                 error = "Dependency";
                 IEnumerable<int>? dependedId = from doDependency in _dal.Dependency.ReadAll()
-                               where doDependency.DependsOnTask == id
-                               select doDependency.Id;
+                               where doDependency.DependsOnTask == id select doDependency.Id;
                 foreach (var item in dependedId) _dal.Dependency.Delete(item);
             }
             else
@@ -83,15 +77,46 @@ internal class TaskImplementation : ITask
     }
 
     public void Update(BO.Task boTask)
-    {
+    { 
         Tools.checkTaskData(boTask);
         try
         {
+            if(boTask.Dependencies != null)
+            {
+                //get all the conected dependecy Id
+                IEnumerable<int> dependecyId = from doDependency in _dal.Dependency.ReadAll()
+                    where doDependency.DependentTask == boTask.Id select doDependency.Id;
+                //delete all the conected dependecies
+                foreach (var item in dependecyId) _dal.Dependency.Delete(item);
+                //add all the new dependecies
+                foreach (var item in boTask.Dependencies)
+                    _dal.Dependency.Create(new DO.Dependency { DependentTask = boTask.Id, DependsOnTask = item.Id });
+            }
             _dal.Task.Update(Tools.boToDo(boTask));
         }
         catch (DO.DalDoesNotExistException ex)
         {
             throw new BO.BlDoesNotExistException($"Task with ID={boTask.Id} does Not exist",ex);
         }
+        
+    }
+
+    public void UpdateDate(int id, DateTime date)
+    {
+        DO.Task? task = _dal.Task.Read(id);
+        if (task != null)
+        {
+            IEnumerable<int?>? dependededTask = from doDependency in _dal.Dependency.ReadAll()
+                                                where doDependency.DependentTask == id
+                                                select doDependency.DependsOnTask;
+            bool flag = true;
+            foreach (var item in dependededTask) flag = (task.ScheduledDate == null) ? false : flag;
+            if (flag == false) throw new errorInDateException("The start date of the previous tasks does not exist");
+            foreach (var item in dependededTask) flag = (task.DeadlineDate == null || task.DeadlineDate > date) ? false : flag;
+            if (flag == false) throw new errorInDateException("the date is before Deadline date of depended task");
+            _dal.Task.Update(task with { ScheduledDate = date });
+        }
+        else throw new BlDoesNotExistException($"Task with ID ={id} does Not exist");
+       
     }
 }

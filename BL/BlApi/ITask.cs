@@ -20,6 +20,6 @@ public interface ITask
     public void Delete(int id);
 
     //check if the all date is correct
-    public void CheckDate(int id,DateTime date);
+    public void UpdateDate(int id,DateTime date);
 
 }

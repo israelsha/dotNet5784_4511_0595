@@ -2,7 +2,7 @@
 using Dal;
 using System.Net.Mail;
 
-internal class Tools
+internal static class Tools
 {
     private static Dal.IDal _dal = DalApi.Factory.Get;
     internal static string IsValidEmail(string email)
@@ -118,4 +118,5 @@ internal class Tools
         if (error != "") //there is invalid data
             throw new BO.BlInvalidDataException($"Invalid {error}");
     }
+
 }

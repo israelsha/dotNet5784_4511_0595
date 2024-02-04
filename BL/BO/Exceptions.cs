@@ -37,3 +37,8 @@ public class cannotDeleteException : Exception
 {
     public cannotDeleteException(string? message) : base(message) { }
 }
+
+public class errorInDateException : Exception
+{
+    public errorInDateException(string? message) : base(message) { }
+}
