@@ -1,9 +1,6 @@
 ﻿namespace BO;
-
 using Dal;
 using System.Net.Mail;
-using System.Reflection.Emit;
-using System.Xml.Linq;
 
 internal class Tools
 {
@@ -64,7 +61,6 @@ internal class Tools
      }
         
 
-
     //converting from BO.Task to DO.Task
     internal static DO.Task boToDo(BO.Task boTask)
     {
@@ -75,7 +71,21 @@ internal class Tools
 
     //converting from DO.Task to BO.Task
     internal static BO.Task doToBo(DO.Task doTask)
-    {
+    {   
+        //all the tasks that this task tepends on 
+        var dependedId = from DO.Dependency doDependency in _dal.Dependency.ReadAll()
+                 where doDependency.DependentTask==doTask.Id select doDependency.DependsOnTask;
+        //make TaskInList
+        List<BO.TaskInList> taskInList = null;
+        foreach(var item1 in dependedId)
+        {
+            DO.Task? dependedTask = _dal.Task.Read(item1 ?? 0);
+            if (dependedTask is not null)
+            {
+                BO.TaskInList item2 = new TaskInList { Id = dependedTask.Id, Alias = dependedTask.Alias, Description = dependedTask.Description, Status = calcStatus(dependedTask) };
+                taskInList.Add(item2);
+            }
+        }
         return new BO.Task()
         {
             Id = doTask.Id,
@@ -90,14 +100,22 @@ internal class Tools
             Deliverables = doTask.Deliverables,
             Remarks = doTask.Remarks,
             Copmlexity = (BO.EngineerExperience)doTask.Copmlexity,
-            
             Engineer = (doTask.EngineerId == null) ? null : new BO.EngineerInTask()
             { Id = doTask.EngineerId ?? 0, Name = _dal.Engineer.Read(doTask.EngineerId ?? 0).Name },
-
             ForecastDate = (doTask.StartDate == null || doTask.RequiredEffortTime == null) ? null : doTask.StartDate + doTask.RequiredEffortTime,
-            //Dependencies = new ,
+            Dependencies = taskInList,
             Status = calcStatus(doTask)
 
         };
+    }
+
+    internal static void checkTaskData(BO.Task boTask)
+    {
+        //check if one of the parameter is invalid
+        string error = "";
+        if (boTask.Id <= 0) error = "Id";
+        else if (boTask.Alias == "") error = "Alias";
+        if (error != "") //there is invalid data
+            throw new BO.BlInvalidDataException($"Invalid {error}");
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BlApi;
 using BO;
 using System.Security.Cryptography;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace BlImplementation;
 
 internal class TaskImplementation : ITask
@@ -9,18 +10,13 @@ internal class TaskImplementation : ITask
 
     public void CheckDate(int id, DateTime date)
     {
-
         throw new NotImplementedException();
     }
 
     public int Create(BO.Task boTask)
     {
         //check if one of the parameter is invalid
-        string error = "";
-        if (boTask.Id <= 0) error = "Id";
-        else if (boTask.Alias == "") error = "Alias";
-        if (error != "") //there is invalid data
-            throw new BO.BlInvalidDataException($"Invalid {error}");
+        Tools.checkTaskData(boTask);
 
         //create new Task
         DO.Task doTask = Tools.boToDo(boTask);
@@ -36,9 +32,33 @@ internal class TaskImplementation : ITask
         return idTask;
     }
 
+    string error = "";
     public void Delete(int id)
     {
-        throw new NotImplementedException();
+        try//try to delete 
+        {
+            var depended = from doDependency in _dal.Dependency.ReadAll()
+                             where doDependency.DependentTask == id
+                             select doDependency;
+
+            if (depended != null)
+            {
+                error = "Task";
+                _dal.Task.Delete(id);
+                //delete all the Dependencies that is conected with this task
+                error = "Dependency";
+                IEnumerable<int>? dependedId = from doDependency in _dal.Dependency.ReadAll()
+                               where doDependency.DependsOnTask == id
+                               select doDependency.Id;
+                foreach (var item in dependedId) _dal.Dependency.Delete(item);
+            }
+            else
+                throw new cannotDeleteException($"Task with {id} can't be deleted");
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw new BO.BlDoesNotExistException($"{error} with ID={id} does Not exist", ex);
+        }
     }
 
     public BO.Task? Read(int id)
@@ -48,11 +68,6 @@ internal class TaskImplementation : ITask
             throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
 
         return Tools.doToBo(doTask);
-    }
-
-
-        };
-
     }
 
     public IEnumerable<BO.TaskInList> ReadAll()
@@ -67,8 +82,16 @@ internal class TaskImplementation : ITask
                 });
     }
 
-    public void Update(BO.Task item)
+    public void Update(BO.Task boTask)
     {
-        throw new NotImplementedException();
+        Tools.checkTaskData(boTask);
+        try
+        {
+            _dal.Task.Update(Tools.boToDo(boTask));
+        }
+        catch (DO.DalDoesNotExistException ex)
+        {
+            throw new BO.BlDoesNotExistException($"Task with ID={boTask.Id} does Not exist",ex);
+        }
     }
 }
