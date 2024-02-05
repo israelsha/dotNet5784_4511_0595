@@ -48,7 +48,7 @@ internal static class Tools
 
     //converting from DO.Engineer to BO.Engineer
     internal static BO.Engineer doToBo(DO.Engineer doEngineer)
-    {
+    { 
         return new BO.Engineer()
         {
             Id = doEngineer.Id,
@@ -64,7 +64,7 @@ internal static class Tools
     //converting from BO.Task to DO.Task
     internal static DO.Task boToDo(BO.Task boTask)
     {
-        return new DO.Task(0, boTask.Alias, boTask.Description, boTask.CreatedAtDate, false, boTask.RequiredEffortTime,
+        return new DO.Task(boTask.Id, boTask.Alias, boTask.Description, boTask.CreatedAtDate, false, boTask.RequiredEffortTime,
         (DO.EngineerExperience)boTask.Status, boTask.StartDate, boTask.ScheduledDate, boTask.DeadlineDate, boTask.CompleteDate,
         boTask.Deliverables, boTask.Remarks, boTask.Engineer.Id);
     }
@@ -76,7 +76,7 @@ internal static class Tools
         var dependedId = from DO.Dependency doDependency in _dal.Dependency.ReadAll()
                  where doDependency.DependentTask==doTask.Id select doDependency.DependsOnTask;
         //make TaskInList
-        List<BO.TaskInList> taskInList = null;
+        List<BO.TaskInList> ?taskInList = new List<BO.TaskInList> () ;
         foreach(var item1 in dependedId)
         {
             DO.Task? dependedTask = _dal.Task.Read(item1 ?? 0);
@@ -100,8 +100,8 @@ internal static class Tools
             Deliverables = doTask.Deliverables,
             Remarks = doTask.Remarks,
             Copmlexity = (BO.EngineerExperience)doTask.Copmlexity,
-            Engineer = (doTask.EngineerId == null) ? null : new BO.EngineerInTask()
-            { Id = doTask.EngineerId ?? 0, Name = _dal.Engineer.Read(doTask.EngineerId ?? 0).Name },
+            Engineer = ( _dal.Engineer.Read(doTask.EngineerId??0)==null) ? null :
+            new BO.EngineerInTask { Id = doTask.EngineerId ?? 0, Name = _dal.Engineer.Read(doTask.EngineerId ?? 0).Name },
             ForecastDate = (doTask.StartDate == null || doTask.RequiredEffortTime == null) ? null : doTask.StartDate + doTask.RequiredEffortTime,
             Dependencies = taskInList,
             Status = calcStatus(doTask)
@@ -113,7 +113,7 @@ internal static class Tools
     {
         //check if one of the parameter is invalid
         string error = "";
-        if (boTask.Id <= 0) error = "Id";
+        if (boTask.Id < 0) error = "Id";
         else if (boTask.Alias == "") error = "Alias";
         if (error != "") //there is invalid data
             throw new BO.BlInvalidDataException($"Invalid {error}");

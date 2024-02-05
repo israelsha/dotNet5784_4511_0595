@@ -10,7 +10,7 @@ public class Task
     public string? Description { get; set; }
     public string? Alias { get; set; }
     public DateTime CreatedAtDate { get; init; }       // Date when the task was added to the system;
-    public BO.Status Status { get; set; }               // calculated;
+    public BO.Status? Status { get; set; }               // calculated;
     public List<BO.TaskInList> ?Dependencies { get; set; }//relevant only before schedule is built;
     public BO.MilestoneInTask? Milestone { get; set; }  //calculated when building schedule, populated if there is milestone in dependency, relevant only after schedule is built;
     public TimeSpan? RequiredEffortTime { get; set; }   //how many men-days needed for the task;

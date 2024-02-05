@@ -28,7 +28,7 @@ internal class DependencyImplementation :IDependency
     {
         XElement dependencyElem = XMLTools.LoadListFromXMLElement(s_dependencies_xml);
 
-        XElement? toRemove = dependencyElem.Elements().FirstOrDefault(st => (int?)st.Element("Id") == id);
+        XElement? toRemove = dependencyElem.Elements().FirstOrDefault(st => (int?)st.Element("ID") == id);
         if(toRemove is not null)
         {
             toRemove.Remove();  
