@@ -32,11 +32,12 @@ internal class TaskImplementation : ITask
     {
         try//try to delete 
         {
+            if (_dal.Task.Read(id) == null) throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist") ;
             var depended = from doDependency in _dal.Dependency.ReadAll()
                              where doDependency.DependentTask == id
                              select doDependency;
 
-            if (depended != null)
+            if (depended != null&&_dal.Task.Read(id).ScheduledDate==null )
             {
                 error = "Task";
                 _dal.Task.Delete(id);
@@ -79,6 +80,7 @@ internal class TaskImplementation : ITask
     public void Update(BO.Task boTask)
     { 
         Tools.checkTaskData(boTask);
+        DO.Task temp = _dal.Task.Read(boTask.Id);
         try
         {
             if(boTask.Dependencies != null)
@@ -92,7 +94,10 @@ internal class TaskImplementation : ITask
                 foreach (var item in boTask.Dependencies)
                     _dal.Dependency.Create(new DO.Dependency { DependentTask = boTask.Id, DependsOnTask = item.Id });
             }
-            _dal.Task.Update(Tools.boToDo(boTask));
+            if (boTask.ScheduledDate == null)
+                _dal.Task.Update(Tools.boToDo(boTask));
+            else _dal.Task.Update(Tools.boToDo(boTask) with { ScheduledDate=temp.ScheduledDate,StartDate=temp.StartDate,
+                DeadlineDate=temp.DeadlineDate,CreatedAtDate=temp.CreatedAtDate,CompleteDate=temp.CompleteDate,RequiredEffortTime=temp.RequiredEffortTime });
         }
         catch (DO.DalDoesNotExistException ex)
         {

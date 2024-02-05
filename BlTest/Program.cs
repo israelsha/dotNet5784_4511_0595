@@ -1,15 +1,10 @@
-﻿using BO;
-using Dal;
-using DalTest;
-using System.Collections.Generic;
-using System.Threading.Channels;
-
+﻿using DalTest;
 namespace BlTest;
-
 internal class Program
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
+    //get date from user and check the input
     private static string? GetDate()
     {
         Console.Write("to skip press 0: ");
@@ -27,6 +22,7 @@ internal class Program
         return null;
     }
 
+    //get rnum from user and check the input
     private static int getEnum()
     {
         int statusCheck = int.Parse(Console.ReadLine());
@@ -38,7 +34,8 @@ internal class Program
         return statusCheck-1; 
     }
 
-   static BO.Engineer GetEngineer()
+    //get Engineer's details
+    static BO.Engineer GetEngineer()
     {
         Console.WriteLine("Enter Engineer's details:");
         Console.Write("ID: ");
@@ -60,7 +57,7 @@ internal class Program
         return item;
     }
 
-    //get task details
+    //get task's details
     static BO.Task GetTask()
     {
         Console.WriteLine("Enter Task details:");
@@ -93,19 +90,19 @@ internal class Program
         Console.Write("Required Effort Time (days): ");
         TimeSpan requiredEffortTime = TimeSpan.FromDays(double.Parse(Console.ReadLine()));
 
-        Console.Write("Start date (in the format dd/mm/yyyy): ");
+        Console.Write("Start date (in the format dd/mm/yyyy): ");//receive start date (additional)
         string? tempDate = GetDate();//recive and check date
         DateTime? startDate = (tempDate == null) ? null : DateTime.Parse(tempDate);
 
-        Console.Write("Scheduled date (in the format dd/mm/yyyy): "); //receive Scheduled Date (additional)
+        Console.Write("Scheduled date (in the format dd/mm/yyyy): "); //receive Scheduled date (additional)
         tempDate = GetDate();//recive and check date
         DateTime? scheduledDate = (tempDate == null) ? null : DateTime.Parse(tempDate);
 
-        Console.Write("DeadLine date (in the format dd/mm/yyyy): ");  //receive deadline Date (additional)
+        Console.Write("DeadLine date (in the format dd/mm/yyyy): ");  //receive deadline date (additional)
         tempDate=GetDate();//recive and check date
         DateTime? deadLine = (tempDate==null)?null:DateTime.Parse(tempDate);
 
-        Console.Write("Complete date (in the format dd/mm/yyyy): ");
+        Console.Write("Complete date (in the format dd/mm/yyyy): ");  //receive complete date (additional)
         tempDate = GetDate();
         DateTime? completeDate = (tempDate == null) ? null : DateTime.Parse(tempDate);
 
@@ -180,6 +177,10 @@ internal class Program
         Console.WriteLine($"3 - Display all {type}");
         Console.WriteLine($"4 - Update {type} data");
         Console.WriteLine($"5 - Delete an existing {type}");
+        if (type == "Task")
+        {
+            Console.WriteLine($"6 - Update Task date");
+        }
 
         return int.Parse(Console.ReadLine());
     }
@@ -254,13 +255,27 @@ internal class Program
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message); }
                     break;
+                case 6://update date
+
+                    Console.Write("Enter Task's ID: ");
+                    int id = int.Parse(Console.ReadLine());
+                    Console.Write("Enter Task's Scheduled date: ");
+                    string? tempDate = GetDate();//recive and check date
+                    if (tempDate == null)//the date didnt defined
+                    {
+                        Console.WriteLine("Date didn't defined");
+                        break;
+                    }
+                    DateTime scheduledDate =  DateTime.Parse(tempDate);
+                    s_bl.Task.UpdateDate(id, scheduledDate);
+                    break;
+
                 default:  //if the user choose wrong number 
                     Console.WriteLine("ERORR: choose numbers betwin 1-6");
                     userChoice = int.Parse(Console.ReadLine());
                     break;
             }
         } while (userChoice < 0 || userChoice > 5);
-
         return 1;
     }
 
@@ -315,5 +330,4 @@ internal class Program
             Console.WriteLine(ex.Message);
         }
     }
-    
 }
