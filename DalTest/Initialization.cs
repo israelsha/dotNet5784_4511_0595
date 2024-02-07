@@ -55,7 +55,7 @@ public static class Initialization
             "Test results and notes","Source code for algorithms","Reports on cyber attacks and solutions","Source code for the software"
             ,"Report analyzing environmental impacts","Structural design plans","Plan to reduce energy consumption",
             "Automated process system","Supply chain management plan","List of risks and workflow diagrams","Report on human-system interface design"
-            ,"Renewable energy solution proposals","Detailed project plan"
+            ,"Renewable energy solution proposals","Detailed project plan","searcing for new enrgy sources"
         };
         string[] RamarksTasks = new string[]
         {
@@ -64,31 +64,22 @@ public static class Initialization
             ,"Thorough examination of systems to identify and rectify issues.","","Oversight and optimization of network infrastructure.",
             "Protection against cyber threats through robust security measures.","","","Planning and drafting designs for physical structures."
             ,"Strategies to reduce energy consumption and enhance efficiency.","Implementation of automated systems for process efficiency.",
-            "","Identification, assessment, and mitigation of potential risks.","Designing systems considering human interaction for optimal usability.",""
+            "","Identification, assessment, and mitigation of potential risks.","Designing systems considering human interaction for optimal usability.","",""
         };
-
         int[] _EngineerId = { 324567891, 389012345,398765432,201987654,201987654,201987654,398765432,213074522,201987654,213074522,
             398765432,398765432,389012345, 389012345,389012345,201987654,389012345,201987654, 235678901,398765432 };
 
         Random rnd = new Random();
-        for (int i = 0; i < 19; i++)
+        for (int i = 0; i < 20; i++)
         {
-            DateTime _CreatedAtDate = DateTime.Now;
-            DateTime? _StartDate = _CreatedAtDate + TimeSpan.FromDays(rnd.Next(1, 100)) + TimeSpan.FromHours(rnd.Next(0, 24)) + TimeSpan.FromSeconds((rnd.Next(0, 3600)));
             bool _IsMilestone = false;
             TimeSpan? _RequiredEffortTime = TimeSpan.FromDays(rnd.Next(20, 100));
             DO.EngineerExperience? _Copmlexity = (EngineerExperience)arrDifficulty[i];
 
-            DateTime? _ScheduledDate = null;
-
-            DateTime? _CompleteDate = _StartDate + _RequiredEffortTime;
-
-            DateTime? _DeadlineDate = _CompleteDate + TimeSpan.FromDays((rnd.Next(0, 30)));
             string? _Deliverables = prudoctTasks[i];
             string? _Remarks = RamarksTasks[i];
-
-            Task task = new Task(100 + i, _Alias[i], DescriptionTasks[i], _CreatedAtDate, _IsMilestone, _RequiredEffortTime, _Copmlexity,
-                _StartDate, _ScheduledDate, _DeadlineDate, _CompleteDate, _Deliverables, _Remarks, _EngineerId[i]);
+            Task task = new Task(100 + i, _Alias[i], DescriptionTasks[i], DateTime.Now, _IsMilestone, _RequiredEffortTime, _Copmlexity,
+                null, null, null, null, _Deliverables, _Remarks, _EngineerId[i]);
             s_dal!.Task.Create(task); 
         }
     }
@@ -98,13 +89,18 @@ public static class Initialization
     /// </summary>
     private static void createDependencies()
     {
+        //Current task number
+        int[] dependentTask = { 2, 3, 3, 5, 5, 6, 6, 8, 9, 9, 9, 9, 10, 10, 10, 13, 14, 15,
+            15, 18, 20, 22, 17, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20 };
+
+        //The current task depends on this task
+        int[] dependsOnTask = { 1, 2, 1, 4, 1, 5, 4, 7, 5, 8, 4, 7, 6, 5, 4, 12, 11, 14, 11,
+            13, 3, 4, 7, 13, 1, 7, 17, 10, 6, 5, 4, 9, 8, 5, 2, 11, 14, 12, 16, 19 };
         Random rnd = new Random();
         for (int i = 0; i < 40; i++)
-        { 
-            int _DependentTask = 100 + i / 2 ;
-            int _DependsOnTask = 100 + (7 * i) % 19 + 1;
+        {
 
-            Dependency dep = new Dependency(0, _DependentTask, _DependsOnTask);
+            Dependency dep = new Dependency(0, dependentTask[i]+99, dependsOnTask[i]+99);
             s_dal!.Dependency.Create(dep);
         }
     }
@@ -135,10 +131,8 @@ public static class Initialization
         }
     }
 
-    //public static void Do(IDal dal) //stage 2
     public static void Do() //stage 4
     {
-        //s_dal = dal ?? throw new NullReferenceException("DAL object can not be null!"); //stage 2
         s_dal = DalApi.Factory.Get; //stage 4
 
         createTasks();

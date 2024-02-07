@@ -103,7 +103,6 @@ internal class TaskImplementation : ITask
         {
             throw new BO.BlDoesNotExistException($"Task with ID={boTask.Id} does Not exist",ex);
         }
-        
     }
 
     public void UpdateDate(int id, DateTime date)
@@ -122,6 +121,37 @@ internal class TaskImplementation : ITask
             _dal.Task.Update(task with { ScheduledDate = date });
         }
         else throw new BlDoesNotExistException($"Task with ID ={id} does Not exist");
-       
     }
+
+    //public IEnumerable<BO.Task> ReadAllAll()
+    //{
+    //    IEnumerable<BO.Task> a= from task in _dal.Task.ReadAll() 
+    //           select Tools.doToBo(_dal.Task.Read(task.Id));
+    //    return a;   
+    //}
+
+    public void resetDate(DateTime startProject)
+    {
+        IEnumerable<BO.Task> notDependentTask = from task1 in (from task in _dal.Task.ReadAll() select Tools.doToBo(_dal.Task.Read(task.Id)))
+                                                where task1.Dependencies == null
+                                                select task1;
+
+        foreach (var item in notDependentTask)
+        {
+            _dal.Task.Update(Tools.boToDo(item) with
+            {
+                ScheduledDate = (item.ScheduledDate==null || item.ScheduledDate < startProject)
+                ? startProject: item.ScheduledDate ,
+                DeadlineDate = startProject + item.RequiredEffortTime
+            });
+        }
+    }
+
+    public void reset(DateTime date, IEnumerable<BO.Task> a)
+    {
+
+    }
+
+
+
 }

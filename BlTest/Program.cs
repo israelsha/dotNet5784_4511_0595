@@ -1,13 +1,14 @@
-﻿using DalTest;
+﻿using BO;
+using DalTest;
 namespace BlTest;
 internal class Program
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+    public static DateTime? startProjectDate = null;//the start project date 
 
     //get date from user and check the input
     private static string? GetDate()
     {
-        Console.Write("to skip press 0: ");
         string? startDateInput = Console.ReadLine();
         while (startDateInput != "0")
         {
@@ -48,21 +49,25 @@ internal class Program
         double price = double.Parse(Console.ReadLine());
         Console.Write("level, Rating between 1-5: ");
         BO.EngineerExperience level = (BO.EngineerExperience)(getEnum());
-        Console.WriteLine("Engineer's task:");
-        Console.Write("Task's ID: "); int taskId = int.Parse(Console.ReadLine());
-        Console.Write("Task's alias: "); string taskAlias = Console.ReadLine() ?? "";
-        BO.TaskInEngineer taskInEngineer = new BO.TaskInEngineer { Id = taskId, Alias = taskAlias };
+        Console.Write("task's ID:");
+        BO.TaskInEngineer taskInEngineer = new BO.TaskInEngineer();
+        try
+        {
+            BO.Task ?task = s_bl.Task.Read(int.Parse(Console.ReadLine()));
+            taskInEngineer = new BO.TaskInEngineer { Id = task.Id, Alias = task.Alias };
+        }
+        catch (Exception ex) { Console.WriteLine(ex.Message); }
 
         BO.Engineer item = new BO.Engineer { Id = id, Name = name, Email = mail, Cost = price, Level = level, Task = taskInEngineer };
         return item;
     }
 
     //get task's details
-    static BO.Task GetTask()
+    static BO.Task GetTask(bool update = false)
     {
         Console.WriteLine("Enter Task details:");
-        Console.Write("ID: ");
-        int id = int.Parse(Console.ReadLine());
+        if (update) Console.Write("ID: ");
+        int id = (update == true) ? int.Parse(Console.ReadLine()) : 0;
 
         Console.Write("Alias: "); 
         string alias = Console.ReadLine() ?? "";
@@ -70,41 +75,25 @@ internal class Program
         Console.Write("Description: ");
         string description = Console.ReadLine() ?? "";
 
-        Console.Write("Status, Rating between 1-5: ");
-        BO.Status status = (BO.Status)(getEnum());
-
         Console.WriteLine("press 1 to add dependecy or 0 to skip:");
         int? check=int.Parse(Console.ReadLine());
         List<BO.TaskInList> ? dependency = new List<BO.TaskInList>();
         while (check == 1)//get all the parameter for all the dependcies of this task 
         {
-            Console.Write("ID: "); int idTask = int.Parse(Console.ReadLine());
-            Console.Write("Description: "); string descruptionTask = Console.ReadLine();
-            Console.Write("Alias: "); string aliasTask = Console.ReadLine();
-            Console.Write("Status: "); BO.Status statusTask = (BO.Status)(getEnum());
-            dependency.Add(new BO.TaskInList { Id = idTask, Description = descruptionTask, Alias = aliasTask, Status = statusTask });
-            Console.WriteLine("press 1 to add dependecy or 0 to continue:");
+            Console.Write("Task's ID: "); int idTask = int.Parse(Console.ReadLine());
+            try
+            {
+                BO.Task? dependentTask = s_bl.Task.Read(idTask);
+                dependency.Add(new BO.TaskInList { Id = idTask, Description = dependentTask.Description, Alias = dependentTask.Alias, Status = dependentTask.Status ?? BO.Status.Unscheduled });
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+           
+            Console.Write("press 1 to add dependecy or 0 to continue:");
             check = int.Parse(Console.ReadLine());
         }
 
         Console.Write("Required Effort Time (days): ");
         TimeSpan requiredEffortTime = TimeSpan.FromDays(double.Parse(Console.ReadLine()));
-
-        Console.Write("Start date (in the format dd/mm/yyyy): ");//receive start date (additional)
-        string? tempDate = GetDate();//recive and check date
-        DateTime? startDate = (tempDate == null) ? null : DateTime.Parse(tempDate);
-
-        Console.Write("Scheduled date (in the format dd/mm/yyyy): "); //receive Scheduled date (additional)
-        tempDate = GetDate();//recive and check date
-        DateTime? scheduledDate = (tempDate == null) ? null : DateTime.Parse(tempDate);
-
-        Console.Write("DeadLine date (in the format dd/mm/yyyy): ");  //receive deadline date (additional)
-        tempDate=GetDate();//recive and check date
-        DateTime? deadLine = (tempDate==null)?null:DateTime.Parse(tempDate);
-
-        Console.Write("Complete date (in the format dd/mm/yyyy): ");  //receive complete date (additional)
-        tempDate = GetDate();
-        DateTime? completeDate = (tempDate == null) ? null : DateTime.Parse(tempDate);
 
         Console.Write("Deliverables: ");
         string? deliverables = Console.ReadLine();
@@ -112,18 +101,37 @@ internal class Program
         Console.Write("Remarks: ");
         string? remark = Console.ReadLine();
 
-        Console.WriteLine("Enter Engineer's details: ");
-        Console.Write("ID: ");int idEngneer=int.Parse(Console.ReadLine());
-        Console.Write("Name: "); string nameEngineer = Console.ReadLine();
-        BO.EngineerInTask? engineer = new BO.EngineerInTask { Id = idEngneer, Name = nameEngineer };
-
+        Console.Write("Enter Engineer's ID: ");
+        BO.EngineerInTask engineerInTask=new BO.EngineerInTask();   
+        try
+        {
+           BO.Engineer? engineer = s_bl.Engineer.Read(int.Parse(Console.ReadLine()));
+           engineerInTask = new BO.EngineerInTask { Id = engineer.Id, Name = engineer.Name };
+        }
+        catch(Exception ex) { Console.WriteLine(ex.Message); }
+        
         Console.Write("Enter Task's complexity, Rating between 1-5: ");
         BO.EngineerExperience complexity = (BO.EngineerExperience)(getEnum());
 
-        BO.Task item = new BO.Task{Id=id, Alias= alias,Description= description, CreatedAtDate= DateTime.Now,
-            Status= status , Dependencies= dependency,Milestone= null,  RequiredEffortTime = requiredEffortTime,
-            StartDate=startDate,ScheduledDate=scheduledDate,ForecastDate=scheduledDate+requiredEffortTime,DeadlineDate=deadLine,
-            Deliverables=deliverables,Remarks=remark,Engineer= engineer, Copmlexity = complexity } ;
+        BO.Task item = new BO.Task
+        {
+            Id = id,
+            Alias = alias,
+            Description = description,
+            CreatedAtDate = DateTime.Now,
+            Status = BO.Status.Unscheduled,
+            Dependencies = dependency,
+            Milestone = null,
+            RequiredEffortTime = requiredEffortTime,
+            StartDate = null,
+            ScheduledDate = null,
+            ForecastDate = null,
+            DeadlineDate = null,
+            Deliverables = deliverables,
+            Remarks = remark,
+            Engineer = engineerInTask,
+            Copmlexity = complexity
+        };
         return item;
     }
 
@@ -136,7 +144,9 @@ internal class Program
             Console.WriteLine($"Engineer's mail: {eng.Email}");
             Console.WriteLine($"Engineer's price: {eng.Cost}");
             Console.WriteLine($"Engineer's level:{eng.Level}");
-            Console.WriteLine($"Engineer's task:\nID: {eng.Task.Id}, Alias: {eng.Task.Alias}");
+            Console.Write("Engineer's task: ");
+            if (eng.Task == null) Console.WriteLine("Not specified");
+            else Console.WriteLine($"\nID: {eng.Task.Id}, Alias: {eng.Task.Alias}");
         }
     }
 
@@ -150,7 +160,8 @@ internal class Program
             Console.WriteLine($"Created At Date: {tsk.CreatedAtDate}");
             Console.WriteLine($"Status: {tsk.Status}");
             Console.WriteLine("Dependencies:");
-            foreach (var item in tsk.Dependencies)
+            if(tsk.Dependencies==null) Console.WriteLine("Not specified");
+            else foreach (var item in tsk.Dependencies)
                 Console.WriteLine($"ID: {item.Id}, Description: {item.Description}, Alias: {item.Alias}, Status: {item.Status}");
             Console.WriteLine($"Required Effort Time: {tsk.RequiredEffortTime?.ToString() ?? "Not specified"}");
             Console.WriteLine($"Start Date: {tsk.StartDate?.ToString() ?? "Not specified"}");
@@ -160,10 +171,10 @@ internal class Program
             Console.WriteLine($"Complete Date: {tsk.CompleteDate?.ToString() ?? "Not specified"}");
             Console.WriteLine($"Deliverables: {tsk.Deliverables ?? "Not specified"}");
             Console.WriteLine($"Remarks: {tsk.Remarks ?? "Not specified"}");
-            if (tsk.Engineer is not null)
-            {
-                Console.WriteLine("Engineer:"); Console.WriteLine($"ID: {tsk.Engineer.Id}, Name: {tsk.Engineer.Name}");
-            }
+            Console.WriteLine("Engineer:");
+            if (tsk.Engineer != null) Console.WriteLine($"ID: {tsk.Engineer.Id}, Name: {tsk.Engineer.Name}");
+            else Console.WriteLine("Not specified");
+            
             Console.WriteLine($"Engineer Complexity: {tsk.Copmlexity.ToString() ?? "Not specified"}");
         }
     }
@@ -227,6 +238,7 @@ internal class Program
                             Console.WriteLine($"Description: {item2.Description}");
                             Console.WriteLine($"Alias: {item2.Alias}");
                             Console.WriteLine($"Status: {item2.Status}");
+                            Console.WriteLine();
                         }
                     break;
                 case 4: //update
@@ -235,7 +247,7 @@ internal class Program
                         if (EngTask == 1)
                             s_bl.Engineer.Update(GetEngineer());
                         else if (EngTask == 2)
-                            s_bl.Task.Update(GetTask());
+                            s_bl.Task.Update(GetTask(true));
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message); }
                     break;
@@ -275,7 +287,7 @@ internal class Program
                     userChoice = int.Parse(Console.ReadLine());
                     break;
             }
-        } while (userChoice < 0 || userChoice > 5);
+        } while (userChoice < 0 || userChoice > 6);
         return 1;
     }
 
@@ -296,6 +308,7 @@ internal class Program
                 Console.WriteLine("Press - 0 for exit");
                 Console.WriteLine("Press - 1 for Engineers");
                 Console.WriteLine("Press - 2 for Tasks");
+                Console.WriteLine("Press - 3 for Reset all dates");
                 i = int.Parse(Console.ReadLine());
                 switch (i)
                 {
@@ -316,6 +329,21 @@ internal class Program
                             choiceActivate(choice2, 2);
                         }
                         catch (Exception ex) { Console.WriteLine(ex.Message); }
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter the start date of the entire project: ");
+                        string? checkDate = "1";
+                        while (checkDate != "0")
+                        {
+                            checkDate = Console.ReadLine();
+                            if (DateTime.TryParse(checkDate, out var date))
+                            {
+                                startProjectDate = date;
+                                checkDate = "0";
+                            }
+                            else Console.WriteLine("Invalid date. enter a date in the correct format, to exit press 0: ");
+                        }
+                        s_bl.Task.resetDate(DateTime.Now);
                         break;
                     default:   //if the user choose wrong number 
                         Console.WriteLine("ERROR: choose number between 1-3");

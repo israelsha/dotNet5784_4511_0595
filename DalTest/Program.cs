@@ -44,9 +44,12 @@ internal class Program
     /// <summary>
     /// get all parameter for Task
     /// </summary>
-    static DO.Task GetTask()
+    static DO.Task GetTask(bool update = false)
     {
         Console.WriteLine("Enter Task details:");
+
+        if (update) Console.Write("ID: ");
+        int id = (update == true) ? int.Parse(Console.ReadLine()) : 0;
 
         Console.Write("Alias: ");
         string alias = Console.ReadLine() ?? "";
@@ -114,15 +117,18 @@ internal class Program
     /// /// <summary>
     /// get all parameter for Dependency
     /// </summary>
-    static DO.Dependency GetDependency()
+    static DO.Dependency GetDependency(bool update = false)
     {
         Console.WriteLine("Enter Dependency details:");
+
+        if (update) Console.Write("ID: ");
+        int id = (update == true) ? int.Parse(Console.ReadLine()) : 0;
         Console.Write("Dependent Task: ");
         int dependentTask = Console.Read();
         Console.Write("\nDependent on Task: ");
         int dependentOnTask = int.Parse(Console.ReadLine());
 
-        DO.Dependency item = new DO.Dependency(0, dependentTask, dependentOnTask);
+        DO.Dependency item = new DO.Dependency(id, dependentTask, dependentOnTask);
         return item;
     }
 
@@ -242,9 +248,9 @@ internal class Program
                         if (EngTaskDep == 1)
                             s_dal.Engineer.Update(GetEngineer());
                         else if (EngTaskDep == 2)
-                            s_dal.Task.Update(GetTask());
+                            s_dal.Task.Update(GetTask(true));
                         else if (EngTaskDep == 3)
-                            s_dal.Dependency.Update(GetDependency());
+                            s_dal.Dependency.Update(GetDependency(true));
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message); }
                     break;
