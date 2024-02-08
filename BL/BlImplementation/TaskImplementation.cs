@@ -1,7 +1,5 @@
 ﻿using BlApi;
 using BO;
-using Dal;
-using System.Xml.Linq;
 namespace BlImplementation;
 
 internal class TaskImplementation : ITask
@@ -20,7 +18,7 @@ internal class TaskImplementation : ITask
         //create new dependsies
         foreach (var item in boTask.Dependencies)
         {
-            DO.Dependency doDependency = new DO.Dependency(0, boTask.Id, item.Id);
+            DO.Dependency doDependency = new DO.Dependency(0, idTask, item.Id);
             _dal.Dependency.Create(doDependency);
         }
 
@@ -123,35 +121,35 @@ internal class TaskImplementation : ITask
         else throw new BlDoesNotExistException($"Task with ID ={id} does Not exist");
     }
 
-    //public IEnumerable<BO.Task> ReadAllAll()
-    //{
-    //    IEnumerable<BO.Task> a= from task in _dal.Task.ReadAll() 
-    //           select Tools.doToBo(_dal.Task.Read(task.Id));
-    //    return a;   
-    //}
-
+    //external function  to reset all the ScheduledDate and the deadline of all the task 
     public void resetDate(DateTime startProject)
     {
-        IEnumerable<BO.Task> notDependentTask = from task1 in (from task in _dal.Task.ReadAll() select Tools.doToBo(_dal.Task.Read(task.Id)))
-                                                where task1.Dependencies == null
-                                                select task1;
-
-        foreach (var item in notDependentTask)
-        {
-            _dal.Task.Update(Tools.boToDo(item) with
-            {
-                ScheduledDate = (item.ScheduledDate==null || item.ScheduledDate < startProject)
-                ? startProject: item.ScheduledDate ,
-                DeadlineDate = startProject + item.RequiredEffortTime
-            });
-        }
+        //find all the task that is not depend on any other task ie: task.Dependencies = null
+        //IEnumerable<BO.Task> notDependentTask = from task1 in (from task in _dal.Task.ReadAll() select Read(task.Id))
+        //                                        where task1.Dependencies == null||task1.Dependencies.Count() == 0
+        //                                        select task1;
+        IEnumerable<BO.Task> notDependentTask = from doTask in _dal.Task.ReadAll()
+                                                 let boTask = Read(doTask.Id)
+                                                 where boTask.Dependencies == null || boTask.Dependencies.Count() == 0
+                                                 select boTask;
+        reset(startProject,notDependentTask);
     }
-
-    public void reset(DateTime date, IEnumerable<BO.Task> a)
+    //recursive function, reset all the ScheduledDate and the deadline of all the task
+    public void reset(DateTime? prevDate, IEnumerable<BO.Task> ?tasks)
     {
-
+        if (tasks != null)
+            foreach (var item in tasks) 
+            { 
+                //update the task whit the correct ScheduledDate and DeadlineDate
+                _dal.Task.Update(Tools.boToDo(item) with
+                {
+                    ScheduledDate = (item.ScheduledDate == null || item.ScheduledDate < prevDate) ? prevDate : item.ScheduledDate,
+                    DeadlineDate = prevDate + item.RequiredEffortTime
+                });
+                //sending the tasks that is depending on this task
+                reset(prevDate + item.RequiredEffortTime, from dep in _dal.Dependency.ReadAll()
+                                                          where dep.DependsOnTask != null && dep.DependsOnTask == item.Id
+                                                          select Read(dep.DependentTask ?? 0));
+            }
     }
-
-
-
 }

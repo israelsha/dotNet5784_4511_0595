@@ -3,42 +3,42 @@
   <Engineer>
     <Id>324567891</Id>
     <Email>7891@gmail.com</Email>
-    <Cost>249</Cost>
+    <Cost>190</Cost>
     <Name>Dani Levi</Name>
     <Level>Beginner</Level>
   </Engineer>
   <Engineer>
     <Id>389012345</Id>
     <Email>2345@gmail.com</Email>
-    <Cost>347</Cost>
+    <Cost>299</Cost>
     <Name>Eli Amar</Name>
     <Level>AdvancedBeginner</Level>
   </Engineer>
   <Engineer>
     <Id>201987654</Id>
     <Email>7654@gmail.com</Email>
-    <Cost>323</Cost>
+    <Cost>278</Cost>
     <Name>Shira Israelof</Name>
     <Level>Intermediate</Level>
   </Engineer>
   <Engineer>
     <Id>398765432</Id>
     <Email>5432@gmail.com</Email>
-    <Cost>342</Cost>
+    <Cost>331</Cost>
     <Name>Ariela Levin</Name>
     <Level>Advanced</Level>
   </Engineer>
   <Engineer>
     <Id>213074522</Id>
     <Email>4522@gmail.com</Email>
-    <Cost>458</Cost>
+    <Cost>453</Cost>
     <Name>Israel Shaashua</Name>
     <Level>Expert</Level>
   </Engineer>
   <Engineer>
     <Id>235678901</Id>
     <Email>8901@gmail.com</Email>
-    <Cost>275</Cost>
+    <Cost>266</Cost>
     <Name>Dina Klein</Name>
     <Level>Beginner</Level>
   </Engineer>

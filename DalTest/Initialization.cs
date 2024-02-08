@@ -91,7 +91,7 @@ public static class Initialization
     {
         //Current task number
         int[] dependentTask = { 2, 3, 3, 5, 5, 6, 6, 8, 9, 9, 9, 9, 10, 10, 10, 13, 14, 15,
-            15, 18, 20, 22, 17, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20 };
+            15, 18, 16, 16, 17, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20 };
 
         //The current task depends on this task
         int[] dependsOnTask = { 1, 2, 1, 4, 1, 5, 4, 7, 5, 8, 4, 7, 6, 5, 4, 12, 11, 14, 11,
