@@ -54,7 +54,8 @@ internal static class Tools
             Id = doEngineer.Id,
             Name = doEngineer.Name,
             Email = doEngineer.Email,
-            Task = new BO.TaskInEngineer() { Id = BO.Tools.findTask(doEngineer.Id).Id, Alias = BO.Tools.findTask(doEngineer.Id).Alias },
+            Task =(BO.Tools.findTask(doEngineer.Id)==null)?null:
+            new BO.TaskInEngineer() { Id = BO.Tools.findTask(doEngineer.Id).Id, Alias = BO.Tools.findTask(doEngineer.Id).Alias },
             Cost = doEngineer.Cost,
             Level = (BO.EngineerExperience)doEngineer.Level
         };
@@ -103,7 +104,7 @@ internal static class Tools
             Engineer = ( _dal.Engineer.Read(doTask.EngineerId??0)==null) ? null :
             new BO.EngineerInTask { Id = doTask.EngineerId ?? 0, Name = _dal.Engineer.Read(doTask.EngineerId ?? 0).Name },
             ForecastDate = (doTask.StartDate == null || doTask.RequiredEffortTime == null) ? null : doTask.StartDate + doTask.RequiredEffortTime,
-            Dependencies = taskInList,
+            Dependencies = (taskInList.Count==0)?null: taskInList,
             Status = calcStatus(doTask)
 
         };
