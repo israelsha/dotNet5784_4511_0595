@@ -15,7 +15,7 @@ internal class TaskImplementation :ITask
         Task copy = item with { Id = id };
         lsTask.Add(copy);
         XMLTools.SaveListToXMLSerializer<Task>(lsTask, s_tasks_xml);
-        return item.Id;
+        return id;
     }
 
     public void Delete(int id)

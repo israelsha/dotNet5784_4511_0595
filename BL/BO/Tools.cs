@@ -1,5 +1,4 @@
 ﻿namespace BO;
-using Dal;
 using System.Net.Mail;
 
 internal static class Tools
@@ -67,7 +66,7 @@ internal static class Tools
     {
         return new DO.Task(boTask.Id, boTask.Alias, boTask.Description, boTask.CreatedAtDate, false, boTask.RequiredEffortTime,
         (DO.EngineerExperience)boTask.Status, boTask.StartDate, boTask.ScheduledDate, boTask.DeadlineDate, boTask.CompleteDate,
-        boTask.Deliverables, boTask.Remarks, boTask.Engineer.Id);
+        boTask.Deliverables, boTask.Remarks, (boTask.Engineer==null)?null: boTask.Engineer.Id);
     }
 
     //converting from DO.Task to BO.Task

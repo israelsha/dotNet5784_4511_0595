@@ -1,10 +1,23 @@
 ﻿using BO;
 using DalTest;
+using System.Net.Mail;
 namespace BlTest;
 internal class Program
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-    public static DateTime? startProjectDate = null;//the start project date 
+    static DateTime? startProjectDate = null;  //the start project date 
+    static bool chapter3 = false; //when it will be true create and delete task cannot be able anymore
+
+    //get email and check his correctness
+    internal static MailAddress getEmail()
+    {
+        while (true)
+        {
+            if (MailAddress.TryCreate(Console.ReadLine() ?? "", out MailAddress? res))
+                return res;
+            else Console.Write("Invalid MailAddress, plaese Enter Email: ");
+        }    
+    }
 
     //get date from user and check the input
     private static string? GetDate()
@@ -44,12 +57,12 @@ internal class Program
         Console.Write("name: ");
         string name = Console.ReadLine() ?? "";
         Console.Write("Email: ");
-        string mail = Console.ReadLine() ?? "";
+        MailAddress mail = getEmail();
         Console.Write("cost: ");
         double price = double.Parse(Console.ReadLine());
         Console.Write("level, Rating between 1-5: ");
         BO.EngineerExperience level = (BO.EngineerExperience)(getEnum());
-        Console.Write("task's ID:");
+        Console.Write("task's ID: ");
         BO.TaskInEngineer taskInEngineer = new BO.TaskInEngineer();
         try
         {
@@ -58,7 +71,7 @@ internal class Program
         }
         catch (Exception ex) { Console.WriteLine(ex.Message); }
 
-        BO.Engineer item = new BO.Engineer { Id = id, Name = name, Email = mail, Cost = price, Level = level, Task = taskInEngineer };
+        BO.Engineer item = new BO.Engineer { Id = id, Name = name, Email = mail.ToString(), Cost = price, Level = level, Task = taskInEngineer };
         return item;
     }
 
@@ -75,7 +88,7 @@ internal class Program
         Console.Write("Description: ");
         string description = Console.ReadLine() ?? "";
 
-        Console.WriteLine("press 1 to add dependecy or 0 to skip:");
+        Console.Write("press 1 to add dependecy or 0 to skip:");
         int? check=int.Parse(Console.ReadLine());
         List<BO.TaskInList> ? dependency = new List<BO.TaskInList>();
         while (check == 1)//get all the parameter for all the dependcies of this task 
@@ -174,25 +187,26 @@ internal class Program
             Console.WriteLine("Engineer:");
             if (tsk.Engineer != null) Console.WriteLine($"ID: {tsk.Engineer.Id}, Name: {tsk.Engineer.Name}");
             else Console.WriteLine("Not specified");
-            
             Console.WriteLine($"Engineer Complexity: {tsk.Copmlexity.ToString() ?? "Not specified"}");
         }
     }
 
-    static int optionsSubMenu(string type)  //Main sub menu options 
+    static int optionsSubMenu(string type, bool chapter3 = false) //Main sub menu options 
     {
         Console.WriteLine("Please press which action you want to take:");
         Console.WriteLine("0 - Exit");
-        Console.WriteLine($"1 - Add a new {type}");
-        Console.WriteLine($"2 - Present an {type} by ID");
-        Console.WriteLine($"3 - Display all {type}");
-        Console.WriteLine($"4 - Update {type} data");
-        Console.WriteLine($"5 - Delete an existing {type}");
-        if (type == "Task")
+        Console.WriteLine($"1 - Present an {type} by ID");
+        Console.WriteLine($"2 - Display all {type}");
+        if (chapter3 == false ) 
         {
-            Console.WriteLine($"6 - Update Task date");
+            Console.WriteLine($"3 - Add a new {type}");
+            Console.WriteLine($"4 - Update {type} data");
+            Console.WriteLine($"5 - Delete an existing {type}");
+            if (type == "Task")
+            {
+                Console.WriteLine($"6 - Update Task date");
+            }
         }
-
         return int.Parse(Console.ReadLine());
     }
 
@@ -205,14 +219,7 @@ internal class Program
             {
                 case 0:     //exit
                     break;
-                case 1: //create
-                    if (EngTask == 1)
-                        try { s_bl.Engineer.Create(GetEngineer()); } //try to craete new Engineer
-                        catch (Exception ex) { Console.WriteLine(ex.Message); } //ID is allredy exist
-                    else if (EngTask == 2)
-                        s_bl.Task.Create(GetTask());
-                    break;
-                case 2: //read
+                case 1: //read
                     if (EngTask == 1)
                     {
                         Console.Write("Enter Engineer's ID: ");
@@ -224,7 +231,7 @@ internal class Program
                         printTask(s_bl.Task.Read(int.Parse(Console.ReadLine())));
                     }
                     break;
-                case 3: //read all
+                case 2: //readAll
                     if (EngTask == 1)
                         foreach (var item1 in s_bl.Engineer.ReadAll())
                         {
@@ -241,12 +248,19 @@ internal class Program
                             Console.WriteLine();
                         }
                     break;
+                case 3: //create
+                    if (EngTask == 1)
+                        try { s_bl.Engineer.Create(GetEngineer()); } //try to craete new Engineer
+                        catch (Exception ex) { Console.WriteLine(ex.Message); } //ID is allredy exist
+                    else if (EngTask == 2 && !chapter3 ) 
+                        s_bl.Task.Create(GetTask());
+                    break;
                 case 4: //update
                     try
                     {
                         if (EngTask == 1)
                             s_bl.Engineer.Update(GetEngineer());
-                        else if (EngTask == 2)
+                        else if (EngTask == 2 && !chapter3)
                             s_bl.Task.Update(GetTask(true));
                     }
                     catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -259,7 +273,7 @@ internal class Program
                             Console.Write("Enter Engineer's ID: ");
                             s_bl.Engineer.Delete(int.Parse(Console.ReadLine()));
                         }
-                        else if (EngTask == 2)
+                        else if (EngTask == 2 && !chapter3)
                         {
                             Console.Write("Enter Task's ID: ");
                             s_bl.Task.Delete(int.Parse(Console.ReadLine()));
@@ -268,22 +282,26 @@ internal class Program
                     catch (Exception ex) { Console.WriteLine(ex.Message); }
                     break;
                 case 6://update date
-
-                    Console.Write("Enter Task's ID: ");
-                    int id = int.Parse(Console.ReadLine());
-                    Console.Write("Enter Task's Scheduled date: ");
-                    string? tempDate = GetDate();//recive and check date
-                    if (tempDate == null)//the date didnt defined
+                    if (!chapter3)
                     {
-                        Console.WriteLine("Date didn't defined");
-                        break;
+                        Console.Write("Enter Task's ID: ");
+                        int id = int.Parse(Console.ReadLine());
+                        Console.Write("Enter Task's Scheduled date: ");
+                        string? tempDate = GetDate(); //recive and check date
+                        if (tempDate == null)//the date didnt defined
+                        {
+                            Console.WriteLine("Date didn't defined");
+                            break;
+                        }
+                        DateTime scheduledDate = DateTime.Parse(tempDate);
+                        s_bl.Task.UpdateDate(id, scheduledDate);
                     }
-                    DateTime scheduledDate =  DateTime.Parse(tempDate);
-                    s_bl.Task.UpdateDate(id, scheduledDate);
                     break;
 
                 default:  //if the user choose wrong number 
-                    Console.WriteLine("ERORR: choose numbers betwin 1-6");
+                    if(EngTask==1) Console.WriteLine("ERORR: choose numbers between 0-5");
+                    else if (EngTask==2 && !chapter3) Console.WriteLine("ERORR: choose numbers between 0-6");
+                    else Console.WriteLine("ERORR: choose numbers between 0-3");
                     userChoice = int.Parse(Console.ReadLine());
                     break;
             }
@@ -325,7 +343,7 @@ internal class Program
                     case 2:     //task
                         try
                         {
-                            int choice2 = optionsSubMenu("Task");
+                            int choice2 = optionsSubMenu("Task", chapter3);
                             choiceActivate(choice2, 2);
                         }
                         catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -339,11 +357,12 @@ internal class Program
                             if (DateTime.TryParse(checkDate, out var date))
                             {
                                 startProjectDate = date;
+                                chapter3 = true;
                                 checkDate = "0";
                             }
                             else Console.WriteLine("Invalid date. enter a date in the correct format, to exit press 0: ");
                         }
-                        s_bl.Task.resetDate(DateTime.Now);
+                        s_bl.Task.resetDate(startProjectDate??DateTime.Now);
                         break;
                     default:   //if the user choose wrong number 
                         Console.WriteLine("ERROR: choose number between 1-3");
