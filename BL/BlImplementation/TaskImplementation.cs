@@ -125,9 +125,6 @@ internal class TaskImplementation : ITask
     public void resetDate(DateTime startProject)
     {
         //find all the task that is not depend on any other task ie: task.Dependencies = null
-        //IEnumerable<BO.Task> notDependentTask = from task1 in (from task in _dal.Task.ReadAll() select Read(task.Id))
-        //                                        where task1.Dependencies == null||task1.Dependencies.Count() == 0
-        //                                        select task1;
         IEnumerable<BO.Task> notDependentTask = from doTask in _dal.Task.ReadAll()
                                                  let boTask = Read(doTask.Id)
                                                  where boTask.Dependencies == null || boTask.Dependencies.Count() == 0

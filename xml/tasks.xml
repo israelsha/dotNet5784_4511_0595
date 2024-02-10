@@ -7,10 +7,10 @@
     <CreatedAtDate>2024-02-08T23:54:44.8717844+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P34D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-01-01T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-02-04T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-05-07T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Detailed project plan</Deliverables>
     <Remarks>Efficient resource and timeline organization for project success.</Remarks>
@@ -23,10 +23,10 @@
     <CreatedAtDate>2024-02-08T23:54:44.934325+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P72D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-02-04T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-04-16T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-07-18T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Automated data processing system</Deliverables>
     <Remarks>Automated handling of data for accurate and efficient results.</Remarks>
@@ -42,7 +42,7 @@
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-04-16T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-05-12T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-08-13T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Integration process documentation</Deliverables>
     <Remarks />
@@ -55,10 +55,10 @@
     <CreatedAtDate>2024-02-08T23:54:44.9906262+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P79D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-01-01T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-03-20T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-06-21T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Quality testing reports</Deliverables>
     <Remarks>Rigorous testing and continuous improvement for high-quality standards.</Remarks>
@@ -74,7 +74,7 @@
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-03-20T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-05-21T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-08-22T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Research reports with findings and recommendations</Deliverables>
     <Remarks />
@@ -90,7 +90,7 @@
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-05-21T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-04-17T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-07-19T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Physical or digital prototype</Deliverables>
     <Remarks>Creation of preliminary models for testing and refinement.</Remarks>
@@ -106,7 +106,7 @@
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-06-18T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-05-20T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-08-21T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Source code for the software</Deliverables>
     <Remarks>Protection against cyber threats through robust security measures.</Remarks>
@@ -122,7 +122,7 @@
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-07-23T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-05-14T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-08-15T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>List of risks and workflow diagrams</Deliverables>
     <Remarks />
@@ -135,10 +135,10 @@
     <CreatedAtDate>2024-02-08T23:54:45.0599757+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P80D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-01-01T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-03-21T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-06-22T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Test results and notes</Deliverables>
     <Remarks>Thorough examination of systems to identify and rectify issues.</Remarks>
@@ -151,10 +151,10 @@
     <CreatedAtDate>2024-02-08T23:54:45.0770733+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P64D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-03-21T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-05-24T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-08-25T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Source code for algorithms</Deliverables>
     <Remarks />
@@ -170,7 +170,7 @@
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-05-24T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-06-20T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-09-21T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Reports on cyber attacks and solutions</Deliverables>
     <Remarks>Oversight and optimization of network infrastructure.</Remarks>
@@ -183,10 +183,10 @@
     <CreatedAtDate>2024-02-08T23:54:45.2699947+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P40D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-03-21T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-04-30T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-08-01T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Report on human-system interface design</Deliverables>
     <Remarks>Identification, assessment, and mitigation of potential risks.</Remarks>
@@ -199,10 +199,10 @@
     <CreatedAtDate>2024-02-08T23:54:45.1443692+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P91D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-01-01T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-04-01T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-07-03T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Report analyzing environmental impacts</Deliverables>
     <Remarks />
@@ -215,10 +215,10 @@
     <CreatedAtDate>2024-02-08T23:54:45.2068029+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P82D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-04-01T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-06-22T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-09-23T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Automated process system</Deliverables>
     <Remarks>Strategies to reduce energy consumption and enhance efficiency.</Remarks>
@@ -234,7 +234,7 @@
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-06-22T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-06-20T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-09-21T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Supply chain management plan</Deliverables>
     <Remarks>Implementation of automated systems for process efficiency.</Remarks>
@@ -250,7 +250,7 @@
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-08-23T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-05-08T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-08-09T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Detailed project plan</Deliverables>
     <Remarks />
@@ -263,10 +263,10 @@
     <CreatedAtDate>2024-02-08T23:54:45.1672089+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P50D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-01-01T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-02-20T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-05-23T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Structural design plans</Deliverables>
     <Remarks />
@@ -279,10 +279,10 @@
     <CreatedAtDate>2024-02-08T23:54:45.1909508+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P94D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-02-20T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-05-24T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-08-25T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Plan to reduce energy consumption</Deliverables>
     <Remarks>Planning and drafting designs for physical structures.</Remarks>
@@ -298,7 +298,7 @@
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-05-24T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-06-26T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-09-27T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Renewable energy solution proposals</Deliverables>
     <Remarks>Designing systems considering human interaction for optimal usability.</Remarks>
@@ -314,7 +314,7 @@
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate>2024-09-29T00:00:00</ScheduledDate>
-    <DeadlineDate>2024-04-26T00:00:00</DeadlineDate>
+    <DeadlineDate>2023-07-28T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>searcing for new enrgy sources</Deliverables>
     <Remarks />
