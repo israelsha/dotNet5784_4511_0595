@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using PL.Engineer;
 namespace PL
 {
     /// <summary>
@@ -19,6 +19,24 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+        private void Engineer_List_Click(object sender, RoutedEventArgs e)
+        {
+            new EngineerListWindow().Show();
+        }
+        private void Initialization_Click(object sender, RoutedEventArgs e)
+        {
+            string message = "Are you sure you want to initialize the data?";
+            string title = "Initialize Data";
+            MessageBoxButton buttons = MessageBoxButton.YesNo;
+
+            MessageBoxResult result = MessageBox.Show(message, title, buttons);
+            if (result == MessageBoxResult.Yes)
+            {
+                DalTest.Initialization.initialize();
+                DalTest.Initialization.Do();
+            }
         }
     }
 }
