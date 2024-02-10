@@ -1,5 +1,4 @@
-﻿using BO;
-using DalTest;
+﻿using DalTest;
 using System.Net.Mail;
 namespace BlTest;
 internal class Program
