@@ -24,6 +24,8 @@ public partial class EngineerListWindow : Window
     {
         InitializeComponent();
         EngineerList = s_bl?.Engineer.ReadAll()!;
+        
+
     }
 
     private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -41,6 +43,8 @@ public partial class EngineerListWindow : Window
     public static readonly DependencyProperty EngineerListProperty =
         DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null));
 
+    private void ListView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+    {
 
-
+    }
 }

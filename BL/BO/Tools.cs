@@ -119,4 +119,26 @@ internal static class Tools
             throw new BO.BlInvalidDataException($"Invalid {error}");
     }
 
+    public static string ToStringProperty<T>(this T obj)
+    {
+        string result = "";
+        var x = obj.GetType();
+        var ls = x.GetProperties();
+        foreach (var prop in ls)
+        {
+            if (prop.CanRead==false)
+            {
+                foreach (var a in prop)
+                {
+
+                }
+            }
+            else
+                result += $"{prop.Name}: {prop.GetValue(obj)}. \n";
+
+        }
+
+        return result;
+    }
+
 }
