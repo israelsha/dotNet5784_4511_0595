@@ -123,22 +123,23 @@ internal static class Tools
     {
         string result = "";
         var x = obj.GetType();
-        var ls = x.GetProperties();
-        foreach (var prop in ls)
+        var ls= x.GetProperties();
+        foreach ( var prop in ls )
         {
-            if (prop.CanRead==false)
+            if (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
             {
-                foreach (var a in prop)
+                result += $"{prop.Name}: ";
+                var list = (IEnumerable <T>)prop.GetValue(obj);
+                foreach (var item in list)
                 {
-
+                    result += $"{item}. \n ";
                 }
             }
             else
                 result += $"{prop.Name}: {prop.GetValue(obj)}. \n";
-
+           
         }
 
         return result;
     }
-
 }

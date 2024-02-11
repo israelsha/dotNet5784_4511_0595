@@ -42,9 +42,12 @@ public partial class EngineerListWindow : Window
 
     public static readonly DependencyProperty EngineerListProperty =
         DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null));
+    public BO.EngineerExperience Level { get; set; } = BO.EngineerExperience.None;
 
-    private void ListView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+    private void Level_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        EngineerList = (Level == BO.EngineerExperience.None) ?
+        s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => item.Level.Equals(Level))!;
 
     }
 }

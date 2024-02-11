@@ -23,5 +23,6 @@ public class Task
     public string ?Remarks { get; set; }                //free remarks from project meetings;
     public BO.EngineerInTask? Engineer {  get; set; }   
     public BO.EngineerExperience Copmlexity { get; set; }//minimum expirience for engineer to assign;
+    public override string ToString() => this.ToStringProperty();
 
 }
