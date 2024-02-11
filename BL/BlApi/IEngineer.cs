@@ -12,7 +12,7 @@ public interface IEngineer
     public BO.Engineer? Read(int id);
 
     //return list of all the engineers
-    public IEnumerable<BO.Engineer> ReadAll();
+    public IEnumerable<BO.Engineer> ReadAll(Func <DO.Engineer,bool> ?filter = null);
 
     //updating the ingineer
     public void Update(BO.Engineer item);

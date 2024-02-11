@@ -119,4 +119,27 @@ internal static class Tools
             throw new BO.BlInvalidDataException($"Invalid {error}");
     }
 
+    public static string ToStringProperty<T>(this T obj)
+    {
+        string result = "";
+        var x = obj.GetType();
+        var ls= x.GetProperties();
+        foreach ( var prop in ls )
+        {
+            if (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
+            {
+                result += $"{prop.Name}: ";
+                var list = (IEnumerable <T>)prop.GetValue(obj);
+                foreach (var item in list)
+                {
+                    result += $"{item}. \n ";
+                }
+            }
+            else
+                result += $"{prop.Name}: {prop.GetValue(obj)}. \n";
+           
+        }
+
+        return result;
+    }
 }

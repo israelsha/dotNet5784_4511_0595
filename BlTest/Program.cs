@@ -173,9 +173,9 @@ internal class Program
             Console.WriteLine($"Created At Date: {tsk.CreatedAtDate}");
             Console.WriteLine($"Status: {tsk.Status}");
             Console.WriteLine("Dependencies:");
-            if(tsk.Dependencies==null) Console.WriteLine("Not specified");
+            if (tsk.Dependencies == null) Console.WriteLine("Not specified");
             else foreach (var item in tsk.Dependencies)
-                Console.WriteLine($"ID: {item.Id}, Description: {item.Description}, Alias: {item.Alias}, Status: {item.Status}");
+                    Console.WriteLine($"ID: {item.Id}, Description: {item.Description}, Alias: {item.Alias}, Status: {item.Status}");
             Console.WriteLine($"Required Effort Time: {tsk.RequiredEffortTime?.ToString() ?? "Not specified"}");
             Console.WriteLine($"Start Date: {tsk.StartDate?.ToString() ?? "Not specified"}");
             Console.WriteLine($"Scheduled Date: {tsk.ScheduledDate?.ToString() ?? "Not specified"}");
