@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
-        Title="EngineerListWindow" Height="640" Width="800">
+        Title="EngineerListWindow" Height="640" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <!--Internal, Upper Grid-->
     <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
         <Grid.ColumnDefinitions>
@@ -13,15 +14,15 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Content="Label" HorizontalAlignment="Left" Margin="47,35,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
-        <ListView Grid.Row="1">
+        <ComboBox Grid.Column="1" Margin="32,32,32,531"/>
+        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="Button_Click"/>
+        <Button Content="Add" HorizontalAlignment="Left" Height="50" Width="100" Margin="127,477,0,97" RenderTransformOrigin="0.508,0.612" Grid.Column="1"/>
 
     </Grid>
 

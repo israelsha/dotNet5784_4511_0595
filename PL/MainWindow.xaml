@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Engineer List" Margin="400,0,0,380" Click="Button_Click" Background="#FFCDA9A9" FontSize="20" FontFamily="Microsoft Uighur"/>
+        <!--Show us the List of the Engineers-->
+        <Button Content="Engineer List" HorizontalAlignment="Left" Margin="534,299,0,0" VerticalAlignment="Top" Width="151" Height="52" Click="Engineer_List_Click"/>
+        <!--Initialize All Data-->
+        <Button Content="Data Initialization" HorizontalAlignment="Left" Margin="159,299,0,0" VerticalAlignment="Top" Width="151" Height="52" Click="Initialization_Click"/>
 
     </Grid>
 </Window>
