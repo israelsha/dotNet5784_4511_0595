@@ -11,7 +11,7 @@ public interface ITask
     public BO.Task? Read(int id);
 
     //return list of all the tasks
-    public IEnumerable<BO.TaskInList> ReadAll();
+    public IEnumerable<BO.TaskInList> ReadAll(Func<DO.Task, bool>? filter = null);
 
     //updating the task
     public void Update(BO.Task item);

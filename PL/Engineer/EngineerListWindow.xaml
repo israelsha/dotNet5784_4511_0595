@@ -16,26 +16,26 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Content="Select:" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Width="400" Height="40" FontSize="20"/>
-        <ComboBox Grid.Column="1" SelectedValue="{Binding Level}"
+        <!--comboBox to choose level of engineer-->
+        <ComboBox Grid.Column="1" SelectedValue="{Binding Level,Mode=TwoWay}"
                   ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
-                  HorizontalAlignment="Right" Width="400" FontSize="18"/>
+                  HorizontalAlignment="Right" Width="400" FontSize="18" SelectionChanged="Level_SelectionChanged"/>
 
         <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}">
             <ListView.View>
                 <GridView>
-                   
-                    <GridViewColumn DisplayMemberBinding="{Binding Id}"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Email}"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Level}"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Cost}"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Task.Id}"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Task.Alias}"/>
-                        
+                    <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Add" HorizontalAlignment="Left" Height="50" Width="100" Margin="127,477,0,97" RenderTransformOrigin="0.508,0.612" Grid.Column="1"/>
+        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="Button_Click"/>
+        <!--Internal, Upper Grid-->
+        <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
 
     </Grid>
 
