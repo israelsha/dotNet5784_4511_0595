@@ -45,7 +45,7 @@ public partial class EngineerListWindow : Window
     private void Level_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         EngineerList = (Level == BO.EngineerExperience.None) ?
-        s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => item.Level.Equals(Level))!;
+        s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => (int)item.Level==(int)Level)!;
 
     }
 }

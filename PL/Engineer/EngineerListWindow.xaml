@@ -16,9 +16,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Content="Select:" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Width="400" Height="40" FontSize="20"/>
-        <ComboBox Grid.Column="1" SelectedValue="{Binding Level}"
+        <ComboBox Grid.Column="1" SelectedValue="{Binding Level, Mode=TwoWay}"
                   ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
-                  HorizontalAlignment="Right" Width="400" FontSize="18"/>
+                  HorizontalAlignment="Right" Width="400" FontSize="18"
+                  SelectionChanged="Level_SelectionChanged"/>
 
         <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}">
             <ListView.View>
