@@ -10,27 +10,39 @@
     <!--Internal, Upper Grid-->
     <!--Extrnal Grid-->
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="14*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="500*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Content="Select:" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Width="400" Height="40" FontSize="20"/>
+        <Label Content="Select:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="400" Height="40" FontSize="20"/>
         <!--comboBox to choose level of engineer-->
-        <ComboBox Grid.Column="1" SelectedValue="{Binding Level,Mode=TwoWay}"
+        <ComboBox SelectedValue="{Binding Level,Mode=TwoWay}"
                   ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
-                  HorizontalAlignment="Right" Width="400" FontSize="18" SelectionChanged="Level_SelectionChanged"/>
+                  HorizontalAlignment="Right" Width="400" FontSize="18" SelectionChanged="Level_SelectionChanged" Grid.ColumnSpan="3" Margin="200,0,0,500" Grid.RowSpan="2"/>
 
-        <ListView Margin="5" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="UpdateEngineer_Button">
+        <ListView x:Name="___No_Name_" Margin="5,5,5,5" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="UpdateEngineer_Button" Grid.ColumnSpan="3" FontSize="16" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
+            <ListView.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FFA7CDCE" Offset="0" />
+                    <GradientStop Color="#FF125F61" Offset="1" />
+                </LinearGradientBrush>
+            </ListView.Background>
         </ListView>
-        <Button Content="Add" Grid.Row="2" HorizontalAlignment="Center" Height="50" Width="100" Click="AddEngineer_Button"/>
+
+        <Button Content="Add" Grid.Row="1" HorizontalAlignment="Center" Height="50" Width="100" Click="AddEngineer_Button" Margin="100,500,0,0" BorderBrush="#FFD2B6B6" Background="#FF85AAC9" FontSize="20"/>
         <!--Internal, Upper Grid-->
-        <Grid HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
+        <Grid Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="3" Margin="0,0,0,531" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
