@@ -137,9 +137,7 @@ internal static class Tools
             }
             else
                 result += $"{prop.Name}: {prop.GetValue(obj)}. \n";
-           
         }
-
         return result;
     }
 }

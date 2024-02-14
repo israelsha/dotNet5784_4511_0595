@@ -115,12 +115,17 @@ public static class Initialization
         "Dani Levi", "Eli Amar", "Shira Israelof" ,
         "Ariela Levin", "Israel Shaashua","Dina Klein"
         };
+
+        string[] mails =
+        {
+            "Dani543","Eli7264","Shira7859","Ariel201","Israel213","Dina8965"
+        };
         int[] _id = { 324567891, 389012345, 201987654, 398765432, 213074522, 235678901 };
         int i = 0;
         Random rnd = new Random();
         foreach (var _name in EngineerNames)
         {
-            string? _email = (_id[i] % 10000).ToString() + "@gmail.com";
+            string? _email = mails[i] + "@gmail.com";   
 
             DO.EngineerExperience _level = EngineerExperience.Beginner + i % 5;
             double _cost = 200 + ((int)_level) * 50 + (double)(rnd.Next(-100, 300) / 3);

@@ -62,7 +62,7 @@ internal class Program
         Console.Write("level, Rating between 1-5: ");
         BO.EngineerExperience level = (BO.EngineerExperience)(getEnum());
         Console.Write("task's ID: ");
-        BO.TaskInEngineer taskInEngineer = new BO.TaskInEngineer();
+        BO.TaskInEngineer ?taskInEngineer = null;
         try
         {
             BO.Task ?task = s_bl.Task.Read(int.Parse(Console.ReadLine()));
@@ -186,7 +186,7 @@ internal class Program
             Console.WriteLine("Engineer:");
             if (tsk.Engineer != null) Console.WriteLine($"ID: {tsk.Engineer.Id}, Name: {tsk.Engineer.Name}");
             else Console.WriteLine("Not specified");
-            Console.WriteLine($"Engineer Complexity: {tsk.Copmlexity.ToString() ?? "Not specified"}");
+            Console.WriteLine($"Complexity: {tsk.Copmlexity.ToString() ?? "Not specified"}");
         }
     }
 
