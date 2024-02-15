@@ -4,9 +4,9 @@
     <Id>100</Id>
     <Alias>Project Management</Alias>
     <Description>Planning, controlling, and leading a project from its beginning through to completion.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.5485629+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.0065587+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P76D</RequiredEffortTime>
+    <RequiredEffortTime>P99D</RequiredEffortTime>
     <Copmlexity>Beginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -20,9 +20,9 @@
     <Id>101</Id>
     <Alias>Data Processing</Alias>
     <Description>Focus on handling and processing data as part of organizational processes.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.5919596+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.0450344+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P57D</RequiredEffortTime>
+    <RequiredEffortTime>P38D</RequiredEffortTime>
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -36,9 +36,9 @@
     <Id>102</Id>
     <Alias>System Integration</Alias>
     <Description>Combining various components or systems to create a unified and efficient operation.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.6129644+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.066683+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P64D</RequiredEffortTime>
+    <RequiredEffortTime>P77D</RequiredEffortTime>
     <Copmlexity>Advanced</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -52,9 +52,9 @@
     <Id>103</Id>
     <Alias>Quality Assurance</Alias>
     <Description>Overseeing processes and outputs to ensure high-quality and reliable results.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.6314233+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.0885486+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P42D</RequiredEffortTime>
+    <RequiredEffortTime>P40D</RequiredEffortTime>
     <Copmlexity>Intermediate</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -68,9 +68,9 @@
     <Id>104</Id>
     <Alias>R&amp;D (Research &amp; Development)</Alias>
     <Description>Activity involving search, discovery, and technological or knowledge development.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.6507285+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.1079313+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P36D</RequiredEffortTime>
+    <RequiredEffortTime>P28D</RequiredEffortTime>
     <Copmlexity>Intermediate</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -84,9 +84,9 @@
     <Id>105</Id>
     <Alias>Prototyping</Alias>
     <Description>Creating initial or scaled models used for experimentation and testing.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.6701783+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.1274828+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P20D</RequiredEffortTime>
+    <RequiredEffortTime>P80D</RequiredEffortTime>
     <Copmlexity>Intermediate</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -100,9 +100,9 @@
     <Id>106</Id>
     <Alias>Testing</Alias>
     <Description>Processes of evaluating the functionality or quality of systems and software.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.6797731+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.1485045+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P46D</RequiredEffortTime>
+    <RequiredEffortTime>P32D</RequiredEffortTime>
     <Copmlexity>Advanced</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -116,9 +116,9 @@
     <Id>107</Id>
     <Alias>Algorithm Development</Alias>
     <Description>Creating sequences of computational steps to solve a specific problem.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.7003731+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.1636809+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P64D</RequiredEffortTime>
+    <RequiredEffortTime>P34D</RequiredEffortTime>
     <Copmlexity>Expert</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -132,9 +132,9 @@
     <Id>108</Id>
     <Alias>Network Management</Alias>
     <Description>Administration and control of computer networks.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.7202439+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.1815187+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P40D</RequiredEffortTime>
+    <RequiredEffortTime>P69D</RequiredEffortTime>
     <Copmlexity>Intermediate</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -148,9 +148,9 @@
     <Id>109</Id>
     <Alias>Cybersecurity</Alias>
     <Description>Protection against information and computer security threats.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.7294096+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.1997453+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P26D</RequiredEffortTime>
+    <RequiredEffortTime>P61D</RequiredEffortTime>
     <Copmlexity>Expert</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -164,9 +164,9 @@
     <Id>110</Id>
     <Alias>Software Development</Alias>
     <Description>Creating software applications tailored to client needs.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.7498774+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.2182936+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P61D</RequiredEffortTime>
+    <RequiredEffortTime>P76D</RequiredEffortTime>
     <Copmlexity>Advanced</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -180,9 +180,9 @@
     <Id>111</Id>
     <Alias>Hardware Design</Alias>
     <Description>Planning and developing hardware components.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.7673612+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.2358691+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P66D</RequiredEffortTime>
+    <RequiredEffortTime>P31D</RequiredEffortTime>
     <Copmlexity>Advanced</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -196,9 +196,9 @@
     <Id>112</Id>
     <Alias>Environmental Assessment</Alias>
     <Description>Studying and evaluating the impact of activities on the environment.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.775586+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.251514+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P89D</RequiredEffortTime>
+    <RequiredEffortTime>P44D</RequiredEffortTime>
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -212,7 +212,7 @@
     <Id>113</Id>
     <Alias>Structural Design</Alias>
     <Description>Planning and constructing architectural structures.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.782253+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.2683753+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P70D</RequiredEffortTime>
     <Copmlexity>AdvancedBeginner</Copmlexity>
@@ -228,9 +228,9 @@
     <Id>114</Id>
     <Alias>Energy Optimization</Alias>
     <Description>Creating systems that are integrated into larger systems or products.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.8026841+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.2846358+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P31D</RequiredEffortTime>
+    <RequiredEffortTime>P81D</RequiredEffortTime>
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -244,9 +244,9 @@
     <Id>115</Id>
     <Alias>Process Automation</Alias>
     <Description>Implementing processes to operate machinery or systems with minimal human intervention.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.8193085+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.3006915+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P71D</RequiredEffortTime>
+    <RequiredEffortTime>P22D</RequiredEffortTime>
     <Copmlexity>Intermediate</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -260,9 +260,9 @@
     <Id>116</Id>
     <Alias>Supply Chain Management</Alias>
     <Description>Applying principles of engineering to healthcare and medical fields.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.8376687+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.3183773+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P26D</RequiredEffortTime>
+    <RequiredEffortTime>P65D</RequiredEffortTime>
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -276,9 +276,9 @@
     <Id>117</Id>
     <Alias>Risk Management</Alias>
     <Description>Designing and managing telecommunication systems.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.8592565+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.3352373+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P51D</RequiredEffortTime>
+    <RequiredEffortTime>P31D</RequiredEffortTime>
     <Copmlexity>Beginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -292,9 +292,9 @@
     <Id>118</Id>
     <Alias>Human Factors Engineering</Alias>
     <Description>Developing algorithms and models for machine learning applications.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.8663953+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.3515767+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P52D</RequiredEffortTime>
+    <RequiredEffortTime>P30D</RequiredEffortTime>
     <Copmlexity>Beginner</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
@@ -308,9 +308,9 @@
     <Id>119</Id>
     <Alias>Renewable Energy Solutions</Alias>
     <Description>Designing, building, and maintaining robots for various applications.</Description>
-    <CreatedAtDate>2024-02-15T00:58:51.8762127+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-02-15T16:04:48.368899+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P49D</RequiredEffortTime>
+    <RequiredEffortTime>P91D</RequiredEffortTime>
     <Copmlexity>Advanced</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
