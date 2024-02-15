@@ -63,9 +63,9 @@ internal class TaskImplementation : ITask
         return Tools.doToBo(doTask);
     }
 
-    public IEnumerable<BO.TaskInList> ReadAll()
+    public IEnumerable<BO.TaskInList> ReadAll(Func<DO.Task, bool>? filter = null)
     {
-        return (from DO.Task doTask in _dal.Task.ReadAll()
+        return (from DO.Task doTask in _dal.Task.ReadAll(filter)
                 select new BO.TaskInList
                 {
                     Id = doTask.Id,

@@ -5,12 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace PL.Engineer;
 
@@ -46,6 +41,11 @@ public partial class EngineerListWindow : Window
     {
         EngineerList = (Level == BO.EngineerExperience.None) ?
         s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => (int)item.Level==(int)Level)!;
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        new EngineerWindow(213074522).ShowDialog();
 
     }
 }

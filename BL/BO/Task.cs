@@ -20,7 +20,7 @@ public class Task
     public DateTime ?DeadlineDate { get; set; }         //the latest complete date;
     public DateTime ?CompleteDate { get; set; }         //real completion date;
     public string ?Deliverables { get; set; }           //description of deliverables for MS copmletion;
-    public string ?Remarks { get; set; }                //free remarks from project meetings;
+    public string? Remarks { get; set; }            //free remarks from project meetings;
     public BO.EngineerInTask? Engineer {  get; set; }   
     public BO.EngineerExperience Copmlexity { get; set; }//minimum expirience for engineer to assign;
     public override string ToString() => this.ToStringProperty();

@@ -38,5 +38,10 @@ namespace PL
                 DalTest.Initialization.Do();
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
