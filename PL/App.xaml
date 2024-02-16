@@ -6,5 +6,6 @@
     <Application.Resources>
         <local:EngineerLevel x:Key="EngineerLevelKey"/>
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
+        <local:IdToIsEnabledConverter x:Key="IdToIsEnabledConverter"/>
     </Application.Resources>
 </Application>

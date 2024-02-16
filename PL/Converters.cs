@@ -16,3 +16,18 @@ class ConvertIdToContent : IValueConverter
         throw new NotImplementedException();
     }
 }
+
+
+public class IdToIsEnabledConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return (int)value==0?true : false;
+    }
+
+    public object ConvertBack(object value, Type targetTypes, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
+

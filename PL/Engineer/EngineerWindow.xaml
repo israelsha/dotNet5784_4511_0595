@@ -9,33 +9,38 @@
     Title="EngineerWindow" Height="698" Width="614"
         DataContext="{Binding CurrentEngineer, RelativeSource={RelativeSource Mode=Self}, Mode=TwoWay}">
 
-    <Grid Height="688" VerticalAlignment="Top">
+    <Grid Height="688" VerticalAlignment="Top" >
+        <Grid.Background>
+        <LinearGradientBrush>
+                <GradientStop Color="#FFA7CDCE" Offset="0" />
+                <GradientStop Color="#FF125F61" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="778*"/>
             <RowDefinition Height="47*"/>
         </Grid.RowDefinitions>
-        <Label Content="Id:" HorizontalAlignment="Left" Margin="75,122,0,0" VerticalAlignment="Top" Width="168" Height="46" FontSize="22"/>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="75,199,0,0" VerticalAlignment="Top" Width="168" Height="46" FontSize="22"/>
-        <Label Content="Cost:" HorizontalAlignment="Left" Margin="75,446,0,0" VerticalAlignment="Top" Width="168" Height="46" FontSize="22"/>
-        <Label Content="Email:" HorizontalAlignment="Left" Margin="75,278,0,0" VerticalAlignment="Top" Width="168" Height="46" FontSize="22"/>
-        <Label Content="Level:" HorizontalAlignment="Left" Margin="75,358,0,0" VerticalAlignment="Top" Width="168" Height="46" FontSize="22"/>
-        <TextBox HorizontalAlignment="Left" Margin="307,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" Height="46" RenderTransformOrigin="0.248,1.647" FontSize="26" 
-                 Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" IsEnabled="{Binding IsCreate}"/>
 
-        <TextBox HorizontalAlignment="Left" Margin="307,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" Height="46" RenderTransformOrigin="0.248,1.647" FontSize="26"
-                 Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" />
-        <TextBox HorizontalAlignment="Left" Margin="307,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" Height="46" RenderTransformOrigin="0.248,1.647" FontSize="26"
-                 Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,150,0,0" Height="450" Width="100" >
+            <Label Content="Id:" FontSize="22" Height="60" Foreground="#FF1A337A" Margin="0,0,0,30" VerticalContentAlignment="Center"/>
+            <Label Content="Name:" FontSize="22" Height="60" Foreground="#FF1A337A" Margin="0,0,0,30" VerticalContentAlignment="Center"/>
+            <Label Content="Email:" FontSize="22" Height="60" Foreground="#FF1A337A" Margin="0,0,0,30" VerticalContentAlignment="Center"/>
+            <Label Content="Level:" FontSize="22" Height="60" Foreground="#FF1A337A" Margin="0,0,0,30" VerticalContentAlignment="Center"/>
+            <Label Content="Cost:" FontSize="22" Height="60" Foreground="#FF1A337A" Margin="0,0,0,30" VerticalContentAlignment="Center"/>
+        </StackPanel>
 
-        <TextBox HorizontalAlignment="Left" Margin="307,446,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" Height="46" RenderTransformOrigin="0.248,1.647" FontSize="26"
-                 Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="180,150,0,0"  Height="450" Width="250">
+            <TextBox  Text="{Binding Id}" IsEnabled="{Binding Id,Converter={StaticResource IdToIsEnabledConverter}}" Height="60" Foreground="#FF1A337A" Background="#FFDDDDDD" FontSize="20" TextAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,30"/>
+            <TextBox Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Height="60" Foreground="#FF1A337A" Background="#FFDDDDDD" FontSize="20" TextAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,30"/>
+            <TextBox Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Height="60" Foreground="#FF1A337A" Background="#FFDDDDDD" FontSize="20" TextAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,30"/>
+            <ComboBox  ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" SelectedValue="{Binding Path=Level, Mode=TwoWay}" 
+                       Height="60" Foreground="#FF1A337A" Background="#FFDDDDDD" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,30"/>
+            <TextBox Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Height="60" Foreground="#FF1A337A" Background="#FFDDDDDD" FontSize="20" TextAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,30"/>
+        </StackPanel>
 
-        <ComboBox Margin="307,358,86,0" ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
-            SelectedValue="{Binding Level, Mode=TwoWay, NotifyOnValidationError=true, 
-            ValidatesOnExceptions=true}" VerticalAlignment="Top" Height="46" FontSize="26" SelectionChanged="ComboBox_SelectionChanged"/>
         <Button HorizontalAlignment="Center" Margin="0,603,0,0" VerticalAlignment="Top" Width="142" Height="46" Grid.RowSpan="2" FontSize="22"
-                Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="Button_Click" />
-
-
+                Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="AddOrUpdate_Button" Background="#FF85AAC9" />
     </Grid>
+
 </Window>

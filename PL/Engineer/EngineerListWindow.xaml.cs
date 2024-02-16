@@ -20,7 +20,7 @@ public partial class EngineerListWindow : Window
         InitializeComponent();
         EngineerList = s_bl?.Engineer.ReadAll()!;
     }
-
+   
     private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
 
@@ -43,9 +43,18 @@ public partial class EngineerListWindow : Window
         s_bl?.Engineer.ReadAll()! : s_bl?.Engineer.ReadAll(item => (int)item.Level==(int)Level)!;
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void AddEngineer_Button(object sender, RoutedEventArgs e)
     {
+       Close();
         new EngineerWindow(0).ShowDialog();
 
     }
+
+    private void UpdateEngineer_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        Close();
+        BO.Engineer? engineer = (sender as ListView)?.SelectedItem as BO.Engineer;
+        new EngineerWindow(engineer!.Id).ShowDialog();
+    }
+
 }
