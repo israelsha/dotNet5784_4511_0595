@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" >
-    
-    
+
+
 
     <Grid>
         <Grid.Background>
@@ -17,10 +17,11 @@
             </LinearGradientBrush>
         </Grid.Background>
         <!--Show us the List of the Engineers-->
-        <Button Content="Engineer List" HorizontalAlignment="Left" Margin="534,299,0,0" VerticalAlignment="Top" Width="151" Height="52" Click="Engineer_List_Click"/>
+        <Button Content="Admin View" HorizontalAlignment="Left" Margin="527,299,0,0" VerticalAlignment="Top" Width="151" Height="52" Click="Engineer_List_Click" Background="#FFAFCEAC" FontWeight="Bold" FontSize="16"/>
         <!--Initialize All Data-->
-        <Button Content="Data Initialization" HorizontalAlignment="Left" Margin="159,299,0,0" VerticalAlignment="Top" Width="151" Height="52" Click="Initialization_Click"/>
-        <Label Content="Welcome to stage 5" HorizontalAlignment="Left" Margin="199,121,0,0" VerticalAlignment="Top" Width="461" Height="130" Background="#FFBD9696" FontSize="48" FontWeight="Bold"/>
-        
+        <Button Content="Data Initialization" HorizontalAlignment="Center" Margin="0,299,0,0" VerticalAlignment="Top" Width="152" Height="52" Click="Initialization_Click" Background="#FFAFCEAC" FontSize="16" FontWeight="Bold"/>
+        <Label Content="Welcome to our project" HorizontalAlignment="Center" Margin="0,113,0,0" VerticalAlignment="Top" Width="556" Height="85" Background="#FFB0AD91" FontSize="48" FontWeight="Bold"/>
+        <Button Content="Reset Data" HorizontalAlignment="Left" Margin="122,299,0,0" VerticalAlignment="Top" Width="151" Height="52" Click="Reset_Click" Background="#FFAFCEAC" FontSize="16" FontWeight="Bold"/>
+
     </Grid>
 </Window>

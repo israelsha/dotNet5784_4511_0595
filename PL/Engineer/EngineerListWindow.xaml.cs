@@ -52,9 +52,12 @@ public partial class EngineerListWindow : Window
 
     private void UpdateEngineer_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-        Close();
         BO.Engineer? engineer = (sender as ListView)?.SelectedItem as BO.Engineer;
-        new EngineerWindow(engineer!.Id).ShowDialog();
+        if (engineer != null)
+        {
+            Close();
+            new EngineerWindow(engineer!.Id).ShowDialog();
+        }
     }
 
 }

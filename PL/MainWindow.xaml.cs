@@ -31,9 +31,17 @@ namespace PL
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Reset_Click(object sender, RoutedEventArgs e)
         {
+            string message = "Are you sure you want to reset the data?";
+            string title = "Reset Data";
+            MessageBoxButton buttons = MessageBoxButton.YesNo;
 
+            MessageBoxResult result = MessageBox.Show(message, title, buttons);
+            if (result == MessageBoxResult.Yes)
+            {
+                DalTest.Initialization.initialize();
+            }
         }
     }
 }

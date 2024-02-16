@@ -140,4 +140,8 @@ internal static class Tools
         }
         return result;
     }
+    public static void Reset()
+    {
+       
+    }
 }
