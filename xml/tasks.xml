@@ -86,7 +86,7 @@
     <Description>Creating initial or scaled models used for experimentation and testing.</Description>
     <CreatedAtDate>2024-02-15T16:04:48.1274828+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P80D</RequiredEffortTime>
+    <RequiredEffortTime>P54D</RequiredEffortTime>
     <Copmlexity>Intermediate</Copmlexity>
     <StartDate xsi:nil="true" />
     <ScheduledDate xsi:nil="true" />
