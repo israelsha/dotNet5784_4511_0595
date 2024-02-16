@@ -45,7 +45,7 @@ public partial class EngineerListWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        new EngineerWindow(213074522).ShowDialog();
+        new EngineerWindow(0).ShowDialog();
 
     }
 }
