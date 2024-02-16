@@ -85,7 +85,8 @@ internal class EngineerImplementation : IEngineer
 
         //If the engineer level update is lower than the current engineer level then the level will stay the same and not be updated
         if ((int)boEngineer.Level < (int)_dal.Engineer.Read(boEngineer.Id).Level)
-            boEngineer.Level = (BO.EngineerExperience)_dal.Engineer.Read(boEngineer.Id).Level;
+             throw new BO.BlInvalidDataException($"Invalid level, Engineer level can only change upwards ");
+
 
         //updating
         DO.Engineer doEngineer = new DO.Engineer(boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -29,11 +23,9 @@ public partial class EngineerWindow : Window
 
     public static readonly DependencyProperty CurrentEngineerProperty =
         DependencyProperty.Register("CurrentEngineer", typeof(BO.Engineer), typeof(EngineerWindow), new PropertyMetadata(null));
-    bool IsCreate = false;
     public EngineerWindow(int Id = 0)
     {
         InitializeComponent();
-
         if (Id == 0)
         {
             CurrentEngineer = new BO.Engineer
@@ -46,15 +38,10 @@ public partial class EngineerWindow : Window
                 Task = null
 
             };
-            IsCreate = true;
         }
         else
-        {
             CurrentEngineer = s_bl.Engineer.Read(Id);
-            IsCreate = false;
-        }
-
-        }
+    }
 
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
     int Id = 0;
@@ -66,6 +53,9 @@ public partial class EngineerWindow : Window
 
     }
 
+    /// <summary>
+    /// add or update engineer values if their is an error in tha data it will theow a message of the problem 
+    /// </summary>
     private void AddOrUpdate_Button(object sender, RoutedEventArgs e)
     {
         BO.Engineer engineer = new BO.Engineer
@@ -85,13 +75,11 @@ public partial class EngineerWindow : Window
             {
                 s_bl.Engineer.Create(engineer!);
                 MessageBox.Show("The engineer was successfully added");
-                Close();
             }
             else if (buttonText == "Update")
             {
                 s_bl.Engineer.Update(engineer!);
                 MessageBox.Show("The engineer was successfully updated");
-                Close();
             }
 
         }
@@ -99,7 +87,7 @@ public partial class EngineerWindow : Window
         {
             MessageBox.Show($"{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-        
+        Close();
         new EngineerListWindow().Show();
 
 

@@ -21,6 +21,7 @@
         <!--Initialize All Data-->
         <Button Content="Data Initialization" HorizontalAlignment="Left" Margin="159,299,0,0" VerticalAlignment="Top" Width="151" Height="52" Click="Initialization_Click"/>
         <Label Content="Welcome to stage 5" HorizontalAlignment="Left" Margin="199,121,0,0" VerticalAlignment="Top" Width="461" Height="130" Background="#FFBD9696" FontSize="48" FontWeight="Bold"/>
-        
+        <TextBlock x:Name="timeDisplay" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+
     </Grid>
 </Window>

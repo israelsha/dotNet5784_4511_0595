@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfEngineer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Engineer>
+    <Id>389012345</Id>
+    <Email>Eli7264@gmail.com</Email>
+    <Cost>310</Cost>
+    <Name>Eli Amar</Name>
+    <Level>Advanced</Level>
+  </Engineer>
+  <Engineer>
     <Id>324567891</Id>
     <Email>Dani543@gmail.com</Email>
     <Cost>192</Cost>
@@ -8,11 +15,11 @@
     <Level>Beginner</Level>
   </Engineer>
   <Engineer>
-    <Id>389012345</Id>
-    <Email>Eli7264@gmail.com</Email>
-    <Cost>310</Cost>
-    <Name>Eli Amar</Name>
-    <Level>AdvancedBeginner</Level>
+    <Id>398765432</Id>
+    <Email>Ariel201@gmail.com</Email>
+    <Cost>3</Cost>
+    <Name>Ariela Levin</Name>
+    <Level>Advanced</Level>
   </Engineer>
   <Engineer>
     <Id>201987654</Id>
@@ -22,11 +29,11 @@
     <Level>Intermediate</Level>
   </Engineer>
   <Engineer>
-    <Id>398765432</Id>
-    <Email>Ariel201@gmail.com</Email>
-    <Cost>323</Cost>
-    <Name>Ariela Levin</Name>
-    <Level>Advanced</Level>
+    <Id>235678901</Id>
+    <Email>Dina8965@gmail.com</Email>
+    <Cost>206</Cost>
+    <Name>Dina Klein</Name>
+    <Level>Beginner</Level>
   </Engineer>
   <Engineer>
     <Id>213074522</Id>
@@ -34,12 +41,5 @@
     <Cost>391</Cost>
     <Name>Israel Shaashua</Name>
     <Level>Expert</Level>
-  </Engineer>
-  <Engineer>
-    <Id>235678901</Id>
-    <Email>Dina8965@gmail.com</Email>
-    <Cost>206</Cost>
-    <Name>Dina Klein</Name>
-    <Level>Beginner</Level>
   </Engineer>
 </ArrayOfEngineer>
