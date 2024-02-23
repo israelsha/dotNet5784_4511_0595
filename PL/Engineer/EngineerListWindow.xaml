@@ -24,14 +24,9 @@
         <!--comboBox to choose level of engineer-->
         <ComboBox SelectedValue="{Binding Level,Mode=TwoWay}"
                   ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
-                  HorizontalAlignment="Right" Width="400" FontSize="18" SelectionChanged="Level_SelectionChanged" Grid.ColumnSpan="3" Margin="0,0,0,556" Grid.RowSpan="2"/>
+                  HorizontalAlignment="Right" VerticalAlignment="Top" Width="400" Height="50" FontSize="18" SelectionChanged="Level_SelectionChanged" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
 
-        <ListView x:Name="___No_Name_" Margin="5,5,5,5" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="UpdateEngineer_Button" Grid.ColumnSpan="3" FontSize="16" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
+        <ListView x:Name="EngineerLitt" Margin="5,5,5,5" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="UpdateEngineer_Button" Grid.ColumnSpan="3" FontSize="16" >
             <ListView.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#FFA7CDCE" Offset="0" />

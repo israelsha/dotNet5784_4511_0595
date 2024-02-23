@@ -1,6 +1,8 @@
-﻿using System;
+﻿using PL.Engineer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,9 +21,28 @@ namespace PL.Task
     /// </summary>
     public partial class TaskForListWindow : Window
     {
+        static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
         public TaskForListWindow()
         {
             InitializeComponent();
+            TaskList= s_bl.Task.ReadAll();
+        }
+
+        public IEnumerable<BO.TaskInList> TaskList
+        {
+            get { return (IEnumerable<BO.TaskInList>)GetValue(TaskListProperty); }
+            set { SetValue(TaskListProperty, value); }
+        }
+        public static readonly DependencyProperty TaskListProperty =
+       DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(TaskForListWindow), new PropertyMetadata(null));
+
+        public BO.EngineerExperience Level { get; set; } = BO.EngineerExperience.None;
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TaskList = (Level == BO.EngineerExperience.None) ?
+            s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => (int)item.Copmlexity == (int)Level)!;
         }
     }
 }

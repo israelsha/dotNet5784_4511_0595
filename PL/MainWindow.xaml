@@ -17,7 +17,7 @@
             </LinearGradientBrush>
         </Grid.Background>
         <!--Show us the List of the Engineers-->
-        <Button Content="Admin View" HorizontalAlignment="Left" Margin="527,299,0,0" VerticalAlignment="Top" Width="151" Height="52" Click="Engineer_List_Click" Background="#FFAFCEAC" FontWeight="Bold" FontSize="16"/>
+        <Button Content="User View" HorizontalAlignment="Left" Margin="527,299,0,0" VerticalAlignment="Top" Width="151" Height="52" Click="User_List_Click" Background="#FFAFCEAC" FontWeight="Bold" FontSize="16"/>
         <!--Initialize All Data-->
         <Button Content="Data Initialization" HorizontalAlignment="Center" Margin="0,299,0,0" VerticalAlignment="Top" Width="152" Height="52" Click="Initialization_Click" Background="#FFAFCEAC" FontSize="16" FontWeight="Bold"/>
         <Label Content="Welcome to our project" HorizontalAlignment="Center" Margin="0,113,0,0" VerticalAlignment="Top" Width="556" Height="85" Background="#FFB0AD91" FontSize="48" FontWeight="Bold"/>
