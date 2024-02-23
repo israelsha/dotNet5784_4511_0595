@@ -1,4 +1,5 @@
 ﻿namespace BO;
+using Dal;
 using System.Net.Mail;
 
 internal static class Tools
@@ -140,8 +141,10 @@ internal static class Tools
         }
         return result;
     }
-    public static void Reset()
+
+    public static void reset()
     {
-       
+        
     }
+
 }
