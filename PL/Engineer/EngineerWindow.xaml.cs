@@ -36,7 +36,6 @@ public partial class EngineerWindow : Window
                 Cost = 0,
                 Level = BO.EngineerExperience.None,
                 Task = null
-
             };
         }
         else
