@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 
@@ -21,17 +16,12 @@ public partial class EngineerListWindow : Window
         EngineerList = s_bl?.Engineer.ReadAll()!;
     }
    
-    private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-
-    }
-
     public IEnumerable<BO.Engineer> EngineerList
     {
         get { return (IEnumerable<BO.Engineer>) GetValue(EngineerListProperty); }
         set { SetValue(EngineerListProperty, value); }
 
-    }
+    }   
 
     public static readonly DependencyProperty EngineerListProperty =
         DependencyProperty.Register("EngineerList", typeof(IEnumerable<BO.Engineer>), typeof(EngineerListWindow), new PropertyMetadata(null));
