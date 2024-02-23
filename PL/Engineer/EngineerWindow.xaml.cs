@@ -81,14 +81,14 @@ public partial class EngineerWindow : Window
                 s_bl.Engineer.Update(engineer!);
                 MessageBox.Show("The engineer was successfully updated");
             }
+            Close();
+            new EngineerListWindow().Show();
 
         }
         catch (Exception ex)
         {
             MessageBox.Show($"{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-        Close();
-        new EngineerListWindow().Show();
 
 
     }
