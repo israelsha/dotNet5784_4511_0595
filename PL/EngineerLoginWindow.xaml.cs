@@ -53,13 +53,17 @@ namespace PL
         {
             try
             {
-                BO.Engineer? engineer = s_bl.Engineer.Read(id);
-                if (engineer != null && engineer.Name == EngineerName)   //check if this is engineer
-                {
-                    new EngineerListWindow().Show();
-                    Close();
-                }
-                else MessageBox.Show("User does not exist");
+                //BO.Engineer? engineer = s_bl.Engineer.Read(id);
+                //if (engineer != null && engineer.Name == EngineerName)   //check if this is engineer
+                //{
+                //    new EngineerViewWindow().Show();
+                //    Close();
+                //}
+                //else MessageBox.Show("User does not exist");
+
+
+                new EngineerViewWindow().Show();
+                Close();
             }
             catch
             {
