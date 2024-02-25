@@ -11,12 +11,12 @@
 
     <Grid Height="688" VerticalAlignment="Top" >
         <Grid.Background>
-        <LinearGradientBrush>
+            <LinearGradientBrush>
                 <GradientStop Color="#FFA7CDCE" Offset="0" />
                 <GradientStop Color="#FF125F61" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="778*"/>
             <RowDefinition Height="47*"/>
@@ -30,7 +30,7 @@
             <Label Content="Cost:" FontSize="22" Height="60" Foreground="#FF1A337A" Margin="0,0,0,30" VerticalContentAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="180,150,0,0"  Height="450" Width="250">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="180,150,0,49" Width="250">
             <TextBox  Text="{Binding Id}" IsEnabled="{Binding Id,Converter={StaticResource IdToIsEnabledConverter}}" Height="60" Foreground="#FF1A337A" Background="#FFDDDDDD" FontSize="20" TextAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,30"/>
             <TextBox Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Height="60" Foreground="#FF1A337A" Background="#FFDDDDDD" FontSize="20" TextAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,30"/>
             <TextBox Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Height="60" Foreground="#FF1A337A" Background="#FFDDDDDD" FontSize="20" TextAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,30"/>
@@ -40,8 +40,8 @@
         </StackPanel>
 
         <Button HorizontalAlignment="Center" Margin="0,603,0,0" VerticalAlignment="Top" Width="142" Height="46" Grid.RowSpan="2" FontSize="22"
-                Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="AddOrUpdate_Button" Background="#FFBD9696" />
-        
+                Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="AddOrUpdate_Button" Background="#FFA9A391" />
+
     </Grid>
 
 </Window>

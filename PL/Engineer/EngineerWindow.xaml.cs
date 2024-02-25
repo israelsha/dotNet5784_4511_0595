@@ -36,7 +36,6 @@ public partial class EngineerWindow : Window
                 Cost = 0,
                 Level = BO.EngineerExperience.None,
                 Task = null
-
             };
         }
         else
@@ -88,9 +87,6 @@ public partial class EngineerWindow : Window
         {
             MessageBox.Show($"{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-       
-       
-
 
     }
 
