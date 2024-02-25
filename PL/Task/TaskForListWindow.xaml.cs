@@ -1,18 +1,5 @@
-﻿using PL.Engineer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL.Task
 {
@@ -41,21 +28,44 @@ namespace PL.Task
 
         private void Level_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TaskList = (Level == BO.EngineerExperience.None) ?
-            s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => (int)item.Copmlexity == (int)Level)!;
+            if (Level == BO.EngineerExperience.None)
+            {
+                TaskList = (Status == BO.Status.None) ?
+                 s_bl?.Task.ReadAll()! : from item in s_bl.Task.ReadAll()
+                                                    where item.Status == Status
+                                                    select item;
+            }
+            else
+            {
+                TaskList = from item in s_bl?.Task.ReadAll()
+                           where s_bl.Task.Read(item.Id).Copmlexity == Level && (item.Status == Status||Status==BO.Status.None)
+                           select item;
+            }
         }
 
-        private void AddTask_Button(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         public BO.Status Status { get; set; } = BO.Status.None;
 
         private void status_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TaskList = (Status == BO.Status.None) ?
-            s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => (int)item.Copmlexity == (int)Status)!;
+            if (Status == BO.Status.None)
+            {
+                TaskList = (Level == BO.EngineerExperience.None) ?
+                 s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => (int)item.Copmlexity == (int)Level)!;
+            }
+            else
+            {
+                IEnumerable<BO.TaskInList> task = s_bl?.Task.ReadAll();
+                TaskList = from item in task
+                           where (s_bl.Task.Read(item.Id).Copmlexity == Level||Level==BO.EngineerExperience.None) && item.Status == Status
+                           select item;
+            }
+            
+        }
+        private void AddTask_Button(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
