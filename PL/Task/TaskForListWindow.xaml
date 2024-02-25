@@ -21,18 +21,21 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Content="Select:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="400" Height="40" FontSize="20"/>
-        <ComboBox SelectedValue="{Binding Level ,Mode=TwoWay}"
-            ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
-                  HorizontalAlignment="Right" VerticalAlignment="Top"  Width="400" Height="50" FontSize="18" SelectionChanged="ComboBox_SelectionChanged" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+        
+        <ComboBox SelectedValue="{Binding Level ,Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
+              HorizontalAlignment="Right" VerticalAlignment="Top" Width="250" Height="50" FontSize="18" SelectionChanged="Level_SelectionChanged" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+        <ComboBox SelectedValue="{Binding Status ,Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource TaskStatuslKey}}" 
+      HorizontalAlignment="Right" VerticalAlignment="Top" Width="250" Height="50" FontSize="18" Margin="0,0,250,0" SelectionChanged="status_SelectionChanged" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
 
         <ListView x:Name="TsakForList" Margin="5,5,5,5" Grid.Row="1" ItemsSource="{Binding TaskList}" Grid.ColumnSpan="3" FontSize="16" >
             <ListView.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#FFA7CDCE" Offset="0" />
-                    <GradientStop Color="#FF498A61" Offset="1" />
+                    <GradientStop Color="#FF125F61" Offset="1" />
                 </LinearGradientBrush>
             </ListView.Background>
         </ListView>
 
+        <Button Content="Add" Grid.Row="1" HorizontalAlignment="Center" Height="50" Width="100" Click="AddTask_Button" Margin="100,500,0,0" BorderBrush="#FFD2B6B6" Background="#FFA9A391" FontSize="20"/>
     </Grid>
 </Window>

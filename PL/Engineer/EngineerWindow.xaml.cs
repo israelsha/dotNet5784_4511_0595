@@ -87,9 +87,6 @@ public partial class EngineerWindow : Window
         {
             MessageBox.Show($"{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-       
-       
-
 
     }
 

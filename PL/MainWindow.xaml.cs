@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using PL.Engineer;
 using PL.Task;
 namespace PL
@@ -18,31 +19,14 @@ namespace PL
         {
            new UserLoginWindow().Show();
         }
-        private void Initialization_Click(object sender, RoutedEventArgs e)
-        {
-            string message = "Are you sure you want to initialize the data?";
-            string title = "Initialize Data";
-            MessageBoxButton buttons = MessageBoxButton.YesNo;
-
-            MessageBoxResult result = MessageBox.Show(message, title, buttons);
-            if (result == MessageBoxResult.Yes)
-            {
-                DalTest.Initialization.initialize();
-                DalTest.Initialization.Do();
-            }
-        }
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            string message = "Are you sure you want to reset the data?";
-            string title = "Reset Data";
-            MessageBoxButton buttons = MessageBoxButton.YesNo;
-
-            MessageBoxResult result = MessageBox.Show(message, title, buttons);
-            if (result == MessageBoxResult.Yes)
-            {
-                DalTest.Initialization.initialize();
-            }
+            new EngineerLoginWindow().Show();
         }
+       
+
+
+
     }
 }

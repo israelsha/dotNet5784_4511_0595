@@ -39,10 +39,23 @@ namespace PL.Task
 
         public BO.EngineerExperience Level { get; set; } = BO.EngineerExperience.None;
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Level_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TaskList = (Level == BO.EngineerExperience.None) ?
             s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => (int)item.Copmlexity == (int)Level)!;
+        }
+
+        private void AddTask_Button(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public BO.Status Status { get; set; } = BO.Status.None;
+
+        private void status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TaskList = (Status == BO.Status.None) ?
+            s_bl?.Task.ReadAll()! : s_bl?.Task.ReadAll(item => (int)item.Copmlexity == (int)Status)!;
         }
     }
 }

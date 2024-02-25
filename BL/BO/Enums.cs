@@ -6,7 +6,8 @@ public enum Status
   Scheduled,    //planed but the task didn't started 
   OnTrack,      //in he middle of the task
   InJeopardy,
-  Done          //mission complate
+  Done,       //mission complate
+  None
 }
 
 public enum EngineerExperience
