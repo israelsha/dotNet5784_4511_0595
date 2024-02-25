@@ -26,8 +26,9 @@ namespace PL
 
         private void UserLogin_Click(object sender, RoutedEventArgs e)
         {
-            if(UserName)
             new AdminViewWindow().Show();
         }
+
+
     }
 }
