@@ -8,5 +8,50 @@
         <local:TaskStatus x:Key="TaskStatuslKey"/>
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
         <local:IdToIsEnabledConverter x:Key="IdToIsEnabledConverter"/>
+        <local:AddOrUpdateConvertor x:Key="AddOrUpdateConvertorKey"/>
+
+        <!-- style for all the Lable -->
+        <Style x:Key="CommonLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Foreground" Value="#FF1A337A"/>
+            <Setter Property="Margin" Value="0,0,0,30"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="CommonTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Foreground" Value="#FF1A337A"/>
+            <Setter Property="Background" Value="#FFDDDDDD"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,30"/>
+        </Style>
+
+        <Style x:Key="CommonDatePickerStyle" TargetType="DatePicker">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Foreground" Value="#FF1A337A"/>
+            <Setter Property="Background" Value="#FFDDDDDD"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,30"/>
+        </Style>
+        
+        <Style x:Key="CommonButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="#FFAFCEAC"/>
+            <Setter Property="Foreground" Value="#FF1A337A"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        
+
     </Application.Resources>
+    
 </Application>

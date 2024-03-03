@@ -110,12 +110,14 @@ internal static class Tools
         };
     }
 
+    //check that the data of the task is correct 
     internal static void checkTaskData(BO.Task boTask)
     {
         //check if one of the parameter is invalid
         string error = "";
         if (boTask.Id < 0) error = "Id";
         else if (boTask.Alias == "") error = "Alias";
+        else if (boTask.Description == "") error = "Description";
         if (error != "") //there is invalid data
             throw new BO.BlInvalidDataException($"Invalid {error}");
     }

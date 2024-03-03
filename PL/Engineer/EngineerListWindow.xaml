@@ -9,24 +9,25 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <!--Internal, Upper Grid-->
     <!--Extrnal Grid-->
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="131*"/>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="14*"/>
-        </Grid.ColumnDefinitions>
+    <Grid >
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#FFA7CDCE" Offset="0" />
+                <GradientStop Color="#FF125F61" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="500*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Label Content="Select:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="400" Height="40" FontSize="20"/>
+        <Label Content="Select:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="400" Height="40" FontSize="20" />
         <!--comboBox to choose level of engineer-->
         <ComboBox SelectedValue="{Binding Level,Mode=TwoWay}"
                   ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
-                  HorizontalAlignment="Right" VerticalAlignment="Top" Width="400" Height="50" FontSize="18" SelectionChanged="Level_SelectionChanged" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+                  HorizontalAlignment="Right" VerticalAlignment="Top" Width="400" Height="40" FontSize="18" SelectionChanged="Level_SelectionChanged" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
 
-        <ListView x:Name="EngineerLitt" Margin="5,5,5,5" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="UpdateEngineer_Button" Grid.ColumnSpan="3" FontSize="16" >
+        <ListView x:Name="EngineerLitt" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="UpdateEngineer_Button" Grid.ColumnSpan="3" FontSize="16" >
             <ListView.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#FFA7CDCE" Offset="0" />
@@ -35,15 +36,10 @@
             </ListView.Background>
         </ListView>
 
-        <Button Content="Add" Grid.Row="1" HorizontalAlignment="Center" Height="50" Width="100" Click="AddEngineer_Button" Margin="100,500,0,0" BorderBrush="#FFD2B6B6" Background="#FFA9A391" FontSize="20"/>
-        <!--Internal, Upper Grid-->
-        <Grid Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="3" Margin="0,0,0,531" Grid.RowSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-        </Grid>
-
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Height="50" Grid.Row="2"  FontSize="22"
+            Click="AddEngineer_Button" Background="#FFA9A391" >
+            <TextBlock Text="Add" FontWeight="Bold"/>
+        </Button>
     </Grid>
 
 </Window>

@@ -43,7 +43,22 @@ namespace PL.Task
             }
         }
 
-        
+        private void AddTask_Button(object sender, RoutedEventArgs e)
+        {
+                Close();
+                new TaskAddOrUpdate(0).ShowDialog(); 
+        }
+
+        private void UpdateTask_Button(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            BO.TaskInList? task = (sender as ListView)?.SelectedItem as BO.TaskInList;
+            if (task != null)
+            {
+                Close();
+                new TaskAddOrUpdate(task.Id).ShowDialog();
+            }
+           
+        }
 
         public BO.Status Status { get; set; } = BO.Status.None;
 
@@ -62,10 +77,6 @@ namespace PL.Task
                            select item;
             }
             
-        }
-        private void AddTask_Button(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

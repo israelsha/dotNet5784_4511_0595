@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BO;
+using DO;
 namespace BlImplementation;
 
 internal class TaskImplementation : ITask
@@ -16,11 +17,12 @@ internal class TaskImplementation : ITask
         int idTask = _dal.Task.Create(doTask);
 
         //create new dependsies
-        foreach (var item in boTask.Dependencies)
-        {
-            DO.Dependency doDependency = new DO.Dependency(0, idTask, item.Id);
-            _dal.Dependency.Create(doDependency);
-        }
+        if (boTask.Dependencies != null)
+            foreach (var item in boTask.Dependencies)
+            {
+                DO.Dependency doDependency = new DO.Dependency(0, idTask, item.Id);
+                _dal.Dependency.Create(doDependency);
+            }
 
         return idTask;
     }
@@ -136,12 +138,12 @@ internal class TaskImplementation : ITask
     {
         if (tasks != null)
             foreach (var item in tasks) 
-            { 
+            {
                 //update the task whit the correct ScheduledDate and DeadlineDate
                 _dal.Task.Update(Tools.boToDo(item) with
                 {
                     ScheduledDate = (item.ScheduledDate == null || item.ScheduledDate < prevDate) ? prevDate : item.ScheduledDate,
-                    DeadlineDate = prevDate + item.RequiredEffortTime
+                    DeadlineDate = ((item.ScheduledDate != null) ? item.ScheduledDate : prevDate) + item.RequiredEffortTime
                 });
                 //sending the tasks that is depending on this task
                 reset(prevDate + item.RequiredEffortTime, from dep in _dal.Dependency.ReadAll()

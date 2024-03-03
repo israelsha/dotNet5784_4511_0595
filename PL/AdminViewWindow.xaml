@@ -13,18 +13,37 @@
                 <GradientStop Color="#FF125F61" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,200,200,0" Width="300" Height="auto">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,200,500,0" Width="auto" Height="auto">
             <!--Initialize All Data-->
-            <Button Content="Data Initialization" Margin="0,0,100,0" VerticalAlignment="Center" Width="180" Height="70" Click="Initialization_Click" Background="#FFAFCEAC" FontSize="20" FontWeight="Bold" Foreground="#FF582121"/>
-            <Button Content="Delete all Data"  Margin="0,50,100,0" VerticalAlignment="Center" Width="180" Height="70" Click="Delete_Click" Background="#FFAFCEAC" FontSize="20" FontWeight="Bold" Foreground="#FF582121"/>
+            <Button Content="Data Initialization" Style="{StaticResource CommonButtonStyle}" Click="Initialization_Click"/>
+            <Button Content="Delete all Data"  Margin="0,50,0,0" Style="{StaticResource CommonButtonStyle}" Click="Delete_Click"/>
         </StackPanel>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="200,200,0,0" Width="300" Height="auto">
-            <!--Show us the List of the Engineers-->
-            <Button Content="Engineer"  Margin="100,0,0,0" VerticalAlignment="Center" Width="180" Height="70" Background="#FFAFCEAC" Click="Engineer_Click" FontSize="20" FontWeight="Bold" Foreground="#FF582121"/>
-            <!--Show us the List of the Tasks-->
-            <Button Content="Task" Margin="100,50,0,0" VerticalAlignment="Center" Width="180" Height="70" Background="#FFAFCEAC" Click="Task_Click" FontSize="20" FontWeight="Bold" Foreground="#FF582121"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,200,0,0" Width="auto" Height="auto">
+            <!--Show the List of the Engineers-->
+            <Button Content="Engineer"  Margin="0,0,0,0" Style="{StaticResource CommonButtonStyle}" Click="Engineer_Click"/>
+            <!--Show the List of the Tasks-->
+            <Button Content="Task" Margin="0,50,0,0" Style="{StaticResource CommonButtonStyle}" Click="Task_Click"/>
         </StackPanel>
-        <Label x:Name="label" Content="Admin window" HorizontalAlignment="Left"  HorizontalContentAlignment="Center" Margin="169,92,0,0" VerticalAlignment="Top" Width="446" Height="58" FontSize="40" Foreground="#FF672D2D" FontWeight="Bold" FontStyle="Italic" />
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="500,200,0,0" Width="auto" Height="auto">
+            <!--Show the List of the Engineers-->
+            <Popup x:Name="datePickerPopup" IsOpen="False" Placement="Top">
+                <Grid Background="#FFB4BBB9" Width="auto" Height="auto">
+                    <Label Content="Enter the start date of the entire project:" HorizontalAlignment="Center" VerticalAlignment="Top" Width="auto" Height="auto" FontSize="16" Foreground="#FF1A337A" FontWeight="Bold" FontStyle="Italic" Margin="10"/>
+                    <DatePicker x:Name="scheduleDatePicker" Width="150" Height="30" VerticalAlignment="Top" Margin="50"/>
+                    <Button Content="Set Date" Margin="0,0,200,0" Width="80" Height="30" FontSize="14" VerticalAlignment="Bottom" Background="White" Foreground="#FF1A337A" FontStyle="Italic" FontWeight="Bold"  Click="SetDate_Click"/>
+                    <Button Content="Cancel" Margin="200,0,0,0" Width="80" Height="30" FontSize="14" VerticalAlignment="Bottom" Background="White" Foreground="#FF1A337A" FontStyle="Italic" FontWeight="Bold"  Click="Cancel_Click"/>
+                </Grid>
+            </Popup>
+            <Button Content="Create a schedule" Style="{StaticResource CommonButtonStyle}" Click="OpenDatePickerPopup"/>
+            
+            
+            <!--Show the List of the Tasks-->
+            <Button Content="Gantt chart" Margin="0,50,0,0" Style="{StaticResource CommonButtonStyle}"/>
+        </StackPanel>
+
+
+        <Label Content="Admin window" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Margin="0,80,0,0" VerticalAlignment="Top" Width="446" Height="58" FontSize="46" Foreground="#FF1A337A" FontWeight="Bold" FontStyle="Italic" />
 
     </Grid>
 </Window>
