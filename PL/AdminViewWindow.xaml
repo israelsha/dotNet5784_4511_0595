@@ -7,22 +7,17 @@
         mc:Ignorable="d"
         Title="AdminViewWindow" Height="450" Width="800" >
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush>
-                <GradientStop Color="#FFA7CDCE" Offset="0" />
-                <GradientStop Color="#FF125F61" Offset="1" />
-            </LinearGradientBrush>
-        </Grid.Background>
+       
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,200,500,0" Width="auto" Height="auto">
             <!--Initialize All Data-->
-            <Button Content="Data Initialization" Style="{StaticResource CommonButtonStyle}" Click="Initialization_Click"/>
-            <Button Content="Delete all Data"  Margin="0,50,0,0" Style="{StaticResource CommonButtonStyle}" Click="Delete_Click"/>
-        </StackPanel>
+            <Button Content="Data Initialization" Click="Initialization_Click" Style="{StaticResource CommonButtonStyle}"/>
+            <Button Content="Delete all Data"  Margin="0,50,0,0"  Click="Delete_Click" Style="{StaticResource CommonButtonStyle}"/>
+        </StackPanel> 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,200,0,0" Width="auto" Height="auto">
             <!--Show the List of the Engineers-->
-            <Button Content="Engineer"  Margin="0,0,0,0" Style="{StaticResource CommonButtonStyle}" Click="Engineer_Click"/>
+            <Button Content="Engineer"  Margin="0,0,0,0"  Click="Engineer_Click" Style="{StaticResource CommonButtonStyle}"/>
             <!--Show the List of the Tasks-->
-            <Button Content="Task" Margin="0,50,0,0" Style="{StaticResource CommonButtonStyle}" Click="Task_Click"/>
+            <Button Content="Task" Margin="0,50,0,0"  Click="Task_Click" Style="{StaticResource CommonButtonStyle}"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="500,200,0,0" Width="auto" Height="auto">
@@ -30,12 +25,12 @@
             <Popup x:Name="datePickerPopup" IsOpen="False" Placement="Top">
                 <Grid Background="#FFB4BBB9" Width="auto" Height="auto">
                     <Label Content="Enter the start date of the entire project:" HorizontalAlignment="Center" VerticalAlignment="Top" Width="auto" Height="auto" FontSize="16" Foreground="#FF1A337A" FontWeight="Bold" FontStyle="Italic" Margin="10"/>
-                    <DatePicker x:Name="scheduleDatePicker" Width="150" Height="30" VerticalAlignment="Top" Margin="50"/>
+                    <DatePicker x:Name="scheduleDatePicker" Width="150" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50" Background="White" FontWeight="Bold" />
                     <Button Content="Set Date" Margin="0,0,200,0" Width="80" Height="30" FontSize="14" VerticalAlignment="Bottom" Background="White" Foreground="#FF1A337A" FontStyle="Italic" FontWeight="Bold"  Click="SetDate_Click"/>
                     <Button Content="Cancel" Margin="200,0,0,0" Width="80" Height="30" FontSize="14" VerticalAlignment="Bottom" Background="White" Foreground="#FF1A337A" FontStyle="Italic" FontWeight="Bold"  Click="Cancel_Click"/>
                 </Grid>
             </Popup>
-            <Button Content="Create a schedule" Style="{StaticResource CommonButtonStyle}" Click="OpenDatePickerPopup"/>
+            <Button Content="Create a schedule" Click="OpenDatePickerPopup" Style="{StaticResource CommonButtonStyle}"/>
             
             
             <!--Show the List of the Tasks-->

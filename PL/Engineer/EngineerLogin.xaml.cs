@@ -42,13 +42,11 @@ public partial class EngineerLoginWindow : Window
 
             if (engineer != null && engineer.Name == EngineerName)   //check if this is engineer
             {
-                new EngineerView().Show();
                 Close();
+                new EngineerView(id).ShowDialog();
             }
             else MessageBox.Show("User does not exist");
 
-
-            Close();
         }
         catch
         {

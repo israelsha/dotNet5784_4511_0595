@@ -50,8 +50,24 @@
             <Setter Property="Foreground" Value="#FF1A337A"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
-        
+
+        <Style TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#FFA7CDCE" Offset="0" />
+                        <GradientStop Color="#FF125F61" Offset="1" />
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+       
 
     </Application.Resources>
+    
+    
+    
     
 </Application>

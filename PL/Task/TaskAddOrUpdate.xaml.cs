@@ -22,7 +22,6 @@ public partial class TaskAddOrUpdate : Window
         get { return (IEnumerable<TaskInList>)GetValue(TaskInListProperty); }
         set { SetValue(TaskInListProperty, value); }
     }
-
     public static readonly DependencyProperty TaskInListProperty =
         DependencyProperty.Register("TaskInList", typeof(IEnumerable<TaskInList>), typeof(TaskAddOrUpdate), new PropertyMetadata(s_bl.Task.ReadAll()));
 

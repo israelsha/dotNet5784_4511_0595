@@ -56,14 +56,18 @@ internal class TaskImplementation : ITask
         }
     }
 
-    public BO.Task? Read(int id)
+    public BO.Task? Read(int id, Func<DO.Task, bool>? filter = null)
     {
-        DO.Task? doTask = _dal.Task.Read(id);
+        DO.Task? doTask = null;
+        if (filter == null) doTask = _dal.Task.Read(id);
+        else if (filter != null) doTask = _dal.Task.Read(filter);
+
         if (doTask == null)
             throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
 
         return Tools.doToBo(doTask);
     }
+
 
     public IEnumerable<BO.TaskInList> ReadAll(Func<DO.Task, bool>? filter = null)
     {
@@ -83,7 +87,7 @@ internal class TaskImplementation : ITask
         DO.Task temp = _dal.Task.Read(boTask.Id);
         try
         {
-            if(boTask.Dependencies != null)
+            if(boTask.Dependencies != null)//update all the dependent task
             {
                 //get all the conected dependecy Id
                 IEnumerable<int> dependecyId = from doDependency in _dal.Dependency.ReadAll()
