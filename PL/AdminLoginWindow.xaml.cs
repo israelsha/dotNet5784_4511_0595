@@ -36,9 +36,9 @@ public partial class AdminLoginWindow : Window
         try
         {
             //if (adminPassword == "8" && adminName == "e")//check if this is admin
-           // {
-                new AdminViewWindow().Show();
-                Close();
+            //{
+            new AdminViewWindow().Show();
+            Close();
             //}
             //else MessageBox.Show("User does not exist");
         }

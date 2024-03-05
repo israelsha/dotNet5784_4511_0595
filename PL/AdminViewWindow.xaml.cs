@@ -79,9 +79,9 @@ namespace PL
                 if (selectedDate.HasValue)
                 {
                     datePickerPopup.IsOpen = false;  //close selected date 
-                    MessageBox.Show($"Selected Date: {selectedDate.Value.ToShortDateString()}");
-
+                   
                     s_bl.Task.resetDate(selectedDate ?? throw new Exception("Not valid date"));
+                    MessageBox.Show($"Selected Date: {selectedDate.Value.ToShortDateString()}");
                 }
                 else
                 {

@@ -10,16 +10,11 @@
     <!--Internal, Upper Grid-->
     <!--Extrnal Grid-->
     <Grid >
-        <Grid.Background>
-            <LinearGradientBrush>
-                <GradientStop Color="#FFA7CDCE" Offset="0" />
-                <GradientStop Color="#FF125F61" Offset="1" />
-            </LinearGradientBrush>
-        </Grid.Background>
+    
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="25*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Label Content="Select:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="400" Height="40" FontSize="20" />
         <!--comboBox to choose level of engineer-->
@@ -36,8 +31,7 @@
             </ListView.Background>
         </ListView>
 
-        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Height="50" Grid.Row="2"  FontSize="22"
-            Click="AddEngineer_Button" Background="#FFA9A391" >
+        <Button HorizontalAlignment="Center" VerticalAlignment="Bottom"  Grid.Row="2" Click="AddEngineer_Button" Style="{StaticResource CommonButtonStyle}">
             <TextBlock Text="Add" FontWeight="Bold"/>
         </Button>
     </Grid>

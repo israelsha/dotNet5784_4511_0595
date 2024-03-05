@@ -66,7 +66,7 @@ internal static class Tools
     internal static DO.Task boToDo(BO.Task boTask)
     {
         return new DO.Task(boTask.Id, boTask.Alias, boTask.Description, boTask.CreatedAtDate, false, boTask.RequiredEffortTime,
-        (DO.EngineerExperience)boTask.Status, boTask.StartDate, boTask.ScheduledDate, boTask.DeadlineDate, boTask.CompleteDate,
+        (DO.EngineerExperience)boTask.Copmlexity, boTask.StartDate, boTask.ScheduledDate, boTask.DeadlineDate, boTask.CompleteDate,
         boTask.Deliverables, boTask.Remarks, (boTask.Engineer==null)?null: boTask.Engineer.Id);
     }
 

@@ -8,7 +8,7 @@ public interface ITask
     public int Create(BO.Task item);
 
     //get Id and return the task with this Id
-    public BO.Task? Read(int id);
+    public BO.Task? Read(int id, Func<DO.Task, bool>? filter = null);
 
     //return list of all the tasks
     public IEnumerable<BO.TaskInList> ReadAll(Func<DO.Task, bool>? filter = null);

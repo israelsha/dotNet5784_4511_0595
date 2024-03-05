@@ -5,8 +5,79 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
-        Title="EngineerView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="EngineerView" Height="auto" Width="800"
+            DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+    <ScrollViewer ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <Grid Height="auto" VerticalAlignment="Top" DataContext="{Binding CurrentTask}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="14*"/>
+            </Grid.RowDefinitions>
+            <Label Content="Hello" Style="{StaticResource CommonLabelStyle}"  FontSize="30"  HorizontalAlignment="Center" Margin="0,0,0,50"/>
+            <Label FontSize="30" Style="{StaticResource CommonLabelStyle}" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <Label.Content>
+                    <Binding Path="CurrentEngineer.Name" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:EngineerView}}"  />
+                </Label.Content>
+            </Label>
+
+
+            <Label Content="Go to view task option" Style="{StaticResource CommonLabelStyle}"  HorizontalAlignment="Center" Margin="0,0,200,0" Grid.Row="2"/>
+            <Button Content="Tasks option" Style="{StaticResource CommonButtonStyle}" Grid.Row="2" Click="TaskOption_Button" Margin="250,0,0,0"/>
+
+            <!--all the details of the current task-->
+            <Label Content="Your task's details:" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonLabelStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="3" FontSize="26"/>
+            <!--stack panel for all the lable the text before the textBox-->
+            <StackPanel Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,60,300,0" Height="auto" Width="auto" Grid.Row="3" >
+                <Label Content="Id:" Style="{StaticResource CommonLabelStyle}"/>
+                <Label Content="Alias:" Style="{StaticResource CommonLabelStyle}"/>
+                <Label Content="Description:" Style="{StaticResource CommonLabelStyle}" Margin="0,0,0,30"/>
+                <Label Content="Created At Date:" Style="{StaticResource CommonLabelStyle}"  Margin="0,0,0,35"/>
+                <Label Content="Dependencies:" Style="{StaticResource CommonLabelStyle}" Margin="0,0,0,-15"/>
+                <Label Content="(Id that task depend on)" Style="{StaticResource CommonLabelStyle}" Margin="0,0,0,40" FontSize="18"/>
+                <Label Content="Required Effort Time:" Style="{StaticResource CommonLabelStyle}"/>
+                <Label Content="Start Date:"  Style="{StaticResource CommonLabelStyle}"/>
+                <Label Content="Scheduled Date:" Style="{StaticResource CommonLabelStyle}"/>
+                <Label Content="Deadline Date:" Style="{StaticResource CommonLabelStyle}"/>
+                <Label Content="Complete Date:" Style="{StaticResource CommonLabelStyle}"/>
+                <Label Content="Deliverables:" Style="{StaticResource CommonLabelStyle}"/>
+                <Label Content="Remarks:" Style="{StaticResource CommonLabelStyle}"/>
+                <Label Content="Engineer Id:" Style="{StaticResource CommonLabelStyle}"/>
+                <Label Content="Copmlexity:" Style="{StaticResource CommonLabelStyle}"/>
+            </StackPanel>
+            <!--stack panel for all the text box etc-->
+            <StackPanel Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Orientation="Vertical" HorizontalAlignment="Center" Margin="200,60,0,0" Width="250" Height="auto" Grid.Row="3">
+                <TextBox  Text="{Binding Id, Mode=TwoWay}" IsEnabled="False" Style="{StaticResource CommonTextBoxStyle}"/>
+                <TextBox Text="{Binding Alias, Mode=TwoWay,NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  IsEnabled="False" Style="{StaticResource CommonTextBoxStyle}"/>
+                <TextBox Text="{Binding Description,Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  IsEnabled="False" Style="{StaticResource CommonTextBoxStyle}"/>
+                <TextBox Text="{Binding CreatedAtDate}" IsEnabled="False" Style="{StaticResource CommonTextBoxStyle}"/>
+                <ListBox SelectionMode="Extended"  ItemsSource="{Binding TaskInList, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:EngineerView}}}"
+                Height="100" Foreground="#FF1A337A" Background="#FFDDDDDD" FontSize="22" VerticalAlignment="Center" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,0,0,30"  >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <CheckBox Content="{Binding Id}" Foreground="#FF1A337A" IsChecked="{Binding IsSelected }" VerticalAlignment="Center" IsEnabled="False"/>
+                                <TextBlock Text="{Binding Alias}" Foreground="#FF1A337A" VerticalAlignment="Center" Margin="5,0,0,0" IsEnabled="False" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBox Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}"  IsEnabled="False" Style="{StaticResource CommonTextBoxStyle}"/>
+                <DatePicker SelectedDate="{Binding StartDate}" IsEnabled="False" Style="{StaticResource CommonDatePickerStyle}"/>
+                <DatePicker SelectedDate="{Binding ScheduledDate}"  IsEnabled="False" Style="{StaticResource CommonDatePickerStyle}"/>
+                <DatePicker SelectedDate="{Binding DeadlineDate}"  IsEnabled="False" Style="{StaticResource CommonDatePickerStyle}"/>
+                <DatePicker SelectedDate="{Binding CompleteDate, Mode=TwoWay}" Style="{StaticResource CommonDatePickerStyle}"/>
+                <TextBox Text="{Binding Deliverables, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" IsEnabled="False" Style="{StaticResource CommonTextBoxStyle}"/>
+                <TextBox Text="{Binding Remarks, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Style="{StaticResource CommonTextBoxStyle}"/>
+                <TextBox Text="{Binding Engineer.Id, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" IsEnabled="False" Style="{StaticResource CommonTextBoxStyle}"/>
+                <ComboBox  ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" SelectedValue="{Binding Path=Copmlexity}" IsEnabled="False"
+                     Height="50" Foreground="#FF1A337A" Background="#FFBEC9CA" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,100"/>
+            </StackPanel>
+            <Button Content="Update" VerticalAlignment="Bottom" Width="200" Height="60" Grid.RowSpan="2"  Click="UpdateTask_Button" Grid.Row="2" Style="{StaticResource CommonButtonStyle}"/>
+
+
+        </Grid>
+    </ScrollViewer>
 </Window>
