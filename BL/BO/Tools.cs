@@ -66,7 +66,7 @@ internal static class Tools
     internal static DO.Task boToDo(BO.Task boTask)
     {
         return new DO.Task(boTask.Id, boTask.Alias, boTask.Description, boTask.CreatedAtDate, false, boTask.RequiredEffortTime,
-        (DO.EngineerExperience)boTask.Status, boTask.StartDate, boTask.ScheduledDate, boTask.DeadlineDate, boTask.CompleteDate,
+        (DO.EngineerExperience)boTask.Copmlexity, boTask.StartDate, boTask.ScheduledDate, boTask.DeadlineDate, boTask.CompleteDate,
         boTask.Deliverables, boTask.Remarks, (boTask.Engineer==null)?null: boTask.Engineer.Id);
     }
 
@@ -110,12 +110,14 @@ internal static class Tools
         };
     }
 
+    //check that the data of the task is correct 
     internal static void checkTaskData(BO.Task boTask)
     {
         //check if one of the parameter is invalid
         string error = "";
         if (boTask.Id < 0) error = "Id";
         else if (boTask.Alias == "") error = "Alias";
+        else if (boTask.Description == "") error = "Description";
         if (error != "") //there is invalid data
             throw new BO.BlInvalidDataException($"Invalid {error}");
     }

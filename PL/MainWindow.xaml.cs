@@ -17,7 +17,7 @@ namespace PL
         }
         private void User_List_Click(object sender, RoutedEventArgs e)
         {
-           new UserLoginWindow().Show();
+           new AdminLoginWindow().Show();
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e)

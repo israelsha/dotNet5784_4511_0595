@@ -90,7 +90,7 @@ internal class EngineerImplementation : IEngineer
 
         //updating
         DO.Engineer doEngineer = new DO.Engineer(boEngineer.Id, boEngineer.Email, boEngineer.Cost, boEngineer.Name, (DO.EngineerExperience)boEngineer.Level);
-        //tryng to update the engineer
+        //trying to update the engineer
         _dal.Engineer.Update(doEngineer);
 
         //trying to update the task because the EngineerId might changed 

@@ -21,6 +21,8 @@ namespace PL
     /// </summary>
     public partial class AdminViewWindow : Window
     {
+        static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
         public AdminViewWindow()
         {
             InitializeComponent();
@@ -60,6 +62,46 @@ namespace PL
             {
                 DalTest.Initialization.initialize();
             }
+        }
+
+        private void OpenDatePickerPopup(object sender, RoutedEventArgs e)
+        {
+            datePickerPopup.IsOpen = true;
+        }
+
+        private void SetDate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                DateTime? selectedDate = scheduleDatePicker.SelectedDate;
+
+                if (selectedDate.HasValue)
+                {
+                    datePickerPopup.IsOpen = false;  //close selected date 
+                    MessageBox.Show($"Selected Date: {selectedDate.Value.ToShortDateString()}");
+
+                    s_bl.Task.resetDate(selectedDate ?? throw new Exception("Not valid date"));
+                }
+                else
+                {
+                    MessageBox.Show("Please select a date.");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            datePickerPopup.IsOpen = false;
+        }
+
+        private void OpenGanttchart(object sender, RoutedEventArgs e)
+        {
+            new GanttchartWindow().Show();
         }
     }
 }

@@ -7,12 +7,12 @@ using System.Windows.Controls;
 namespace PL;
 
 /// <summary>
-/// Interaction logic for UserLoginWindow.xaml
+/// Interaction logic for AdminLoginWindow.xaml
 /// </summary>
-public partial class UserLoginWindow : Window
+public partial class AdminLoginWindow : Window
 {
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
-    public UserLoginWindow()
+    public AdminLoginWindow()
     {
         InitializeComponent();
     }

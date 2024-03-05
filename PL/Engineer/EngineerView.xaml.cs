@@ -12,21 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.Task
+namespace PL.Engineer
 {
     /// <summary>
-    /// Interaction logic for TaskWindow.xaml
+    /// Interaction logic for EngineerView.xaml
     /// </summary>
-    public partial class TaskWindow : Window
+    public partial class EngineerView : Window
     {
-        public TaskWindow()
+        public EngineerView()
         {
             InitializeComponent();
-        }
-
-        private void AddOrUpdate_Button(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

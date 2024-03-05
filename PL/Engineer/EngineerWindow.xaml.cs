@@ -1,12 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
 
 namespace PL.Engineer;
 
@@ -15,6 +8,7 @@ namespace PL.Engineer;
 /// </summary>
 public partial class EngineerWindow : Window
 {
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
     public BO.Engineer CurrentEngineer
     {
         get { return (BO.Engineer)GetValue(CurrentEngineerProperty); }
@@ -42,9 +36,7 @@ public partial class EngineerWindow : Window
             CurrentEngineer = s_bl.Engineer.Read(Id);
     }
 
-    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
     int Id = 0;
-    
     public BO.EngineerExperience Level { get; set; } = BO.EngineerExperience.None;
 
     private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
