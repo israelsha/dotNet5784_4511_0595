@@ -79,7 +79,7 @@ public static class Initialization
             string? _Deliverables = prudoctTasks[i];
             string? _Remarks = RamarksTasks[i];
             Task task = new Task(100 + i, _Alias[i], DescriptionTasks[i], DateTime.Now, _IsMilestone, _RequiredEffortTime, _Copmlexity,
-                null, null, null, null, _Deliverables, _Remarks, _EngineerId[i]);
+                null, null, null, null, _Deliverables, _Remarks, null);
             s_dal!.Task.Create(task); 
         }
     }

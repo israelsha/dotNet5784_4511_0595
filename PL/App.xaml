@@ -9,6 +9,7 @@
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
         <local:IdToIsEnabledConverter x:Key="IdToIsEnabledConverter"/>
         <local:AddOrUpdateConvertor x:Key="AddOrUpdateConvertorKey"/>
+        <local:IsCheckedDependencyConverter x:Key="IsCheckedDependencyConverterKey"/>
 
         <!-- style for all the Lable -->
         <Style x:Key="CommonLabelStyle" TargetType="Label">

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
-        Title="TaskForEngineer" Height="640" Width="800">
+        Title="TaskForEngineer" Height="640" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -17,7 +18,7 @@
         <Label Content="tasks you can chooze:" VerticalAlignment="Top" HorizontalAlignment="Center" Style="{StaticResource CommonLabelStyle}"/>
 
  
-        <ListView Margin="5,0,5,5" Grid.Row="1" ItemsSource="{Binding TaskList}"  MouseDoubleClick="UpdateTask_Button" FontSize="16" Height="auto" VerticalAlignment="Bottom" >
+        <ListView Margin="5,0,5,5" Grid.Row="1" ItemsSource="{Binding TaskList}"  MouseDoubleClick="ChooseTask_Button" FontSize="16" Height="auto" VerticalAlignment="Top" >
             <ListView.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#FFA7CDCE" Offset="0" />
