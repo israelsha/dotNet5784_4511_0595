@@ -22,9 +22,9 @@
         <Rectangle HorizontalAlignment="Left" Height="21" Margin="197,122,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
         <Rectangle HorizontalAlignment="Left" Height="21" Margin="197,154,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
         <Rectangle HorizontalAlignment="Left" Height="21" Margin="247,186,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="516,186,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
+        <Rectangle HorizontalAlignment="Left" Height="21" Margin="514,186,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
         <Rectangle HorizontalAlignment="Left" Height="21" Margin="414,122,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="414,91,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
+        <Rectangle HorizontalAlignment="Left" Height="21" Margin="415,91,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
         <Rectangle HorizontalAlignment="Center" Height="21" Margin="0,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
 
 
