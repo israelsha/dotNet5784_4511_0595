@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PL.Task;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,16 +20,28 @@ namespace PL.Engineer
     /// </summary>
     public partial class TaskForEngineer : Window
     {
-        public TaskForEngineer()
+        static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+        public IEnumerable<BO.TaskInList> TaskList
+        {
+            get { return (IEnumerable<BO.TaskInList>)GetValue(TaskListProperty); }
+            set { SetValue(TaskListProperty, value); }
+        }
+        public static readonly DependencyProperty TaskListProperty =
+       DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(TaskForEngineer), new PropertyMetadata(null));
+
+        public BO.Engineer currentEngineer=new BO.Engineer();
+        public TaskForEngineer(BO.Engineer CurrentEngineer)
         {
             InitializeComponent();
-
-
+            TaskList = s_bl.Task.ReadAll(item => (int)item.Copmlexity <= (int)CurrentEngineer.Level && item.EngineerId == null && item.StartDate == null);
+            currentEngineer = CurrentEngineer;
         }
 
-        private void UpdateTask_Button(object sender, MouseButtonEventArgs e)
+        private void ChooseTask_Button(object sender, MouseButtonEventArgs e)
         {
-
+            BO.TaskInList? task = (sender as ListView)?.SelectedItem as BO.TaskInList;
+            Close();
+            new AddTaskForEngineer(currentEngineer,task.Id).ShowDialog();
         }
     }
 }

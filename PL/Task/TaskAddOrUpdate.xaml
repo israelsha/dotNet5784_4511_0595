@@ -46,26 +46,26 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                <CheckBox Content="{Binding Id}" Foreground="#FF1A337A" IsChecked="{Binding IsSelected, Mode=TwoWay}" VerticalAlignment="Center" />
+                                <CheckBox Content="{Binding Id}"  Foreground="#FF1A337A" IsChecked="{Binding Id, Converter={StaticResource IsCheckedDependencyConverterKey}, ConverterParameter={RelativeSource FindAncestor, AncestorType={x:Type local:TaskAddOrUpdate}}}"  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Alias}" Foreground="#FF1A337A" VerticalAlignment="Center" Margin="5,0,0,0" />
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <TextBox Text="{Binding RequiredEffortTime, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Style="{StaticResource CommonTextBoxStyle}"/>
-                <DatePicker SelectedDate="{Binding StartDate}"  Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonDatePickerStyle}"/>
-                <DatePicker SelectedDate="{Binding ScheduledDate}" IsEnabled="False" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonDatePickerStyle}"/>
-                <DatePicker SelectedDate="{Binding DeadlineDate}" IsEnabled="False" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonDatePickerStyle}"/>
-                <DatePicker SelectedDate="{Binding CompleteDate}" IsEnabled="False" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonDatePickerStyle}"/>
+                <TextBox Text="{Binding StartDate}" IsEnabled="False"  Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonTextBoxStyle}"/>
+                <TextBox Text="{Binding ScheduledDate}" IsEnabled="False" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonTextBoxStyle}"/>
+                <TextBox Text="{Binding DeadlineDate}" IsEnabled="False" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonTextBoxStyle}"/>
+                <TextBox Text="{Binding CompleteDate}" IsEnabled="False" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonTextBoxStyle}"/>
                 <TextBox Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Style="{StaticResource CommonTextBoxStyle}"/>
                 <TextBox Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Style="{StaticResource CommonTextBoxStyle}"/>
-                <TextBox Text="{Binding Engineer.Id, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Style="{StaticResource CommonTextBoxStyle}"/>
+                <TextBox Text="{Binding EngineerId, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:TaskAddOrUpdate}}, Mode=TwoWay}" Style="{StaticResource CommonTextBoxStyle}"/>
                 <ComboBox  ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" SelectedValue="{Binding Path=Copmlexity, Mode=TwoWay}" 
                   Height="50" Foreground="#FF1A337A" Background="#FFBEC9CA" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,70"/>
 
             </StackPanel>
             <!--button to add the new task-->
-            <Button Style="{StaticResource CommonButtonStyle}"  Width="200" Height="60" Grid.RowSpan="2"  Click="AddOrUpdate_Button" Grid.Row="2"
+            <Button Style="{StaticResource CommonButtonStyle}" Grid.RowSpan="2"  Click="AddOrUpdate_Button" Grid.Row="2"
                 Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}">
 
             </Button>

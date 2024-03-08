@@ -98,7 +98,7 @@ internal class TaskImplementation : ITask
                 foreach (var item in boTask.Dependencies)
                     _dal.Dependency.Create(new DO.Dependency { DependentTask = boTask.Id, DependsOnTask = item.Id });
             }
-            if (boTask.ScheduledDate == null)
+            if (boTask.ScheduledDate != null)
                 _dal.Task.Update(Tools.boToDo(boTask));
             else _dal.Task.Update(Tools.boToDo(boTask) with { ScheduledDate=temp.ScheduledDate,StartDate=temp.StartDate,
                 DeadlineDate=temp.DeadlineDate,CreatedAtDate=temp.CreatedAtDate,CompleteDate=temp.CompleteDate,RequiredEffortTime=temp.RequiredEffortTime });

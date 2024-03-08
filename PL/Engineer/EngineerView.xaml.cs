@@ -1,6 +1,6 @@
 ﻿using BO;
 using System.Windows;
-
+using PL.Task;
 namespace PL.Engineer;
 
 /// <summary>
@@ -49,7 +49,6 @@ public partial class EngineerView : Window
         catch
         {
             CurrentTask = new BO.Task{ Id = 0 };
-
         }
 
     }
@@ -58,19 +57,41 @@ public partial class EngineerView : Window
     {
         try
         {
-            s_bl.Task.Update(CurrentTask);
-            MessageBox.Show("The task was successfully updated");
-        }
-        catch
-        {
-            MessageBox.Show("Error");
+            bool flag = true;
             Close();
+            new TaskAddOrUpdate(CurrentTask.Id,flag).ShowDialog();
+            //s_bl.Task.Update(CurrentTask);
+            //MessageBox.Show("The task was successfully updated");
+        }
+        catch(Exception ex) 
+        {
+            MessageBox.Show($"{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
     }
 
     private void TaskOption_Button(object sender, RoutedEventArgs e)
     {
+        if (CurrentTask.Id != 0)    //check if the current task was finished
+            MessageBox.Show("you need to finish your task first");
+        else      //shoes the task that the engineer can do
+        {
+            Close();
+            new TaskForEngineer(CurrentEngineer).ShowDialog();
+        }
+
+    }
+
+    private void TaskCompleted_Button(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            CurrentTask.CompleteDate = DateTime.Now;
+            CurrentTask.Engineer = null;
+            s_bl.Task.Update(CurrentTask);
+            new EngineerView(CurrentEngineer.Id);
+        }
+        catch { MessageBox.Show("Error"); }
 
     }
 }

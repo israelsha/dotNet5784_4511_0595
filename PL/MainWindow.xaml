@@ -10,19 +10,40 @@
 
 
     <Grid>
-        <Grid.Background>
-            <LinearGradientBrush>
-                <GradientStop Color="#FFA7CDCE" Offset="0" />
-                <GradientStop Color="#FF125F61" Offset="1" />
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Label Content="  Engineer the Future with Ease " HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Width="auto" Height="80" Background="#FFA9A391" FontSize="48" FontWeight="Bold" Foreground="#FF582121"/>
+        <TextBox Text="{Binding CurrentDateTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+            Background="#99FFFFFF" Opacity="0.9" FontWeight="Bold" Foreground="Black" FontSize="40"  Height="150"  Width="450"  IsReadOnly="True" TextAlignment="Center"  VerticalContentAlignment="Top"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,250,0,0" Width="500" Height="auto">
+        <Button Content="Move forward one hour" 
+           Background="#00FFFFFF" 
+           Height="50"
+           Width="200"
+           FontSize="17"
+           BorderBrush="Black"
+           Foreground="#FF582121"
+           FontWeight="Bold"
+           FontStyle="Italic"
+           Margin="0,70,230,0" 
+            Click="Move_forward_one_hour_Click"/>
+
+        <Button Content="Move forward one day" 
+           Height="50"
+           Width="200"
+           FontSize="17"
+           Background="#00FFFFFF"
+           BorderBrush="Black"
+           Foreground="#FF582121"
+           FontWeight="Bold"
+           FontStyle="Italic"
+           Margin="230,70,0,0" 
+            Click="Move_forward_one_day_Click"/>
+
+        <Label Content=" Engineer the Future with Ease " HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="auto" Height="80" Background="#FFA9A391" FontSize="48" FontWeight="Bold" Foreground="#FF582121"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="500" Height="auto">
             <!--Show us the List of the Engineers-->
-            <Button Content="Admin View" VerticalAlignment="Top" Width="180" Height="70" Click="User_List_Click" Background="#FFAFCEAC" FontWeight="Bold" FontSize="20" Foreground="#FF582121"/>
+            <Button Content="Admin View"  Margin="0,0,0,20" VerticalAlignment="Bottom" Style="{StaticResource CommonButtonStyle}" Click="User_List_Click" Background="#FFAFCEAC" FontWeight="Bold"  Foreground="#FF582121"/>
             <!--Initialize All Data-->
-            <Button Content="Engineer View"  Margin="140,0,0,0" VerticalAlignment="Top" Width="180" Height="70" Click="Reset_Click" Background="#FFAFCEAC" FontSize="20" FontWeight="Bold" Foreground="#FF582121"/>
+            <Button Content="Engineer View"  Margin="140,0,0,20" VerticalAlignment="Bottom" Style="{StaticResource CommonButtonStyle}" Click="Reset_Click" Background="#FFAFCEAC" FontWeight="Bold" Foreground="#FF582121"/>
         </StackPanel>
     </Grid>
 </Window>
