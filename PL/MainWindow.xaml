@@ -10,9 +10,8 @@
 
 
     <Grid>
-        <TextBox Text="{Binding CurrentDateTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
-            Background="#99FFFFFF" Opacity="0.9" FontWeight="Bold" Foreground="Black" FontSize="40"  Height="150"  Width="450"  IsReadOnly="True" TextAlignment="Center"  VerticalContentAlignment="Top"/>
-
+        <Label Content="{Binding CurrentDateTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+    FontWeight="Bold" Foreground="Black" FontSize="40"  Height="150"  Width="450" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
         <Button Content="Move forward one hour" 
            Background="#00FFFFFF" 
            Height="50"
@@ -37,7 +36,7 @@
            Margin="230,70,0,0" 
             Click="Move_forward_one_day_Click"/>
 
-        <Label Content=" Engineer the Future with Ease " HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="auto" Height="80" Background="#FFA9A391" FontSize="48" FontWeight="Bold" Foreground="#FF582121"/>
+        <Label Content=" Engineer the Future with Ease " HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="auto" Height="80"  FontSize="48" FontWeight="Bold" Foreground="#FFA28D4A"/>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="500" Height="auto">
             <!--Show us the List of the Engineers-->

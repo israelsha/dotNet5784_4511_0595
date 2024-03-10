@@ -89,7 +89,9 @@ public partial class EngineerView : Window
             CurrentTask.CompleteDate = DateTime.Now;
             CurrentTask.Engineer = null;
             s_bl.Task.Update(CurrentTask);
-            new EngineerView(CurrentEngineer.Id);
+            MessageBox.Show("Task has complited");
+            Close();
+            new EngineerView(CurrentEngineer.Id).ShowDialog();
         }
         catch { MessageBox.Show("Error"); }
 
