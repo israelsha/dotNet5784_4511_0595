@@ -1,6 +1,8 @@
 ﻿using BO;
 using System.Windows;
 using PL.Task;
+using System.Windows.Navigation;
+using System.ComponentModel;
 namespace PL.Engineer;
 
 /// <summary>
@@ -55,13 +57,16 @@ public partial class EngineerView : Window
 
     private void UpdateTask_Button(object sender, RoutedEventArgs e)
     {
+        if (CurrentTask.Id == 0)
+        {
+            MessageBox.Show("You don't have a task yet");
+            return;
+        }
         try
         {
             bool flag = true;
             Close();
             new TaskAddOrUpdate(CurrentTask.Id,flag).ShowDialog();
-            //s_bl.Task.Update(CurrentTask);
-            //MessageBox.Show("The task was successfully updated");
         }
         catch(Exception ex) 
         {
@@ -84,12 +89,19 @@ public partial class EngineerView : Window
 
     private void TaskCompleted_Button(object sender, RoutedEventArgs e)
     {
+        if(CurrentTask.Id == 0)
+        {
+            MessageBox.Show("You don't have a task yet");
+            return;
+        }
         try
         {
             CurrentTask.CompleteDate = DateTime.Now;
             CurrentTask.Engineer = null;
             s_bl.Task.Update(CurrentTask);
-            new EngineerView(CurrentEngineer.Id);
+            MessageBox.Show("Well done, you have successfully completed the task");
+            
+            
         }
         catch { MessageBox.Show("Error"); }
 

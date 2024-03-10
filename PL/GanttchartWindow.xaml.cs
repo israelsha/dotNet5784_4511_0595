@@ -20,23 +20,15 @@ namespace PL
     /// </summary>
     public partial class GanttchartWindow : Window
     {
+        static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+
+
         public GanttchartWindow()
         {
             InitializeComponent();
         }
-        static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-        public IEnumerable<BO.TaskInList> TaskList
-        {
-            get { return (IEnumerable<BO.TaskInList>)GetValue(TaskListProperty); }
-            set { SetValue(TaskListProperty, value); }
-        }
-        public static readonly DependencyProperty TaskListProperty =
-       DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(GanttchartWindow), new PropertyMetadata(s_bl.Task.ReadAll()));
-
+       
+       
     }
 }

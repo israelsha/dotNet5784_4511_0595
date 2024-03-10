@@ -17,10 +17,9 @@
 
         <!--stack panel for the text and password from user-->
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0" Height="200" Width="400" >
-            <TextBox  Text="{Binding Path = UserName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
-                  Width="200" Height="40" FontSize="20" HorizontalAlignment="Right" VerticalContentAlignment="Center" TextChanged="TextBox_UserName"/>
+            <TextBox  Width="200" Height="40" FontSize="20" HorizontalAlignment="Right" VerticalContentAlignment="Center" TextChanged="TextBox_UserName"/>
             <TextBox  Width="200" Height="40" HorizontalAlignment="Right" Margin="0,80,0,0" FontSize="20"
-         VerticalContentAlignment="Center" TextChanged="TextBox_Id"   />
+                 VerticalContentAlignment="Center" TextChanged="TextBox_Id" />
 
         </StackPanel>
     </Grid>

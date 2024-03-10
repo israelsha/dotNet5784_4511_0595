@@ -14,7 +14,8 @@ namespace PL
     {
         static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
-        static int count = 0;
+        static int countHour = 0;
+        static int countmonth = 0;
         private string _currentDateTime;
         public string CurrentDateTime
         {
@@ -49,7 +50,8 @@ namespace PL
         private void UpdateDateTime()
         {
             DateTime dt = DateTime.Now;
-            dt = dt.AddHours(count);
+            dt = dt.AddHours(countHour);
+            dt = dt.AddMonths(countmonth);
             CurrentDateTime = dt.ToString();
         }
 
@@ -63,31 +65,46 @@ namespace PL
 
         private void Move_forward_one_hour_Click(object sender, RoutedEventArgs e)
         {
-            count++;
+            countHour++;
+        }
+        private void Move_beckward_one_hour_Click(object sender, RoutedEventArgs e)
+        {
+            countHour--;
         }
 
         private void Move_forward_one_day_Click(object sender, RoutedEventArgs e)
         {
-            count += 24;
+            countHour += 24;
+        }
+        private void Move_beckward_one_day_Click(object sender, RoutedEventArgs e)
+        {
+            countHour -= 24;
         }
 
+        private void Move_forward_one_month_Click(object sender, RoutedEventArgs e)
+        {
+            countmonth++;
+        }
+        private void Move_beckward_one_month_Click(object sender, RoutedEventArgs e)
+        {
+            countmonth--;
+        }
         private void UpdateTimer()
         {
             _timer.Stop();
             _timer.Start();
         }
+
+        //move to maneger login
         private void User_List_Click(object sender, RoutedEventArgs e)
         {
            new AdminLoginWindow().Show();
         }
 
+        //move to engineer login
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
             new EngineerLoginWindow().Show();
-        }
-       
-
-
-
+        }       
     }
 }

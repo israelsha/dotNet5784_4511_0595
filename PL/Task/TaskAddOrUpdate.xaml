@@ -46,7 +46,8 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                <CheckBox Content="{Binding Id}"  Foreground="#FF1A337A" IsChecked="{Binding Id, Converter={StaticResource IsCheckedDependencyConverterKey}, ConverterParameter={RelativeSource FindAncestor, AncestorType={x:Type local:TaskAddOrUpdate}}}"  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" VerticalAlignment="Center" />
+                                <CheckBox Content="{Binding Id}"  Foreground="#FF1A337A" 
+                                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" VerticalAlignment="Center" />
                                 <TextBlock Text="{Binding Alias}" Foreground="#FF1A337A" VerticalAlignment="Center" Margin="5,0,0,0" />
                             </StackPanel>
                         </DataTemplate>

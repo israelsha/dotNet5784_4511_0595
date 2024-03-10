@@ -17,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="25*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2.5*"/>
         </Grid.RowDefinitions>
         <Label Content="Select:" Style="{StaticResource CommonLabelStyle}"  VerticalAlignment="Center"  />
 
@@ -26,16 +26,17 @@
         <ComboBox SelectedValue="{Binding Status ,Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource TaskStatuslKey}}" 
              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" FontSize="18" SelectionChanged="status_SelectionChanged" Grid.Column="2" />
 
-        <ListView Margin="5,0,5,5" Grid.Row="1" ItemsSource="{Binding TaskList}" Grid.ColumnSpan="3" MouseDoubleClick="UpdateTask_Button" FontSize="16" Height="auto" VerticalAlignment="Bottom" >
+        <ListView Grid.Row="1" ItemsSource="{Binding TaskList}" Grid.ColumnSpan="3" MouseDoubleClick="UpdateTask_Button" FontSize="16" >
             <ListView.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#FFA7CDCE" Offset="0" />
                     <GradientStop Color="#FF125F61" Offset="1" />
                 </LinearGradientBrush>
-            </ListView.Background>
+            </ListView.Background> 
         </ListView>
 
-        <Button  VerticalAlignment="Stretch" Grid.Row="2"  Grid.Column="1" Click="AddTask_Button" Style="{StaticResource CommonButtonStyle}" >
+        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2"  Grid.Column="1" Click="AddTask_Button" Style="{StaticResource CommonButtonStyle}" Width="auto" Height="auto"
+                 Visibility="{Binding startProject ,Converter={StaticResource HasScheduleConvertKey} }">
             <TextBlock Text="Add" FontWeight="Bold"/>
         </Button>
     </Grid>

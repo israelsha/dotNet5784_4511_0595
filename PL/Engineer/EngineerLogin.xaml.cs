@@ -15,29 +15,28 @@ public partial class EngineerLoginWindow : Window
     {
         InitializeComponent();
     }
-    private string EngineerName = string.Empty;
-    private int id = 0;
+    private string EngineerName = "Dani Levi";//string.Empty;
+    private int id = 324567891;//0;
+
     private void TextBox_UserName(object sender, TextChangedEventArgs e)
     {
-        EngineerName = ((TextBox)sender).Text;  // now EngineerName contains the user name
+        //EngineerName = ((TextBox)sender).Text;  // now EngineerName contains the user name
     }
 
 
     private void TextBox_Id(object sender, TextChangedEventArgs e)
     {
-        TextBox textBox = sender as TextBox;
-        if (int.TryParse(textBox.Text, out int result))
-            id = result;
-        else
-        {
-            MessageBox.Show("User does not exist");
-            return;
-        }
+        //TextBox textBox = sender as TextBox;
+        //if (int.TryParse(textBox.Text, out int result))
+        //    id = result;
+        //else id = 0;
     }
+
     private void EngineerLogin_Click(object sender, RoutedEventArgs e)
     {
         try
         {
+
             BO.Engineer? engineer = s_bl.Engineer.Read(id);
 
             if (engineer != null && engineer.Name == EngineerName)   //check if this is engineer

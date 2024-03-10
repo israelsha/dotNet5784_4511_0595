@@ -66,6 +66,11 @@ namespace PL
 
         private void OpenDatePickerPopup(object sender, RoutedEventArgs e)
         {
+            if(s_bl.Dates.getStartProject().HasValue)
+            {
+                MessageBox.Show("A schedule has already been set ");
+                return;
+            }
             datePickerPopup.IsOpen = true;
         }
 
@@ -73,14 +78,14 @@ namespace PL
         {
             try
             {
-
                 DateTime? selectedDate = scheduleDatePicker.SelectedDate;
 
                 if (selectedDate.HasValue)
                 {
                     datePickerPopup.IsOpen = false;  //close selected date 
                    
-                    s_bl.Task.resetDate(selectedDate ?? throw new Exception("Not valid date"));
+                    s_bl.Dates.resetDate(selectedDate ?? throw new Exception("Not valid date"));
+                    s_bl.Dates.setStartProject(selectedDate ?? throw new Exception("Not valid date"));
                     MessageBox.Show($"Selected Date: {selectedDate.Value.ToShortDateString()}");
                 }
                 else

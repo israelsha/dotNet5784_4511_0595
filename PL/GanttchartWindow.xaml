@@ -7,26 +7,9 @@
         mc:Ignorable="d"
         Title="GanttchartWindow" Height="450" Width="800"
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
-    <Grid Background="#FFA5D8F4">
-        <ListView x:Name="TsakForList" Margin="5,5,5,5" Grid.Row="1" ItemsSource="{Binding TaskList}" Grid.ColumnSpan="3" FontSize="16" >
-            <ListView.Background>
-                <LinearGradientBrush>
-                    <GradientStop Color="#FFA7CDCE" Offset="0" />
-                    <GradientStop Color="#FF125F61" Offset="1" />
-                </LinearGradientBrush>
-            </ListView.Background>
-        </ListView>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="197,29,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="197,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="247,91,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="197,122,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="197,154,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="247,186,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="516,186,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="414,122,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="414,91,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Center" Height="21" Margin="0,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-
-
+    <Grid >
+        <ScrollViewer>
+            <Canvas/>
+        </ScrollViewer>
     </Grid>
 </Window>
