@@ -257,26 +257,26 @@
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
-    <Id>100</Id>
-    <Alias>Project Management</Alias>
-    <Description>Planning, controlling, and leading a project from its beginning through to completion.</Description>
-    <CreatedAtDate>2024-03-10T12:28:32.9396115+02:00</CreatedAtDate>
+    <Id>112</Id>
+    <Alias>Environmental Assessment</Alias>
+    <Description>Studying and evaluating the impact of activities on the environment.</Description>
+    <CreatedAtDate>2024-03-07T14:36:06.7219728+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P24D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <RequiredEffortTime>P68D</RequiredEffortTime>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-06-02T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-08-09T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
-    <Deliverables>Detailed project plan</Deliverables>
-    <Remarks>Efficient meline organization for project success.</Remarks>
+    <Deliverables>Plan to reduce energy consumption</Deliverables>
+    <Remarks>Planning and drafting designs for physical structures.</Remarks>
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
-    <Id>101</Id>
-    <Alias>Data Processing</Alias>
-    <Description>Focus on handling and processing data as part of organizational processes.</Description>
-    <CreatedAtDate>2024-03-10T12:28:32.9530555+02:00</CreatedAtDate>
+    <Id>117</Id>
+    <Alias>Risk Management</Alias>
+    <Description>Designing and managing telecommunication systems.</Description>
+    <CreatedAtDate>2024-03-07T14:36:06.8154309+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
     <RequiredEffortTime>P95D</RequiredEffortTime>
     <Copmlexity>AdvancedBeginner</Copmlexity>
@@ -303,21 +303,5 @@
     <Deliverables>Integration process documentation</Deliverables>
     <Remarks />
     <EngineerId xsi:nil="true" />
-  </Task>
-  <Task>
-    <Id>105</Id>
-    <Alias>Prototyping</Alias>
-    <Description>Creating initial or scaled models used for experimentation and testing.</Description>
-    <CreatedAtDate>2024-03-10T12:28:33.0504009+02:00</CreatedAtDate>
-    <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P46D</RequiredEffortTime>
-    <Copmlexity>Intermediate</Copmlexity>
-    <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
-    <CompleteDate xsi:nil="true" />
-    <Deliverables>Physical or digital prototype</Deliverables>
-    <Remarks>Creation of preliminary models for testing and refinement.</Remarks>
-    <EngineerId>213074522</EngineerId>
   </Task>
 </ArrayOfTask>
