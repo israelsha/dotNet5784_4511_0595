@@ -22,6 +22,4 @@ public interface ITask
     //check if the all date is correct
     public void UpdateDate(int id,DateTime date);
 
-    public void resetDate(DateTime startProject);
-
 }

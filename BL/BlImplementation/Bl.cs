@@ -9,5 +9,5 @@ internal class Bl : IBl
 
     public IMilestone Milestone => new MilestoneImplementation();
 
-   
+    public IDates Dates => new DatesImplementation();
 }

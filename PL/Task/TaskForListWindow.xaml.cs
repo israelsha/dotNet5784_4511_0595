@@ -14,15 +14,24 @@ namespace PL.Task
         {
             InitializeComponent();
             TaskList= s_bl.Task.ReadAll();
+            startProject = s_bl.Dates.getStartProject();
         }
 
-        public IEnumerable<BO.TaskInList> TaskList
+        public IEnumerable<BO.TaskInList> TaskList      //list for all the task
         {
             get { return (IEnumerable<BO.TaskInList>)GetValue(TaskListProperty); }
             set { SetValue(TaskListProperty, value); }
         }
         public static readonly DependencyProperty TaskListProperty =
        DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(TaskForListWindow), new PropertyMetadata(null));
+
+        public DateTime? startProject      //date of the start project
+        {
+            get { return (DateTime ?)GetValue(startProjectProperty); }
+            set { SetValue(startProjectProperty, value); }
+        }
+        public static readonly DependencyProperty startProjectProperty =
+       DependencyProperty.Register("startProject", typeof(DateTime?), typeof(TaskForListWindow), new PropertyMetadata(s_bl.Dates.getStartProject()));
 
         public BO.EngineerExperience Level { get; set; } = BO.EngineerExperience.None;
 

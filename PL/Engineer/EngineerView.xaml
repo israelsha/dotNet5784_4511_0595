@@ -23,17 +23,17 @@
             </Label>
 
 
-
-            <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" Margin="0,60,300,0" Height="auto" Width="auto" Grid.Row="2">
-                <Label Content="Your task's details:" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonLabelStyle}" FontSize="26"  Margin="0,0,0,60"/>
-                <Label Content="I finished the task:" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonLabelStyle}" FontSize="26"  Margin="0,0,0,60"/>
-                <Label Content="view task option:" Style="{StaticResource CommonLabelStyle}"  FontSize="26" Margin="0,0,0,60"/>
+        <Label  Content= "You need to choose a task:" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource CommonLabelStyle}" Grid.Row="1" Visibility="{Binding Id ,Converter={StaticResource HasAllredyTaskConvertKey}}"/>
+        <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" Margin="0,60,300,0" Height="auto" Width="auto" Grid.Row="2">
+            <Label Content="view task option:" Style="{StaticResource CommonLabelStyle}"  FontSize="26" Margin="0,0,0,50"/>
+            <Label Content= "Your task's details:"  Style="{StaticResource CommonLabelStyle}" FontSize="26"  Margin="0,0,0,50"/>
+            <Label Content="I finished the task:"  Style="{StaticResource CommonLabelStyle}" FontSize="26"  Margin="0,0,0,50"/>
 
         </StackPanel>
             <StackPanel   Orientation="Vertical" HorizontalAlignment="Center" Margin="200,60,0,0" Width="auto" Height="auto" Grid.Row="2">
-                 <Button Content="Your task details" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}"    Click="UpdateTask_Button" Style="{StaticResource CommonButtonStyle}" Background="#FF152D70" Foreground="#FFDDE1EA"  Margin="0,0,0,30"/>
-                 <Button Content="Task completed" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}"    Click="TaskCompleted_Button" Style="{StaticResource CommonButtonStyle}" Background="#FF152D70" Foreground="#FFDDE1EA"  Margin="0,0,0,30"/>
-                 <Button Content="Tasks option" Style="{StaticResource CommonButtonStyle}"  Click="TaskOption_Button" Background="#FF152D70" Foreground="#FFDDE1EA" Margin="0,0,0,30"/>
+            <Button Content="Tasks option" Style="{StaticResource CommonButtonStyle}"  Click="TaskOption_Button" Background="#FF152D70" Foreground="#FFDDE1EA" Margin="0,0,0,30"/>
+            <Button Content="Your task details" Click="UpdateTask_Button" Style="{StaticResource CommonButtonStyle}" Background="#FF152D70" Foreground="#FFDDE1EA"  Margin="0,0,0,30"/>
+            <Button Content="Task completed"  Click="TaskCompleted_Button" Style="{StaticResource CommonButtonStyle}" Background="#FF152D70" Foreground="#FFDDE1EA"  Margin="0,0,0,30"/>
 
         </StackPanel>
 

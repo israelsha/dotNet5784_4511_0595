@@ -10,6 +10,8 @@
         <local:IdToIsEnabledConverter x:Key="IdToIsEnabledConverter"/>
         <local:AddOrUpdateConvertor x:Key="AddOrUpdateConvertorKey"/>
         <local:IsCheckedDependencyConverter x:Key="IsCheckedDependencyConverterKey"/>
+        <local:HasScheduleConvert x:Key="HasScheduleConvertKey"/>
+        <local:HasAllredyTaskConvert x:Key="HasAllredyTaskConvertKey"/>
 
         <!-- style for all the Lable -->
         <Style x:Key="CommonLabelStyle" TargetType="Label">
@@ -47,10 +49,63 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FontStyle" Value="Italic"/>
-            <Setter Property="Background" Value="#FFAFCEAC"/>
+            <Setter Property="Background" Value="#FFC8E2E6"/>
             <Setter Property="Foreground" Value="#FF1A337A"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                                      BorderBrush="white"
+                                      CornerRadius="5"
+                                      BorderThickness="2"
+                                      Padding="{TemplateBinding Padding}">
+                                    
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1A337A" />
+                                <Setter Property="Foreground" Value="#FFC8E2E6" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
+
+        <Style x:Key="CommonButtonClockStyle" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="110"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Background" Value="#00FFFFFF"/>
+            <Setter Property="Foreground" Value="#FF1A337A"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Border BorderBrush="white"
+                            CornerRadius="5"
+                            BorderThickness="1"
+                            Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FFC8E2E6" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
 
         <Style TargetType="Grid">
             <Setter Property="Background">

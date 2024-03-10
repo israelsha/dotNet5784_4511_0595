@@ -127,32 +127,4 @@ internal class TaskImplementation : ITask
         else throw new BlDoesNotExistException($"Task with ID ={id} does Not exist");
     }
 
-    //external function  to reset all the ScheduledDate and the deadline of all the task 
-    public void resetDate(DateTime startProject)
-    {
-        //find all the task that is not depend on any other task ie: task.Dependencies = null
-        IEnumerable<BO.Task> notDependentTask = from doTask in _dal.Task.ReadAll()
-                                                 let boTask = Read(doTask.Id)
-                                                 where boTask.Dependencies == null || boTask.Dependencies.Count() == 0
-                                                 select boTask;
-        reset(startProject,notDependentTask);
-    }
-    //recursive function, reset all the ScheduledDate and the deadline of all the task
-    public void reset(DateTime? prevDate, IEnumerable<BO.Task> ?tasks)
-    {
-        if (tasks != null)
-            foreach (var item in tasks) 
-            {
-                //update the task whit the correct ScheduledDate and DeadlineDate
-                _dal.Task.Update(Tools.boToDo(item) with
-                {
-                    ScheduledDate = (item.ScheduledDate == null || item.ScheduledDate < prevDate) ? prevDate : item.ScheduledDate,
-                    DeadlineDate = ((item.ScheduledDate != null) ? item.ScheduledDate : prevDate) + item.RequiredEffortTime
-                });
-                //sending the tasks that is depending on this task
-                reset(prevDate + item.RequiredEffortTime, from dep in _dal.Dependency.ReadAll()
-                                                          where dep.DependsOnTask != null && dep.DependsOnTask == item.Id
-                                                          select Read(dep.DependentTask ?? 0));
-            }
-    }
 }

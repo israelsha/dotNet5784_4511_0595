@@ -361,7 +361,8 @@ internal class Program
                             }
                             else Console.WriteLine("Invalid date. enter a date in the correct format, to exit press 0: ");
                         }
-                        s_bl.Task.resetDate(startProjectDate??DateTime.Now);
+                        s_bl.Dates.resetDate(startProjectDate??DateTime.Now);
+                        s_bl.Dates.setStartProject(startProjectDate??DateTime.Now);
                         break;
                     default:   //if the user choose wrong number 
                         Console.WriteLine("ERROR: choose number between 1-3");

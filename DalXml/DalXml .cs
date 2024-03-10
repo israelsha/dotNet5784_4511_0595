@@ -13,4 +13,6 @@ sealed internal class DalXml : IDal
 
     public IDependency Dependency => new DependencyImplementation();
 
+    public IDates Dates => new DatesImplementation();
+
 }
