@@ -10,10 +10,11 @@ namespace PL.Engineer;
 /// </summary>
 public partial class EngineerView : Window
 {
-    static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
+    static readonly BlApi.IBl s_bl = BlApi.Factory.Get(); // Initializing s_bl with Factory.Get()
 
 
 
+    // Dependency Property for TaskInList
     public IEnumerable<TaskInList> TaskInList
     {
         get { return (IEnumerable<TaskInList>)GetValue(TaskInListProperty); }
@@ -22,6 +23,7 @@ public partial class EngineerView : Window
     public static readonly DependencyProperty TaskInListProperty =
         DependencyProperty.Register("TaskInList", typeof(IEnumerable<TaskInList>), typeof(EngineerView), new PropertyMetadata(s_bl.Task.ReadAll()));
 
+    // Dependency Property for CurrentEngineer
     public BO.Engineer CurrentEngineer
     {
         get { return (BO.Engineer)GetValue(CurrentEngineerProperty); }
@@ -39,7 +41,7 @@ public partial class EngineerView : Window
     public static readonly DependencyProperty CurrentTaskProperty =
     DependencyProperty.Register("CurrentTask", typeof(BO.Task), typeof(EngineerView), new PropertyMetadata(null));
 
-
+    // Constructor for EngineerView
     public EngineerView(int Id)
     {
         InitializeComponent();
@@ -50,7 +52,7 @@ public partial class EngineerView : Window
         }
         catch
         {
-            CurrentTask = new BO.Task{ Id = 0 };
+            CurrentTask = new BO.Task{ Id = 0 };  // Creating a new Task if an exception occurs
         }
 
     }
@@ -96,14 +98,14 @@ public partial class EngineerView : Window
         }
         try
         {
-            CurrentTask.CompleteDate = DateTime.Now;
-            CurrentTask.Engineer = null;
-            s_bl.Task.Update(CurrentTask);
+            CurrentTask.CompleteDate = DateTime.Now;// Setting CompleteDate to current date
+            CurrentTask.Engineer = null;// Clearing Engineer
+            s_bl.Task.Update(CurrentTask);// Updating Task
             MessageBox.Show("Well done, you have successfully completed the task");
             
             
         }
-        catch { MessageBox.Show("Error"); }
+        catch { MessageBox.Show("Error"); }// Show error message if an exception occurs
 
     }
 }

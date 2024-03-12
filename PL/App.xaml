@@ -119,7 +119,11 @@
         </Style>
 
 
-       
+        <!--<ResourceDictionary>
+
+          <BitmapImage x:Key="student" UriSource="Picture1\student.png"></BitmapImage>
+         </ResourceDictionary>-->
+
 
     </Application.Resources>
     
