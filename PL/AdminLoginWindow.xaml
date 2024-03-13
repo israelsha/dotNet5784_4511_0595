@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="AdminLoginWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Style="{StaticResource  CommonGridStyle}">
 
         <Button Content="Log In"  VerticalAlignment="Bottom" Margin="0,0,0,30" Click="UserLogin_Click" Style="{StaticResource CommonButtonStyle}"/>
 

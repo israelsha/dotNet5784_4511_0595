@@ -50,4 +50,9 @@ public partial class EngineerListWindow : Window
         }
     }
 
+    private void Home_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
+        new EngineerView(0).ShowDialog();
+    }
 }

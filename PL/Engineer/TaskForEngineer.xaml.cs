@@ -43,5 +43,11 @@ namespace PL.Engineer
             Close();
             new AddTaskForEngineer(currentEngineer,task.Id).ShowDialog();
         }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            new EngineerView(currentEngineer.Id).ShowDialog();
+        }
     }
 }

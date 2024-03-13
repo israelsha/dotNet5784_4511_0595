@@ -8,7 +8,7 @@
         Title="TaskForListWindow" Height="640" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
-    <Grid>
+    <Grid Style="{StaticResource CommonGridStyle}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -20,6 +20,8 @@
             <RowDefinition Height="2.5*"/>
         </Grid.RowDefinitions>
         <Label Content="Select:" Style="{StaticResource CommonLabelStyle}"  VerticalAlignment="Center"  />
+        
+       
 
         <ComboBox SelectedValue="{Binding Level ,Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
               HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" Height="auto" FontSize="18" SelectionChanged="Level_SelectionChanged" Grid.Column="1"  />
@@ -32,7 +34,8 @@
                     <GradientStop Color="#FFA7CDCE" Offset="0" />
                     <GradientStop Color="#FF125F61" Offset="1" />
                 </LinearGradientBrush>
-            </ListView.Background> 
+            </ListView.Background>
+         
         </ListView>
 
         <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2"  Grid.Column="1" Click="AddTask_Button" Style="{StaticResource CommonButtonStyle}" Width="auto" Height="auto"

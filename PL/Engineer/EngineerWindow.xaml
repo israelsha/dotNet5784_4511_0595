@@ -9,7 +9,7 @@
     Title="EngineerWindow" Height="698" Width="614"
         DataContext="{Binding CurrentEngineer, RelativeSource={RelativeSource Mode=Self}, Mode=TwoWay}">
 
-    <Grid>
+    <Grid Style="{StaticResource  CommonGridStyle}">
         <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>

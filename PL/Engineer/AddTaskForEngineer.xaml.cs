@@ -57,10 +57,17 @@ public partial class AddTaskForEngineer : Window
     private void addTaskToEngineer_Button(object sender, RoutedEventArgs e)
     {
         CurrentTask.StartDate = DateTime.Now;
-        CurrentTask.Engineer = new EngineerInTask { Id = currentEngineer.Id,Name=currentEngineer.Name };
+        CurrentTask.Status = BO.Status.OnTrack;
+        CurrentTask.Engineer = new EngineerInTask { Id = currentEngineer.Id, Name = currentEngineer.Name };
         s_bl.Task.Update(CurrentTask);
         Close();
         MessageBox.Show("The task was successfully added to you");
         new EngineerView(currentEngineer.Id).Show();
+    }
+
+    private void Home_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
+        new EngineerView(currentEngineer.Id).ShowDialog();
     }
 }

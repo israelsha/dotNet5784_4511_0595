@@ -9,8 +9,7 @@
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <!--Internal, Upper Grid-->
     <!--Extrnal Grid-->
-    <Grid >
-    
+    <Grid Style="{StaticResource  CommonGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="25*"/>
@@ -20,6 +19,13 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
+        <Button Width="42" Height="42" Background="{x:Null}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,20,10" Click="Home_Click" Grid.Row="2" Grid.Column="2">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Imeges/home.png" Height="50" Width="50" />
+            </StackPanel>
+        </Button>
+
         <Label Content="Select:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="400" Height="40" FontSize="20" />
         <!--comboBox to choose level of engineer-->
         <ComboBox SelectedValue="{Binding Level,Mode=TwoWay}"

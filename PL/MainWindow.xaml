@@ -9,7 +9,7 @@
 
 
 
-    <Grid>
+    <Grid Style="{StaticResource  CommonGridStyle}">
         <Label Content="{Binding CurrentDateTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
             FontWeight="Bold" Foreground="Black" FontSize="40"  Height="150"  Width="450" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
 

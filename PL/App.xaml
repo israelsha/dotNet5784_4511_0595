@@ -58,7 +58,8 @@
                         <Grid>
                             <Border Background="{TemplateBinding Background}"
                                       BorderBrush="white"
-                                      CornerRadius="5"
+                                      CornerRadius="10"
+                                    
                                       BorderThickness="2"
                                       Padding="{TemplateBinding Padding}">
                                     
@@ -90,7 +91,7 @@
                     <ControlTemplate TargetType="Button">
                         <Grid Background="{TemplateBinding Background}">
                             <Border BorderBrush="white"
-                            CornerRadius="5"
+                            CornerRadius="10"
                             BorderThickness="1"
                             Padding="{TemplateBinding Padding}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -107,7 +108,7 @@
         </Style>
 
 
-        <Style TargetType="Grid">
+        <Style x:Key="CommonGridStyle" TargetType="Grid">
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush>
@@ -118,8 +119,6 @@
             </Setter>
         </Style>
 
-
-       
 
     </Application.Resources>
     

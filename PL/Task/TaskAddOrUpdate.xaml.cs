@@ -68,7 +68,7 @@ public partial class TaskAddOrUpdate : Window
         }
     }
 
-    public bool Flag = false;
+    public bool Flag = false;//if flag is false it is meens tha we came from task window and if true it is meens that we came from engineer window
     public TaskAddOrUpdate(int Id = 0, bool flag = false)
     {
         InitializeComponent();
@@ -98,7 +98,7 @@ public partial class TaskAddOrUpdate : Window
                 SelectedIds = new ObservableCollection<int>(CurrentTask.Dependencies.Select(d => d.Id));
         }
         EngineerId = (CurrentTask!.Engineer == null) ? null : CurrentTask.Engineer.Id.ToString();
-        Flag = flag; 
+        Flag = flag; //if flag is false it is meens tha we came from task window and if true it is meens that we came from engineer window
     }
 
 
@@ -111,12 +111,16 @@ public partial class TaskAddOrUpdate : Window
             {
                 CurrentTask.Engineer = new BO.EngineerInTask { Id = engineerId, Name = s_bl.Engineer.Read(engineerId).Name };
             }
+            else if (Flag == true && CurrentTask.Engineer!.Id != engineerId) // the engineer can't change the engineerId 
+            {
+                throw new Exception("you can't change the engineer id");
+            }
             else if (EngineerId == "" || EngineerId == null) CurrentTask.Engineer = null;
             else
             {
-                MessageBox.Show("Invalid Engineer Id");
-                return;
+               throw new Exception("Invalid Engineer Id");
             }
+
 
             List<TaskInList> dependencies = new List<TaskInList>();
             foreach (var id in SelectedIds)
@@ -160,12 +164,28 @@ public partial class TaskAddOrUpdate : Window
                 MessageBox.Show("The task was successfully updated");
             }
             Close();
-            if (!Flag) new TaskForListWindow().Show();
-            else new EngineerView(CurrentTask.Engineer.Id).Show();
+            if (!Flag) //flag==false so we will continue in the task window
+                new TaskForListWindow().Show();
+            else //flag==true so we will continue in the engineer window
+                new EngineerView(CurrentTask.Engineer.Id).Show();
         }
         catch (Exception ex)
         {
             MessageBox.Show($"{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+
+    private void Home_Click(object sender, RoutedEventArgs e)
+    {
+        if(!Flag)
+        {
+            Close();
+            new AdminViewWindow().Show();
+        }
+        else
+        {
+            Close();
+            new EngineerView(CurrentTask.Engineer!.Id).Show();
         }
     }
 }

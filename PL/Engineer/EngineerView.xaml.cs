@@ -62,6 +62,12 @@ public partial class EngineerView : Window
             MessageBox.Show("You don't have a task yet");
             return;
         }
+        if(s_bl.Dates.getStartProject()==null)
+        {
+            MessageBox.Show("A schedule of tasks needs to be set up first");
+            return;
+        }
+
         try
         {
             bool flag = true;
@@ -98,12 +104,13 @@ public partial class EngineerView : Window
         {
             CurrentTask.CompleteDate = DateTime.Now;
             CurrentTask.Engineer = null;
+            CurrentTask.Status = BO.Status.Done;
             s_bl.Task.Update(CurrentTask);
             MessageBox.Show("Well done, you have successfully completed the task");
-            
-            
         }
         catch { MessageBox.Show("Error"); }
 
     }
+
+  
 }

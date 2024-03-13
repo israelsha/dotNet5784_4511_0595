@@ -14,8 +14,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Imeges\home.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
     <ProjectReference Include="..\DalTest\DalTest.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Imeges\home.png" />
   </ItemGroup>
 
 </Project>
