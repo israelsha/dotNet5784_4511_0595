@@ -39,6 +39,11 @@ namespace PL.Engineer
 
         private void ChooseTask_Button(object sender, MouseButtonEventArgs e)
         {
+            if(s_bl.Dates.getStartProject()==null)
+            {
+                MessageBox.Show("A schedule of tasks needs to be set up first");
+                return;
+            }
             BO.TaskInList? task = (sender as ListView)?.SelectedItem as BO.TaskInList;
             Close();
             new AddTaskForEngineer(currentEngineer,task.Id).ShowDialog();
