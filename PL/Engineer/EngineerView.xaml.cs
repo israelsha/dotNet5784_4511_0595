@@ -105,8 +105,8 @@ public partial class EngineerView : Window
         try
         {
             CurrentTask.CompleteDate = DateTime.Now;// Setting CompleteDate to current date
-            CurrentTask.Engineer = null;// Clearing Engineer
-            s_bl.Task.Update(CurrentTask);// Updating Task
+            CurrentTask.Engineer = null;    // Clearing Engineer
+            s_bl.Task.Update(CurrentTask);  // Updating Task
             MessageBox.Show("Well done, you have successfully completed the task");
         }
         catch { MessageBox.Show("Error"); }// Show error message if an exception occurs
