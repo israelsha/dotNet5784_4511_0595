@@ -17,7 +17,11 @@ public class DatesImplementation : IDates
 
     public DateTime? getStartProject()=>_dal.Dates.getStartProject();   
     
-    public DateTime? setStartProject(DateTime? startProject)=>_dal.Dates.setStartProject(startProject);
+    public DateTime? setStartProject(DateTime? endProject)=>_dal.Dates.setEndProject(endProject);
+
+    public DateTime? getEndProject() => _dal.Dates.getStartProject();
+
+    public DateTime? setEndProject(DateTime? endProject) => _dal.Dates.setEndProject(endProject);
 
 
     //external function  to reset all the ScheduledDate and the deadline of all the task 
@@ -29,11 +33,12 @@ public class DatesImplementation : IDates
                                                 let boTask = s_bl.Task.Read(doTask.Id)
                                                 where boTask.Dependencies == null || boTask.Dependencies.Count() == 0
                                                 select boTask;
-        reset(startProject, notDependentTask);
+        DateTime endProject = startProject;
+        reset(startProject, notDependentTask,endProject);
     }
 
     //recursive function, reset all the ScheduledDate and the deadline of all the task
-    public void reset(DateTime? prevDate, IEnumerable<BO.Task>? tasks)
+    public void reset(DateTime? prevDate, IEnumerable<BO.Task>? tasks,DateTime endProject)
     {
         if (tasks != null)
             foreach (var item in tasks)
@@ -47,7 +52,7 @@ public class DatesImplementation : IDates
                 //sending the tasks that is depending on this task
                 reset(prevDate + item.RequiredEffortTime, from dep in _dal.Dependency.ReadAll()
                                                           where dep.DependsOnTask != null && dep.DependsOnTask == item.Id
-                                                          select s_bl.Task.Read(dep.DependentTask ?? 0));
+                                                          select s_bl.Task.Read(dep.DependentTask ?? 0), endProject);
             }
     }
 }

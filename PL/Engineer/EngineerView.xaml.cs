@@ -102,8 +102,8 @@ public partial class EngineerView : Window
             CurrentTask.Engineer = null;// Clearing Engineer
             s_bl.Task.Update(CurrentTask);// Updating Task
             MessageBox.Show("Well done, you have successfully completed the task");
-            
-            
+            Close();
+            new EngineerView(CurrentEngineer.Id).ShowDialog();
         }
         catch { MessageBox.Show("Error"); }// Show error message if an exception occurs
 

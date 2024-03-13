@@ -19,4 +19,16 @@ internal class DatesImplementation : IDates
         DataSource.Config.startProjectDate = startProject;
         return startProject;
     }
+
+    public DateTime? getEndProject()
+    {
+        return DataSource.Config.endProjectDate;
+    }
+
+    public DateTime? setEndProject(DateTime? endProject)
+    {
+        DataSource.Config.endProjectDate = endProject;
+        return endProject;
+    }
+
 }

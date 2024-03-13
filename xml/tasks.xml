@@ -1,32 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTask xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Task>
-    <Id>100</Id>
-    <Alias>Project Management</Alias>
-    <Description>Planning, controlling, and leading a project from its beginning through to completion.</Description>
-    <CreatedAtDate>2024-03-10T23:02:07.9254809+02:00</CreatedAtDate>
-    <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P63D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
-    <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
-    <CompleteDate xsi:nil="true" />
-    <Deliverables>Detailed project plan</Deliverables>
-    <Remarks>Efficient resource and timeline organization for project success.</Remarks>
-    <EngineerId xsi:nil="true" />
-  </Task>
-  <Task>
     <Id>101</Id>
     <Alias>Data Processing</Alias>
     <Description>Focus on handling and processing data as part of organizational processes.</Description>
-    <CreatedAtDate>2024-03-10T23:02:07.9552654+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.6312772+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P42D</RequiredEffortTime>
+    <RequiredEffortTime>P73D</RequiredEffortTime>
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-05-28T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-08-09T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Automated data processing system</Deliverables>
     <Remarks>Automated handling of data for accurate and efficient results.</Remarks>
@@ -36,13 +20,13 @@
     <Id>102</Id>
     <Alias>System Integration</Alias>
     <Description>Combining various components or systems to create a unified and efficient operation.</Description>
-    <CreatedAtDate>2024-03-10T23:02:07.981803+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.6764396+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P76D</RequiredEffortTime>
+    <RequiredEffortTime>P69D</RequiredEffortTime>
     <Copmlexity>Advanced</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-08-09T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-10-17T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Integration process documentation</Deliverables>
     <Remarks />
@@ -52,13 +36,13 @@
     <Id>103</Id>
     <Alias>Quality Assurance</Alias>
     <Description>Overseeing processes and outputs to ensure high-quality and reliable results.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.0222436+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.701499+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P26D</RequiredEffortTime>
+    <RequiredEffortTime>P63D</RequiredEffortTime>
     <Copmlexity>Intermediate</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-03-17T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-05-19T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Quality testing reports</Deliverables>
     <Remarks>Rigorous testing and continuous improvement for high-quality standards.</Remarks>
@@ -68,13 +52,13 @@
     <Id>104</Id>
     <Alias>R&amp;D (Research &amp; Development)</Alias>
     <Description>Activity involving search, discovery, and technological or knowledge development.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.0435648+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.7237023+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P49D</RequiredEffortTime>
+    <RequiredEffortTime>P65D</RequiredEffortTime>
     <Copmlexity>Intermediate</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-05-28T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-08-01T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Research reports with findings and recommendations</Deliverables>
     <Remarks />
@@ -84,29 +68,61 @@
     <Id>105</Id>
     <Alias>Prototyping</Alias>
     <Description>Creating initial or scaled models used for experimentation and testing.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.0638663+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.7583072+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P29D</RequiredEffortTime>
+    <RequiredEffortTime>P42D</RequiredEffortTime>
     <Copmlexity>Intermediate</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-08-01T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-09-12T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Physical or digital prototype</Deliverables>
     <Remarks>Creation of preliminary models for testing and refinement.</Remarks>
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
+    <Id>109</Id>
+    <Alias>Cybersecurity</Alias>
+    <Description>Protection against information and computer security threats.</Description>
+    <CreatedAtDate>2024-03-11T20:57:56.849068+02:00</CreatedAtDate>
+    <IsMilestone>false</IsMilestone>
+    <RequiredEffortTime>P81D</RequiredEffortTime>
+    <Copmlexity>Expert</Copmlexity>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate>2024-09-12T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-12-02T00:00:00</DeadlineDate>
+    <CompleteDate xsi:nil="true" />
+    <Deliverables>Source code for the software</Deliverables>
+    <Remarks>Protection against cyber threats through robust security measures.</Remarks>
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>115</Id>
+    <Alias>Process Automation</Alias>
+    <Description>Implementing processes to operate machinery or systems with minimal human intervention.</Description>
+    <CreatedAtDate>2024-03-11T20:57:57.0394379+02:00</CreatedAtDate>
+    <IsMilestone>false</IsMilestone>
+    <RequiredEffortTime>P23D</RequiredEffortTime>
+    <Copmlexity>Intermediate</Copmlexity>
+    <StartDate xsi:nil="true" />
+    <ScheduledDate>2024-10-17T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-11-09T00:00:00</DeadlineDate>
+    <CompleteDate xsi:nil="true" />
+    <Deliverables>List of risks and workflow diagrams</Deliverables>
+    <Remarks />
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
     <Id>106</Id>
     <Alias>Testing</Alias>
     <Description>Processes of evaluating the functionality or quality of systems and software.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.0849619+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.790029+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P71D</RequiredEffortTime>
+    <RequiredEffortTime>P36D</RequiredEffortTime>
     <Copmlexity>Advanced</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-03-17T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-04-22T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Test results and notes</Deliverables>
     <Remarks>Thorough examination of systems to identify and rectify issues.</Remarks>
@@ -116,13 +132,13 @@
     <Id>107</Id>
     <Alias>Algorithm Development</Alias>
     <Description>Creating sequences of computational steps to solve a specific problem.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.1098877+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.8068792+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P73D</RequiredEffortTime>
+    <RequiredEffortTime>P99D</RequiredEffortTime>
     <Copmlexity>Expert</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-04-22T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-07-30T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Source code for algorithms</Deliverables>
     <Remarks />
@@ -132,93 +148,61 @@
     <Id>108</Id>
     <Alias>Network Management</Alias>
     <Description>Administration and control of computer networks.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.1333432+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.830313+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P26D</RequiredEffortTime>
+    <RequiredEffortTime>P66D</RequiredEffortTime>
     <Copmlexity>Intermediate</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-08-01T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-10-06T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Reports on cyber attacks and solutions</Deliverables>
     <Remarks>Oversight and optimization of network infrastructure.</Remarks>
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
-    <Id>109</Id>
-    <Alias>Cybersecurity</Alias>
-    <Description>Protection against information and computer security threats.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.1617142+02:00</CreatedAtDate>
+    <Id>116</Id>
+    <Alias>Supply Chain Management</Alias>
+    <Description>Applying principles of engineering to healthcare and medical fields.</Description>
+    <CreatedAtDate>2024-03-11T20:57:57.0744892+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P62D</RequiredEffortTime>
-    <Copmlexity>Expert</Copmlexity>
+    <RequiredEffortTime>P86D</RequiredEffortTime>
+    <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-04-22T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-07-17T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
-    <Deliverables>Source code for the software</Deliverables>
-    <Remarks>Protection against cyber threats through robust security measures.</Remarks>
+    <Deliverables>Report on human-system interface design</Deliverables>
+    <Remarks>Identification, assessment, and mitigation of potential risks.</Remarks>
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
     <Id>110</Id>
     <Alias>Software Development</Alias>
     <Description>Creating software applications tailored to client needs.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.1926827+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.8725188+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P72D</RequiredEffortTime>
+    <RequiredEffortTime>P74D</RequiredEffortTime>
     <Copmlexity>Advanced</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-03-17T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-05-30T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Report analyzing environmental impacts</Deliverables>
     <Remarks />
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
-    <Id>111</Id>
-    <Alias>Hardware Design</Alias>
-    <Description>Planning and developing hardware components.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.2257691+02:00</CreatedAtDate>
-    <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P32D</RequiredEffortTime>
-    <Copmlexity>Advanced</Copmlexity>
-    <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
-    <CompleteDate xsi:nil="true" />
-    <Deliverables>Structural design plans</Deliverables>
-    <Remarks />
-    <EngineerId xsi:nil="true" />
-  </Task>
-  <Task>
-    <Id>112</Id>
-    <Alias>Environmental Assessment</Alias>
-    <Description>Studying and evaluating the impact of activities on the environment.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.2494728+02:00</CreatedAtDate>
-    <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P41D</RequiredEffortTime>
-    <Copmlexity>AdvancedBeginner</Copmlexity>
-    <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
-    <CompleteDate xsi:nil="true" />
-    <Deliverables>Plan to reduce energy consumption</Deliverables>
-    <Remarks>Planning and drafting designs for physical structures.</Remarks>
-    <EngineerId xsi:nil="true" />
-  </Task>
-  <Task>
     <Id>113</Id>
     <Alias>Structural Design</Alias>
     <Description>Planning and constructing architectural structures.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.2705205+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.9625182+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P76D</RequiredEffortTime>
+    <RequiredEffortTime>P77D</RequiredEffortTime>
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-05-30T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-08-15T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Automated process system</Deliverables>
     <Remarks>Strategies to reduce energy consumption and enhance efficiency.</Remarks>
@@ -228,95 +212,111 @@
     <Id>114</Id>
     <Alias>Energy Optimization</Alias>
     <Description>Creating systems that are integrated into larger systems or products.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.2870214+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:56.9948749+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P97D</RequiredEffortTime>
+    <RequiredEffortTime>P25D</RequiredEffortTime>
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-08-15T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-09-09T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Supply chain management plan</Deliverables>
     <Remarks>Implementation of automated systems for process efficiency.</Remarks>
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
-    <Id>115</Id>
-    <Alias>Process Automation</Alias>
-    <Description>Implementing processes to operate machinery or systems with minimal human intervention.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.3078236+02:00</CreatedAtDate>
+    <Id>111</Id>
+    <Alias>Hardware Design</Alias>
+    <Description>Planning and developing hardware components.</Description>
+    <CreatedAtDate>2024-03-11T20:57:56.9121223+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P68D</RequiredEffortTime>
-    <Copmlexity>Intermediate</Copmlexity>
+    <RequiredEffortTime>P23D</RequiredEffortTime>
+    <Copmlexity>Advanced</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-03-17T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-04-09T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
-    <Deliverables>List of risks and workflow diagrams</Deliverables>
+    <Deliverables>Structural design plans</Deliverables>
     <Remarks />
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
-    <Id>116</Id>
-    <Alias>Supply Chain Management</Alias>
-    <Description>Applying principles of engineering to healthcare and medical fields.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.3287612+02:00</CreatedAtDate>
+    <Id>112</Id>
+    <Alias>Environmental Assessment</Alias>
+    <Description>Studying and evaluating the impact of activities on the environment.</Description>
+    <CreatedAtDate>2024-03-11T20:57:56.9436954+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P69D</RequiredEffortTime>
+    <RequiredEffortTime>P76D</RequiredEffortTime>
     <Copmlexity>AdvancedBeginner</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-04-09T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-06-24T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
-    <Deliverables>Report on human-system interface design</Deliverables>
-    <Remarks>Identification, assessment, and mitigation of potential risks.</Remarks>
+    <Deliverables>Plan to reduce energy consumption</Deliverables>
+    <Remarks>Planning and drafting designs for physical structures.</Remarks>
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
     <Id>117</Id>
     <Alias>Risk Management</Alias>
     <Description>Designing and managing telecommunication systems.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.3503576+02:00</CreatedAtDate>
+    <CreatedAtDate>2024-03-11T20:57:57.1194474+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P66D</RequiredEffortTime>
+    <RequiredEffortTime>P54D</RequiredEffortTime>
     <Copmlexity>Beginner</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2024-07-17T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-09-09T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
     <Deliverables>Renewable energy solution proposals</Deliverables>
     <Remarks>Designing systems considering human interaction for optimal usability.</Remarks>
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
-    <Id>118</Id>
-    <Alias>Human Factors Engineering</Alias>
-    <Description>Developing algorithms and models for machine learning applications.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.3731781+02:00</CreatedAtDate>
+    <Id>119</Id>
+    <Alias>Renewable Energy Solutions</Alias>
+    <Description>Designing, building, and maintaining robots for various applications.</Description>
+    <CreatedAtDate>2024-03-11T20:57:57.1631544+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P68D</RequiredEffortTime>
-    <Copmlexity>Beginner</Copmlexity>
+    <RequiredEffortTime>P51D</RequiredEffortTime>
+    <Copmlexity>Advanced</Copmlexity>
     <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
+    <ScheduledDate>2025-03-09T00:00:00</ScheduledDate>
+    <DeadlineDate>2025-04-29T00:00:00</DeadlineDate>
     <CompleteDate xsi:nil="true" />
-    <Deliverables>Detailed project plan</Deliverables>
+    <Deliverables>searcing for new enrgy sources</Deliverables>
     <Remarks />
     <EngineerId xsi:nil="true" />
   </Task>
   <Task>
-    <Id>119</Id>
-    <Alias>Renewable Energy Solutions</Alias>
-    <Description>Designing, building, and maintaining robots for various applications.</Description>
-    <CreatedAtDate>2024-03-10T23:02:08.4134125+02:00</CreatedAtDate>
+    <Id>100</Id>
+    <Alias>Project Management</Alias>
+    <Description>Planning, controlling, and leading a project from its beginning through to completion.</Description>
+    <CreatedAtDate>2024-03-11T20:57:56.3118893+02:00</CreatedAtDate>
     <IsMilestone>false</IsMilestone>
-    <RequiredEffortTime>P26D</RequiredEffortTime>
-    <Copmlexity>Advanced</Copmlexity>
-    <StartDate xsi:nil="true" />
-    <ScheduledDate xsi:nil="true" />
-    <DeadlineDate xsi:nil="true" />
-    <CompleteDate xsi:nil="true" />
-    <Deliverables>searcing for new enrgy sources</Deliverables>
+    <RequiredEffortTime>P72D</RequiredEffortTime>
+    <Copmlexity>Beginner</Copmlexity>
+    <StartDate>2024-03-11T20:58:34.7194609+02:00</StartDate>
+    <ScheduledDate>2024-03-17T00:00:00</ScheduledDate>
+    <DeadlineDate>2024-05-28T00:00:00</DeadlineDate>
+    <CompleteDate>2024-03-11T20:58:39.3056715+02:00</CompleteDate>
+    <Deliverables>Detailed project plan</Deliverables>
+    <Remarks>Efficient resource and timeline organization for project success.</Remarks>
+    <EngineerId xsi:nil="true" />
+  </Task>
+  <Task>
+    <Id>118</Id>
+    <Alias>Human Factors Engineering</Alias>
+    <Description>Developing algorithms and models for machine learning applications.</Description>
+    <CreatedAtDate>2024-03-11T20:57:57.1433363+02:00</CreatedAtDate>
+    <IsMilestone>false</IsMilestone>
+    <RequiredEffortTime>P97D</RequiredEffortTime>
+    <Copmlexity>Beginner</Copmlexity>
+    <StartDate>2024-03-11T21:00:28.3653157+02:00</StartDate>
+    <ScheduledDate>2024-12-02T00:00:00</ScheduledDate>
+    <DeadlineDate>2025-03-09T00:00:00</DeadlineDate>
+    <CompleteDate>2024-03-11T21:00:31.3522509+02:00</CompleteDate>
+    <Deliverables>Detailed project plan</Deliverables>
     <Remarks />
     <EngineerId xsi:nil="true" />
   </Task>

@@ -118,13 +118,10 @@
             </Setter>
         </Style>
 
-
-        <!--<ResourceDictionary>
-
-          <BitmapImage x:Key="student" UriSource="Picture1\student.png"></BitmapImage>
-         </ResourceDictionary>-->
-
-
+        <!--<ResourceDictionary x:Key="student">
+            <BitmapImage UriSource="Picture1\student.png"/>
+        </ResourceDictionary>-->
+        
     </Application.Resources>
     
     

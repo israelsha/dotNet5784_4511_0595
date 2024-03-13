@@ -5,28 +5,133 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="GanttchartWindow" Height="450" Width="800"
-    DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
-    <Grid Background="#FFA5D8F4">
-        <ListView x:Name="TsakForList" Margin="5,5,5,5" Grid.Row="1" ItemsSource="{Binding TaskList}" Grid.ColumnSpan="3" FontSize="16" >
-            <ListView.Background>
-                <LinearGradientBrush>
-                    <GradientStop Color="#FFA7CDCE" Offset="0" />
-                    <GradientStop Color="#FF125F61" Offset="1" />
-                </LinearGradientBrush>
-            </ListView.Background>
-        </ListView>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="197,29,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="197,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="247,91,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="197,122,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="197,154,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="247,186,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="514,186,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="414,122,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Left" Height="21" Margin="415,91,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
-        <Rectangle HorizontalAlignment="Center" Height="21" Margin="0,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
+        Title="GantWindow" Height="650" Width="1000"
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+
+    <Grid>
+        <TextBlock Text="Chart" Margin="21,19,713,0" VerticalAlignment="Top" Height="31" />
+
+        <Grid DataContext="{Binding TaskList}">
 
 
+
+            <ListBox ItemsSource="{Binding TaskList}" Margin="0,66,0,0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Task ID -->
+                            <TextBlock Text="{Binding Alias}" Width="70" Margin="0,0,5,0" VerticalAlignment="Center" />
+
+                            <!-- Task duration represented by Border -->
+                            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1"
+                            Width="{Binding Converter={StaticResource DateToWidthConverter}}"
+                            Margin="{Binding Converter={StaticResource DateToMarginConverter}}"
+                            Height="25">
+                                <Grid>
+                                    <Rectangle Fill="{Binding Converter={StaticResource StatusToColorConverter}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                    <TextBlock Text="{Binding Id}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+                                </Grid>
+                                <ToolTipService.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock Text="Task Id: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Id}"/>
+                                        <TextBlock Text="Task Alias: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Alias}"/>
+                                        <TextBlock Text="Task Description: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Description}"/>
+                                        <TextBlock Text="Task Complexity: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Complexity}"/>
+                                        <TextBlock Text="Task Deliverables: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Deliverables}"/>
+                                        <TextBlock Text="ScheduledDate: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding ScheduledDate}"/>
+                                        <TextBlock Text="Task ForecastDate: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding ForecastDate}"/>
+                                        <TextBlock Text="Task RequiredEffortTime: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding RequiredEffortTime}"/>
+                                        <TextBlock Text="Task Status: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Status}"/>
+                                        <TextBlock Text="Task Remarks: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Remarks}"/>
+                                        <TextBlock Text="This Task belong to: " FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Engineer.Name}"/>
+                                        <TextBlock Text="Dependencies:" FontWeight="Bold"/>
+                                        <ItemsControl ItemsSource="{Binding Dependencies}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Id}" FontWeight="Bold"/>
+                                                        <TextBlock Text="{Binding Description}"/>
+
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                        <!-- Add more details as needed -->
+                                    </StackPanel>
+                                </ToolTipService.ToolTip>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <!-- Ellipse elements -->
+
+        </Grid>
+
+        <Grid>
+            <Rectangle Fill="White" Width="383" Height="19" Margin="0,0,535,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Opacity="0.8"
+               RadiusX="9" RadiusY="9">
+            </Rectangle>
+        </Grid>
+
+
+        <Grid>
+            <!-- Black circle -->
+
+            <!-- Colored circle -->
+            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,839,12" Fill="#cfbc79"/>
+        </Grid>
+        <Grid>
+            <!-- Black circle -->
+
+            <!-- Colored circle -->
+            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,767,12" Fill="#ecbe62"/>
+        </Grid>
+        <Grid>
+            <!-- Black circle -->
+
+            <!-- Colored circle -->
+            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,699,12" Fill="#60b0d1"/>
+        </Grid>
+        <Grid>
+            <!-- Black circle -->
+
+            <!-- Colored circle -->
+            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,612,12" Fill="#e16d70"/>
+        </Grid>
+        <Grid>
+            <!-- Black circle -->
+
+            <!-- Colored circle -->
+            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,552,12" Fill="#bcc771"/>
+        </Grid>
+
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,846,10" FontSize="10" FontWeight="SemiBold" TextWrapping="Wrap" Text="Unscheduled" VerticalAlignment="Bottom" Height="15" Width="65"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,766,10" FontSize="10"  FontWeight="SemiBold" TextWrapping="Wrap" Text="Scheduled" VerticalAlignment="Bottom" Height="15" Width="65"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,691,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="On Track" VerticalAlignment="Bottom" Height="15" Width="65"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,615,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="In jeopardy" VerticalAlignment="Bottom" Height="15" Width="65"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,528,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="Done" VerticalAlignment="Bottom" Height="15" Width="65"/>
     </Grid>
+
+
+
 </Window>

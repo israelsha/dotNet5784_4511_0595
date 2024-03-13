@@ -25,4 +25,20 @@ internal class DatesImplementation : IDates
         XMLTools.SaveListToXMLElement(root, _date_xml);
         return startProject;
     }
+
+    public DateTime? getEndProject()
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(_date_xml).Element("EndProject")!;
+        if (root.Value == "")
+            return null;
+        return DateTime.Parse(root.Value);
+    }
+
+    public DateTime? setEndProject(DateTime? endProject)
+    {
+        XElement root = XMLTools.LoadListFromXMLElement(_date_xml);
+        root.Element("EndProject")!.Value = endProject.ToString();
+        XMLTools.SaveListToXMLElement(root, _date_xml);
+        return endProject;
+    }
 }
