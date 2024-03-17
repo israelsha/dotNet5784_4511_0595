@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="AdminViewWindow" Height="450" Width="800" >
-    <Grid>
+    <Grid Style="{StaticResource  CommonGridStyle}">
        
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,200,500,0" Width="auto" Height="auto">
             <!--Initialize All Data-->

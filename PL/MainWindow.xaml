@@ -7,50 +7,43 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" >
 
+    <!-- Grid for the main layout -->
+    <Grid Style="{StaticResource CommonGridStyle}">
+        <!-- Display current date and time -->
+        <Label Content="{Binding CurrentDateTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,40"
+               FontWeight="Bold" Foreground="Black" FontSize="40" Height="150" Width="450" 
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
 
+        <!-- Buttons to move forward/backward in time -->
+        <Button Content="Reset clock" Style="{StaticResource CommonButtonClockStyle}" Width="180" Height="40"
+             Margin="0,100,0,0" Click="Reset_clock_Click"/>
 
-    <Grid>
-        <Label Content="{Binding CurrentDateTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
-            FontWeight="Bold" Foreground="Black" FontSize="40"  Height="150"  Width="450" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Button Content="+ one hour" Style="{StaticResource CommonButtonClockStyle}"
+                Margin="0,0,0,0" Click="add_hour_Click"/>
+            <Button Content="+ one day" Style="{StaticResource CommonButtonClockStyle}"
+                Margin="10,0,0,0" Click="add_day_Click"/>
+            <Button Content="+ one month" Style="{StaticResource CommonButtonClockStyle}"
+                Margin="10,0,0,0" Click="add_month_Click"/>
+        </StackPanel>
+        <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,20">
+            <Button Content="- one hour" Style="{StaticResource CommonButtonClockStyle}"
+                Margin="10,100,0,0" Click="sub_hour_Click"/>
+            <Button Content="- one day" Style="{StaticResource CommonButtonClockStyle}"
+                Margin="10,100,0,0" Click="sub_day_Click"/>
+            <Button Content="- one month" Style="{StaticResource CommonButtonClockStyle}"
+                Margin="10,100,0,0" Click="sub_month_Click"/>
+        </StackPanel>-->
+        <!-- Title -->
+        <Label Content=" Engineer the Future with Ease " HorizontalAlignment="Center" Margin="0,30,0,0" 
+               VerticalAlignment="Top" Width="auto" Height="80" FontSize="48" FontWeight="Bold" Foreground="#FF294E54"/>
 
-        <Button Content="+ one hour" 
-            Style="{StaticResource CommonButtonClockStyle}"
-           Margin="0,30,230,0" 
-           Click="Move_forward_one_hour_Click"/>
-        
-        <Button Content="- one hour" 
-          Style="{StaticResource CommonButtonClockStyle}"
-             Margin="0,110,230,0" 
-           Click="Move_beckward_one_hour_Click"/>
-
-        <Button Content="+ one day" 
-          Style="{StaticResource CommonButtonClockStyle}"
-           Margin="20,30,0,0" 
-            Click="Move_forward_one_day_Click"/>
-        
-        <Button Content="- one day" 
-                  Style="{StaticResource CommonButtonClockStyle}"
-                   Margin="20,110,0,0" 
-                    Click="Move_beckward_one_day_Click"/>
-        
-        <Button Content="+ one month" 
-                  Style="{StaticResource CommonButtonClockStyle}"
-                   Margin="260,30,0,0" 
-                    Click="Move_forward_one_month_Click"/>
-        
-        <Button Content="- one month" 
-                  Style="{StaticResource CommonButtonClockStyle}"
-                   Margin="260,110,0,0" 
-                    Click="Move_beckward_one_month_Click"/>
-
-
-        <Label Content=" Engineer the Future with Ease " HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Top" Width="auto" Height="80" FontSize="48" FontWeight="Bold" Foreground="#FF294E54"/>
-
+        <!-- Buttons to navigate to different views -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="500" Height="auto">
-            <!--Show us the List of the Engineers-->
-            <Button Content="Admin View"  Margin="0,0,0,20" VerticalAlignment="Bottom" Style="{StaticResource CommonButtonStyle}" Click="User_List_Click"  />
-            <!--Initialize All Data-->
-            <Button Content="Engineer View"  Margin="140,0,0,20" VerticalAlignment="Bottom" Style="{StaticResource CommonButtonStyle}" Click="Reset_Click"  />
+            <Button Content="Admin View" Margin="0,0,0,20" VerticalAlignment="Bottom" Style="{StaticResource CommonButtonStyle}" 
+                    Click="Admin_Click"/>
+            <Button Content="Engineer View" Margin="140,0,0,20" VerticalAlignment="Bottom" Style="{StaticResource CommonButtonStyle}" 
+                    Click="Engineer_Click"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -8,7 +8,7 @@
         Title="GantWindow" Height="650" Width="1000"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
-    <Grid>
+    <Grid Style="{StaticResource CommonGridStyle}">
         <TextBlock Text="Chart" Margin="21,19,713,0" VerticalAlignment="Top" Height="31" />
 
         <Grid DataContext="{Binding TaskList}">

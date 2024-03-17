@@ -5,19 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
-
-    Title="EngineerWindow" Height="698" Width="614"
+        Title="EngineerWindow" Height="698" Width="614"
         DataContext="{Binding CurrentEngineer, RelativeSource={RelativeSource Mode=Self}, Mode=TwoWay}">
 
-    <Grid>
+    <Grid Style="{StaticResource CommonGridStyle}">
         <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!-- Button to navigate back to the home screen -->
+        <Button Width="50" Height="50" Background="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,20,20,0" Click="Home_Click"  BorderThickness="0">
+            <StackPanel >
+                <Image Source="/Imeges/home.png" Height="45" Width="45" />
+            </StackPanel>
+        </Button>
 
+        <!-- StackPanel to display labels for engineer details -->
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,250,0" Height="450" Width="100" >
             <Label Content="Id:" Style="{StaticResource CommonLabelStyle}"/>
             <Label Content="Name:" Style="{StaticResource CommonLabelStyle}"/>
@@ -26,6 +32,7 @@
             <Label Content="Cost:" Style="{StaticResource CommonLabelStyle}"/>
         </StackPanel>
 
+        <!-- StackPanel to display text boxes and combo box for editing engineer details -->
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="100,100,0,0" Width="250">
             <TextBox  Text= "{Binding Id}" IsEnabled="{Binding Id,Converter={StaticResource IdToIsEnabledConverter}}" Style="{StaticResource CommonTextBoxStyle}"/>
             <TextBox Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Style="{StaticResource CommonTextBoxStyle}"/>
@@ -35,9 +42,8 @@
             <TextBox Text="{Binding Cost, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Style="{StaticResource CommonTextBoxStyle}"/>
         </StackPanel>
 
+        <!-- Button to add or update engineer information -->
         <Button Margin="0,0,0,20" VerticalAlignment="Bottom"  Grid.RowSpan="2" FontSize="22" 
                 Content="{Binding Id, Mode=OneTime, Converter={StaticResource ConverIdToContentKey}}" Click="AddOrUpdate_Button" BorderBrush="#FFD2B6B6" Style="{StaticResource CommonButtonStyle}" />
-
     </Grid>
-
 </Window>

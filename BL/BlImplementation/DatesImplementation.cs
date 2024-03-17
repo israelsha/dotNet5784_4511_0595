@@ -17,7 +17,7 @@ public class DatesImplementation : IDates
 
     public DateTime? getStartProject()=>_dal.Dates.getStartProject();   
     
-    public DateTime? setStartProject(DateTime? endProject)=>_dal.Dates.setEndProject(endProject);
+    public DateTime? setStartProject(DateTime? startProject)=>_dal.Dates.setStartProject(startProject);
 
     public DateTime? getEndProject() => _dal.Dates.getStartProject();
 
@@ -27,18 +27,24 @@ public class DatesImplementation : IDates
     //external function  to reset all the ScheduledDate and the deadline of all the task 
     public void resetDate(DateTime startProject)
     {
-        
         //find all the task that is not depend on any other task ie: task.Dependencies = null
         IEnumerable<BO.Task> notDependentTask = from doTask in _dal.Task.ReadAll()
                                                 let boTask = s_bl.Task.Read(doTask.Id)
                                                 where boTask.Dependencies == null || boTask.Dependencies.Count() == 0
                                                 select boTask;
-        DateTime endProject = startProject;
-        reset(startProject, notDependentTask,endProject);
+        reset(startProject, notDependentTask);
+
+        DateTime? endProject = startProject;
+        foreach (var task in _dal.Task.ReadAll())
+        {
+            if (endProject < task!.DeadlineDate)
+                endProject = task.DeadlineDate;
+        }
+        _dal.Dates.setEndProject(endProject);
     }
 
     //recursive function, reset all the ScheduledDate and the deadline of all the task
-    public void reset(DateTime? prevDate, IEnumerable<BO.Task>? tasks,DateTime endProject)
+    public void reset(DateTime? prevDate, IEnumerable<BO.Task>? tasks)
     {
         if (tasks != null)
             foreach (var item in tasks)
@@ -52,7 +58,7 @@ public class DatesImplementation : IDates
                 //sending the tasks that is depending on this task
                 reset(prevDate + item.RequiredEffortTime, from dep in _dal.Dependency.ReadAll()
                                                           where dep.DependsOnTask != null && dep.DependsOnTask == item.Id
-                                                          select s_bl.Task.Read(dep.DependentTask ?? 0), endProject);
+                                                          select s_bl.Task.Read(dep.DependentTask ?? 0));
             }
     }
 }

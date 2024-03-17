@@ -1,10 +1,16 @@
 ﻿namespace BO;
+
+using BlApi;
+using BlImplementation;
 using Dal;
+using DalApi;
+using DO;
 using System.Net.Mail;
 
 internal static class Tools
 {
     private static Dal.IDal _dal = DalApi.Factory.Get;
+
     internal static string IsValidEmail(string email)
     {
         try
@@ -27,12 +33,12 @@ internal static class Tools
     }
 
     //calc the the status by the dates
-    internal static BO.Status calcStatus(DO.Task doTask)
+    internal static BO.Status calcStatus(DO.Task doTask, DateTime clockDate)
     {
         if (doTask.ScheduledDate == null) return Status.Unscheduled;
         if (doTask.StartDate == null) return Status.Scheduled;
         if (doTask.CompleteDate == null)
-            if (DateTime.Now > doTask.DeadlineDate)
+            if (clockDate > doTask.DeadlineDate)
                 return Status.InJeopardy;
             else
                 return Status.OnTrack;
@@ -71,7 +77,7 @@ internal static class Tools
     }
 
     //converting from DO.Task to BO.Task
-    internal static BO.Task doToBo(DO.Task doTask)
+    internal static BO.Task doToBo(DO.Task doTask,DateTime clockDate)
     {   
         //all the tasks that this task tepends on 
         var dependedId = from DO.Dependency doDependency in _dal.Dependency.ReadAll()
@@ -83,7 +89,7 @@ internal static class Tools
             DO.Task? dependedTask = _dal.Task.Read(item1 ?? 0);
             if (dependedTask is not null)
             {
-                BO.TaskInList item2 = new TaskInList { Id = dependedTask.Id, Alias = dependedTask.Alias, Description = dependedTask.Description, Status = calcStatus(dependedTask) };
+                BO.TaskInList item2 = new TaskInList { Id = dependedTask.Id, Alias = dependedTask.Alias, Description = dependedTask.Description, Status = calcStatus(dependedTask, clockDate) };
                 taskInList.Add(item2);
             }
         }
@@ -105,7 +111,7 @@ internal static class Tools
             new BO.EngineerInTask { Id = doTask.EngineerId ?? 0, Name = _dal.Engineer.Read(doTask.EngineerId ?? 0).Name },
             ForecastDate = (doTask.StartDate == null || doTask.RequiredEffortTime == null) ? null : doTask.StartDate + doTask.RequiredEffortTime,
             Dependencies = (taskInList.Count==0)?null: taskInList,
-            Status = calcStatus(doTask)
+            Status = calcStatus(doTask, clockDate)
 
         };
     }
@@ -144,9 +150,26 @@ internal static class Tools
         return result;
     }
 
-    public static void reset()
+    /// <summary>
+    /// Checks whether there will be loops of tasks that depend on each other
+    /// intended to be useful to know if we can add the dependency to the task
+    /// </summary>
+    /// <returns>true if there is a loop and false if there is no loops </returns>
+    public static bool areThereLoops(int taskId, int ?dependOnTaskId)
     {
-        
+        var dependedId = from DO.Dependency doDependency in _dal.Dependency.ReadAll()
+                         where doDependency.DependentTask == dependOnTaskId
+                         select doDependency.DependsOnTask;
+        if (dependedId == null) return false;
+
+        foreach(var depId in dependedId )
+        {
+            int? dependsOnTask = _dal.Dependency.Read(depId ?? 0).DependsOnTask;
+            if (dependsOnTask == taskId) return true;
+            areThereLoops(taskId, dependsOnTask);
+        }
+
+        return false;
     }
 
 }

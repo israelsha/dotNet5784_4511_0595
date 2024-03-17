@@ -4,16 +4,29 @@
              xmlns:local="clr-namespace:PL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <!-- Resource for Engineer Level -->
         <local:EngineerLevel x:Key="EngineerLevelKey"/>
+
+        <!-- Resource for Task Status -->
         <local:TaskStatus x:Key="TaskStatuslKey"/>
+
+        <!-- Resource for Convert Id To Content -->
         <local:ConvertIdToContent x:Key="ConverIdToContentKey"/>
+
+        <!-- Resource for Id To IsEnabled -->
         <local:IdToIsEnabledConverter x:Key="IdToIsEnabledConverter"/>
+
+        <!-- Resource for Add Or Update Convertor -->
         <local:AddOrUpdateConvertor x:Key="AddOrUpdateConvertorKey"/>
-        <local:IsCheckedDependencyConverter x:Key="IsCheckedDependencyConverterKey"/>
+
+        <!-- Resource for Has Schedule Convert -->
         <local:HasScheduleConvert x:Key="HasScheduleConvertKey"/>
+
+        <!-- Resource for Has Allredy Task Convert -->
         <local:HasAllredyTaskConvert x:Key="HasAllredyTaskConvertKey"/>
 
-        <!-- style for all the Lable -->
+        
+        <!-- Common Label Style -->
         <Style x:Key="CommonLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="Height" Value="50"/>
@@ -24,6 +37,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
+        <!-- Common TextBox Style -->
         <Style x:Key="CommonTextBoxStyle" TargetType="TextBox">
             <Setter Property="Height" Value="50"/>
             <Setter Property="Foreground" Value="#FF1A337A"/>
@@ -34,6 +48,7 @@
             <Setter Property="Margin" Value="0,0,0,30"/>
         </Style>
 
+        <!-- Common DatePicker Style -->
         <Style x:Key="CommonDatePickerStyle" TargetType="DatePicker">
             <Setter Property="Height" Value="50"/>
             <Setter Property="Foreground" Value="#FF1A337A"/>
@@ -42,7 +57,8 @@
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,0,0,30"/>
         </Style>
-        
+
+        <!-- Common Button Style -->
         <Style x:Key="CommonButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="70"/>
             <Setter Property="Width" Value="180"/>
@@ -57,11 +73,10 @@
                     <ControlTemplate TargetType="Button">
                         <Grid>
                             <Border Background="{TemplateBinding Background}"
-                                      BorderBrush="white"
-                                      CornerRadius="5"
-                                      BorderThickness="2"
-                                      Padding="{TemplateBinding Padding}">
-                                    
+                                    BorderBrush="white"
+                                    CornerRadius="10"
+                                    BorderThickness="2"
+                                    Padding="{TemplateBinding Padding}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                         </Grid>
@@ -76,6 +91,7 @@
             </Setter>
         </Style>
 
+        <!-- Common Button Clock Style -->
         <Style x:Key="CommonButtonClockStyle" TargetType="Button">
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="110"/>
@@ -90,9 +106,9 @@
                     <ControlTemplate TargetType="Button">
                         <Grid Background="{TemplateBinding Background}">
                             <Border BorderBrush="white"
-                            CornerRadius="5"
-                            BorderThickness="1"
-                            Padding="{TemplateBinding Padding}">
+                                    CornerRadius="10"
+                                    BorderThickness="1"
+                                    Padding="{TemplateBinding Padding}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                         </Grid>
@@ -106,8 +122,8 @@
             </Setter>
         </Style>
 
-
-        <Style TargetType="Grid">
+        <!-- Common Grid Style -->
+        <Style x:Key="CommonGridStyle" TargetType="Grid">
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush>
@@ -117,14 +133,5 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <!--<ResourceDictionary x:Key="student">
-            <BitmapImage UriSource="Picture1\student.png"/>
-        </ResourceDictionary>-->
-        
     </Application.Resources>
-    
-    
-    
-    
 </Application>

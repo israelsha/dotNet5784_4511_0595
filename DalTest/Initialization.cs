@@ -160,8 +160,9 @@ public static class Initialization
 
         XElement x_con_task = new XElement("NextTaskId", 100);
         XElement x_con_dep = new XElement("NextDependencyId", 100);
-        XElement x_con_Start_pro = new XElement("StartProject", "");
-        XElement x_con = new XElement("config", x_con_task, x_con_dep, x_con_Start_pro);
+        XElement x_con_start_pro = new XElement("StartProject", "");
+        XElement x_con_end_pro = new XElement("EndProject", "");
+        XElement x_con = new XElement("config", x_con_task, x_con_dep, x_con_start_pro,x_con_end_pro);
         x_con.Save($"{ s_xml_dir + "data-config"}.xml");
 
 

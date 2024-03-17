@@ -7,8 +7,13 @@ internal class TaskImplementation : ITask
 {
     private Dal.IDal _dal = DalApi.Factory.Get;
 
+    private readonly IBl _bl;
+    internal TaskImplementation(IBl bl) => _bl = bl;
+    
+
     public int Create(BO.Task boTask)
     {
+       
         //check if one of the parameter is invalid
         Tools.checkTaskData(boTask);
 
@@ -65,7 +70,7 @@ internal class TaskImplementation : ITask
         if (doTask == null)
             throw new BO.BlDoesNotExistException($"Task with ID={id} does Not exist");
 
-        return Tools.doToBo(doTask);
+        return Tools.doToBo(doTask,_bl.Clock);
     }
 
 
@@ -77,7 +82,7 @@ internal class TaskImplementation : ITask
                     Id = doTask.Id,
                     Description = doTask.Description,
                     Alias = doTask.Alias,
-                    Status = Tools.calcStatus(doTask)
+                    Status = Tools.calcStatus(doTask,_bl.Clock)
                 });
     }
 
@@ -89,6 +94,13 @@ internal class TaskImplementation : ITask
         {
             if(boTask.Dependencies != null)//update all the dependent task
             {
+                //Checks that there won't be any loops after we add this dependency
+                foreach (var dependency in boTask.Dependencies)
+                {
+                    if (dependency.Id == boTask.Id || Tools.areThereLoops(boTask.Id, dependency.Id)) 
+                        throw new BO.LoopsInDependentTaskEwxeption($"Cannot depend on task {dependency.Id} because it already depends on the current task");
+                }
+
                 //get all the conected dependecy Id
                 IEnumerable<int> dependecyId = from doDependency in _dal.Dependency.ReadAll()
                     where doDependency.DependentTask == boTask.Id select doDependency.Id;
