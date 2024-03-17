@@ -6,38 +6,38 @@
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
         Title="EngineerView" Height="auto" Width="800"
-            DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
-        <Grid  DataContext="{Binding CurrentTask}" Style="{StaticResource  CommonGridStyle}">
-        
-
-
+        DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
+    <Grid  DataContext="{Binding CurrentTask}" Style="{StaticResource CommonGridStyle}">
         <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="4*"/>
-         </Grid.RowDefinitions>
-       
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Greeting message -->
         <Label Content="Hello" Style="{StaticResource CommonLabelStyle}"  FontSize="26"  HorizontalAlignment="Center" Margin="0,0,0,40"/>
-            <Label FontSize="30" Style="{StaticResource CommonLabelStyle}" HorizontalAlignment="Center" Margin="0,60,0,0">
-                <Label.Content>
-                    <Binding Path="CurrentEngineer.Name" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:EngineerView}}"  />
-                </Label.Content>
-            </Label>
 
+        <!-- Display the name of the current engineer -->
+        <Label FontSize="30" Style="{StaticResource CommonLabelStyle}" HorizontalAlignment="Center" Margin="0,60,0,0">
+            <Label.Content>
+                <Binding Path="CurrentEngineer.Name" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:EngineerView}}"  />
+            </Label.Content>
+        </Label>
 
-        <Label  Content= "You need to choose a task:" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource CommonLabelStyle}" Grid.Row="1" Visibility="{Binding Id ,Converter={StaticResource HasAllredyTaskConvertKey}}"/>
-        <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" Margin="0,60,300,0" Height="auto" Width="auto" Grid.Row="2">
-            <Label Content="view task option:" Style="{StaticResource CommonLabelStyle}"  FontSize="26" Margin="0,0,0,50"/>
+        <!-- Label indicating the need to choose a task -->
+        <Label Content= "You need to choose a task:" HorizontalAlignment="Center" VerticalAlignment="Top" Style="{StaticResource CommonLabelStyle}" Grid.Row="1" Visibility="{Binding Id ,Converter={StaticResource HasAllredyTaskConvertKey}}"/>
+
+        <!-- StackPanel for task management options -->
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,60,300,0" Height="auto" Width="auto" Grid.Row="2">
+            <Label Content="View task option:" Style="{StaticResource CommonLabelStyle}"  FontSize="26" Margin="0,0,0,50"/>
             <Label Content= "Your task's details:"  Style="{StaticResource CommonLabelStyle}" FontSize="26"  Margin="0,0,0,50"/>
             <Label Content="I finished the task:"  Style="{StaticResource CommonLabelStyle}" FontSize="26"  Margin="0,0,0,50"/>
-
         </StackPanel>
-            <StackPanel   Orientation="Vertical" HorizontalAlignment="Center" Margin="200,60,0,0" Width="auto" Height="auto" Grid.Row="2">
+
+        <!-- StackPanel for task management buttons -->
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="200,60,0,0" Width="auto" Height="auto" Grid.Row="2">
             <Button Content="Tasks option" Style="{StaticResource CommonButtonStyle}"  Click="TaskOption_Button" Margin="0,0,0,30"/>
             <Button Content="Your task details" Click="UpdateTask_Button" Style="{StaticResource CommonButtonStyle}" Margin="0,0,0,30"/>
             <Button Content="Task completed"  Click="TaskCompleted_Button" Style="{StaticResource CommonButtonStyle}" Margin="0,0,0,30"/>
-           
         </StackPanel>
-
-
-        </Grid>
+    </Grid>
 </Window>

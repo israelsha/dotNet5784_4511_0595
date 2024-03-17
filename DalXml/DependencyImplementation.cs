@@ -40,8 +40,15 @@ internal class DependencyImplementation :IDependency
 
     public Dependency? Read(int id)
     {
-        XElement? dependencyElem = XMLTools.LoadListFromXMLElement(s_dependencies_xml).Elements().FirstOrDefault(st => (int?)st.Element("Id") == id);
-        return dependencyElem is null ? null : XMLTools.getDependency(dependencyElem);  
+        XElement rootDependency = XMLTools.LoadListFromXMLElement(s_dependencies_xml);// this is root
+        return (from depend in rootDependency.Elements()
+                where (int?)depend.Element("ID") == id
+                select new Dependency()
+                {
+                    Id = (int)(depend.Element("ID")),
+                    DependentTask = (int?)depend.Element("DependentTask"),
+                    DependsOnTask = (int?)depend.Element("DependsOnTask")
+                }).FirstOrDefault() ?? throw new DalDoesNotExistException($"ID: {id}, not exist");
     }
 
     public Dependency? Read(Func<Dependency, bool> filter)

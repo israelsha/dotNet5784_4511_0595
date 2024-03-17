@@ -42,3 +42,9 @@ public class errorInDateException : Exception
 {
     public errorInDateException(string? message) : base(message) { }
 }
+
+public class LoopsInDependentTaskEwxeption : Exception
+{
+    public LoopsInDependentTaskEwxeption(string? message) : base(message) { }
+}
+

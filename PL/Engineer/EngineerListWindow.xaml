@@ -20,30 +20,27 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-       
+        <!-- Label to prompt user to select -->
         <Label Content="Select:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="400" Height="40" FontSize="20" />
-        <!--comboBox to choose level of engineer-->
+        <!-- ComboBox to choose level of engineer -->
         <ComboBox SelectedValue="{Binding Level,Mode=TwoWay}"
                   ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" FontSize="18" SelectionChanged="Level_SelectionChanged" />
 
-        <ListView x:Name="EngineerLitt" Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="UpdateEngineer_Button" Grid.ColumnSpan="3" FontSize="16" HorizontalContentAlignment="Right">
+        <!-- ListView to display engineer list -->
+        <ListView Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="UpdateEngineer_Button" Grid.ColumnSpan="3" FontSize="16" >
             <ListView.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#FFA7CDCE" Offset="0" />
                     <GradientStop Color="#FF125F61" Offset="1" />
                 </LinearGradientBrush>
             </ListView.Background>
-            <Button Width="50" Height="50" Background="{x:Null}" Margin="20,20,20,20" Click="Home_Click"  BorderThickness="0">
-                <StackPanel >
-                    <Image Source="/Imeges/home.png" Height="45" Width="45" />
-                </StackPanel>
-            </Button>
         </ListView>
 
-        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Grid.Row="2" Click="AddEngineer_Button" Width="250" Height="auto" Style="{StaticResource CommonButtonStyle}"> 
+        <!-- Button to add a new engineer -->
+        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Grid.Row="2" Click="AddEngineer_Button" Width="250" Height="auto" Style="{StaticResource CommonButtonStyle}">
             <TextBlock Text="Add" FontWeight="Bold"/>
         </Button>
-    </Grid>
 
+    </Grid>
 </Window>
