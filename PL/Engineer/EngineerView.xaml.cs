@@ -90,7 +90,7 @@ public partial class EngineerView : Window
         else      //shoes the task that the engineer can do
         {
             Close();
-            new TaskForEngineer(CurrentEngineer).ShowDialog();
+            new TaskForEngineer(CurrentEngineer).Show();
         }
 
     }
@@ -109,7 +109,7 @@ public partial class EngineerView : Window
             s_bl.Task.Update(CurrentTask);  // Updating Task
             MessageBox.Show("Well done, you have successfully completed the task");
             Close();
-            new EngineerView(CurrentEngineer.Id).ShowDialog();
+            new EngineerView(CurrentEngineer.Id).Show();
         }
         catch { MessageBox.Show("Error"); }// Show error message if an exception occurs
 

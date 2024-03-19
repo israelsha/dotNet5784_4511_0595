@@ -51,7 +51,7 @@ public partial class EngineerLoginWindow : Window
             {
                 // If the engineer exists, close the login window and open the engineer view window
                 Close();
-                new EngineerView(id).ShowDialog();
+                new EngineerView(id).Show(); 
             }
             else 
             {
