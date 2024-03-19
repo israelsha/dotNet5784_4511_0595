@@ -34,7 +34,7 @@ namespace PL
             set { SetValue(TaskListProperty, value); }
         }
         public static readonly DependencyProperty TaskListProperty =
-       DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(TaskForListWindow), new PropertyMetadata(null));
+       DependencyProperty.Register("TaskList", typeof(IEnumerable<BO.TaskInList>), typeof(TaskForListWindow), new PropertyMetadata(s_bl.Task.ReadAll()));
 
         class DateToWidthConverter : IValueConverter
         {

@@ -85,5 +85,43 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+
+    public class DateToWidthConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            //int? days = BlApi.Factory.Get().Task.Read((int)value).RequiredEffortTime.Value.Days;
+            return  Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    
+    public class StatusToColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            switch ((int)value)
+            {
+                case 0: return "#cfbc79";
+                case 1: return "#ecbe62";
+                case 2: return "#60b0d1";
+                case 3: return "#e16d70";
+                case 4: return "#bcc771";
+            }
+            return "#ffffff";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+
 }
 
