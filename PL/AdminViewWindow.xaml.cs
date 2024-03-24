@@ -116,6 +116,11 @@ namespace PL
         // Handler for opening Ganttchart.
         private void OpenGanttchart(object sender, RoutedEventArgs e)
         {
+            if (s_bl.Dates.getStartProject().HasValue==false)
+            {
+                MessageBox.Show("A schedule has to be set first")   ;  // Notifying if a schedule is already set.
+                return;
+            }
             new GanttchartWindow().Show();  // Opening Ganttchart window.
         }
     }

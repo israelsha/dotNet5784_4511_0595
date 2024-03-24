@@ -1,4 +1,5 @@
 ﻿using PL.Task;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -32,7 +33,17 @@ namespace PL.Engineer
         {
             InitializeComponent();
             // Retrieve tasks based on engineer's level and availability
-            TaskList = s_bl.Task.ReadAll(item => (int)item.Copmlexity <= (int)CurrentEngineer.Level && item.EngineerId == null && item.StartDate == null);
+            IEnumerable < BO.TaskInList > tasks = s_bl.Task.ReadAll(item => (int)item.Copmlexity <= (int)CurrentEngineer.Level && item.EngineerId == null && item.StartDate == null);
+
+            //Selects all tasks that do not depend on tasks that have not finished yet
+            TaskList = tasks.Where(task =>
+            {
+                var dependencies = s_bl.Task.Read(task.Id).Dependencies;
+                if (dependencies == null || dependencies.Count() == 0)
+                    return true; // If there are no dependencies, the task is appropriate
+                                 // If there are dependencies, check that all dependent tasks have been completed
+                return dependencies.All(dep => s_bl.Task.Read(dep.Id).CompleteDate.HasValue);
+            }).ToList();
             currentEngineer = CurrentEngineer;
         }
 

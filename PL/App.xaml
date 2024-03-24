@@ -25,7 +25,14 @@
         <!-- Resource for Has Allredy Task Convert -->
         <local:HasAllredyTaskConvert x:Key="HasAllredyTaskConvertKey"/>
 
-        
+
+        <local:DateToWidthConverter x:Key="DateToWidthConverterKey"/>
+
+        <local:StatusToColorConverter x:Key="StatusToColorConverterKey"/>
+
+        <local:ScheduledDateToMarginConverter x:Key="ScheduledDateToMarginConverterKey"/>
+
+       
         <!-- Common Label Style -->
         <Style x:Key="CommonLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="22"/>

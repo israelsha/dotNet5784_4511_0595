@@ -13,8 +13,8 @@ public partial class EngineerLoginWindow : Window
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
     // Variables to store user input
-    private string EngineerName = "Dani Levi";//string.Empty;;
-    private int id = 324567891;//0;
+    private string EngineerName = "Israel Shaashua";//string.Empty;;
+    private int id = 213074522;//0;
 
     public EngineerLoginWindow()
     {

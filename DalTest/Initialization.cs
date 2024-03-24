@@ -113,7 +113,7 @@ public static class Initialization
         string[] EngineerNames =
         {
         "Dani Levi", "Eli Amar", "Shira Israelof" ,
-        "Ariela Levin", "I","Dina Klein"
+        "Ariela Levin", "Israel Shaashua","Dina Klein"
         };
 
         string[] mails =

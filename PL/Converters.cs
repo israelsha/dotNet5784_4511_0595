@@ -85,5 +85,62 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+
+    public class DateToWidthConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            TimeSpan date = (TimeSpan)value;
+            return (int)date.Days * 7;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    
+    public class StatusToColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            switch ((int)value)
+            {
+                case 0: return "#cfbc79";
+                case 1: return "#ecbe62";
+                case 2: return "#60b0d1";
+                case 3: return "#e16d70";
+                case 4: return "#bcc771";
+            }
+            return "#ffffff";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    } 
+    
+    public class ScheduledDateToMarginConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            DateTime? date = BlApi.Factory.Get().Dates.getStartProject();
+            if(date==null)
+                 return "10,0";
+            else
+            {
+                int differenceFromStart = ((DateTime?)value - date).Value.Days * 7 +10;
+                return $"{differenceFromStart},0";
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+
 }
 

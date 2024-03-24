@@ -72,7 +72,7 @@
             </StackPanel>
 
             <!-- Button to add the new task -->
-            <Button Style="{StaticResource CommonButtonStyle}"  Grid.RowSpan="2"  Click="addTaskToEngineer_Button" Grid.Row="2" Content="Choose this task"/>
+            <Button Style="{StaticResource CommonButtonStyle}"  Click="addTaskToEngineer_Button" Grid.Row="2" Content="Choose this task" />
         </Grid>
     </ScrollViewer>
 </Window>

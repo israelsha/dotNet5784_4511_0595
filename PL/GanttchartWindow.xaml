@@ -8,14 +8,23 @@
         Title="GantWindow" Height="650" Width="1000"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
-    <Grid Style="{StaticResource CommonGridStyle}">
-        <TextBlock Text="Chart" FontSize="26" VerticalAlignment="Top" Height="50" />
+    <Grid Background="#FF0E1C43">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Gant chart" FontSize="35" VerticalAlignment="Top" HorizontalAlignment="Center" Height="50" Foreground="White" FontWeight="Bold" FontStyle="Italic" />
 
 
-        <ListView ItemsSource="{Binding TaskList}" Margin="0,50,0,0">
+
+
+
+        <ListView ItemsSource="{Binding TaskListGant}" Grid.Row="2" Background="#FF0E1C43">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid >
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -23,82 +32,67 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Task ID -->
-                        <TextBlock Text="{Binding Alias}" Width="70" Margin="0,0,5,0" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Id}" Width="auto" VerticalAlignment="Center" Foreground="White"/>
 
+                       
+                        
                         <!-- Task duration represented by Border -->
                         <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1"
-                            Width="{Binding Id, Converter={StaticResource DateToWidthConverter}}"
-                            Margin="{Binding Converter={StaticResource DateToMarginConverter}}"
+                            Width="{Binding RequiredEffortTime, Converter={StaticResource DateToWidthConverterKey}}"
+                            Margin="{Binding ScheduledDate, Converter={StaticResource ScheduledDateToMarginConverterKey}}"
                             Height="25">
                             <Grid>
-                                <Rectangle Fill="{Binding Converter={StaticResource StatusToColorConverter}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                                <TextBlock Text="{Binding Id}" VerticalAlignment="Center" HorizontalAlignment="Left" />
-
+                                <Rectangle Fill="{Binding Status, Converter={StaticResource StatusToColorConverterKey}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                <TextBlock Text="{Binding Alias}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontWeight="Bold"/>
                             </Grid>
                             <ToolTipService.ToolTip>
-                                <StackPanel>
-                                    <TextBlock Text="Task Id: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Id}"/>
-                                    <TextBlock Text="Task Alias: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Alias}"/>
-                                    <TextBlock Text="Task Description: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Description}"/>
-                                    <TextBlock Text="Task Complexity: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Complexity}"/>
-                                    <TextBlock Text="Task Deliverables: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Deliverables}"/>
-                                    <TextBlock Text="ScheduledDate: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding ScheduledDate}"/>
-                                    <TextBlock Text="Task ForecastDate: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding ForecastDate}"/>
-                                    <TextBlock Text="Task RequiredEffortTime: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding RequiredEffortTime}"/>
-                                    <TextBlock Text="Task Status: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Status}"/>
-                                    <TextBlock Text="Task Remarks: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Remarks}"/>
-                                    <TextBlock Text="This Task belong to: " FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Engineer.Name}"/>
-                                    <TextBlock Text="Dependencies:" FontWeight="Bold"/>
+                                <StackPanel >
+                                    <TextBlock Text="{Binding Id, StringFormat='Id: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Alias, StringFormat='Alias: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Description, StringFormat='Description: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Copmlexity, StringFormat='Complexity: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Deliverables, StringFormat='Deliverables: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding StartDate, StringFormat='Start date: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding ScheduledDate, StringFormat='Schedule Date: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding DeadlineDate, StringFormat='Dead line date: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding CompleteDate, StringFormat='Complete date: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding RequiredEffortTime, StringFormat='Required effort time (days): {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Status, StringFormat='Status: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Remarks, StringFormat='Remarks: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Engineer.Name, StringFormat='This Task belong to: {0}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="Depends on tasks:" FontWeight="Bold"/>
                                     <ItemsControl ItemsSource="{Binding Dependencies}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
                                                     <TextBlock Text="{Binding Id}" FontWeight="Bold"/>
                                                     <TextBlock Text="{Binding Description}"/>
-
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
-
-                                    <!-- Add more details as needed -->
                                 </StackPanel>
                             </ToolTipService.ToolTip>
+
                         </Border>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-
-        <Grid>
-            <Rectangle Fill="White" Width="383" Height="19" Margin="0,0,535,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Opacity="0.8"
-               RadiusX="9" RadiusY="9">
-            </Rectangle>
-            <!-- Colored circle -->
-            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,839,12" Fill="#cfbc79"/>
-            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,767,12" Fill="#ecbe62"/>
-            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,699,12" Fill="#60b0d1"/>
-            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,612,12" Fill="#e16d70"/>
-            <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,552,12" Fill="#bcc771"/>
-        </Grid>
-
-        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,846,10" FontSize="10" FontWeight="SemiBold" TextWrapping="Wrap" Text="Unscheduled" VerticalAlignment="Bottom" Height="15" Width="65"/>
-        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,766,10" FontSize="10"  FontWeight="SemiBold" TextWrapping="Wrap" Text="Scheduled" VerticalAlignment="Bottom" Height="15" Width="65"/>
-        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,691,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="On Track" VerticalAlignment="Bottom" Height="15" Width="65"/>
-        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,615,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="In jeopardy" VerticalAlignment="Bottom" Height="15" Width="65"/>
-        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,528,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="Done" VerticalAlignment="Bottom" Height="15" Width="65"/>
+        <Rectangle Fill="White" Width="400" Height="20" Margin="0,0,535,10" HorizontalAlignment="Right" VerticalAlignment="Center" Opacity="0.8" Grid.Row="3" 
+               RadiusX="9" RadiusY="9"/>
+        <!-- Colored circle -->
+        <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,839,12" Fill="#cfbc79" Grid.Row="3"/>
+        <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,767,12" Fill="#ecbe62" Grid.Row="3"/>
+        <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,699,12" Fill="#60b0d1" Grid.Row="3"/>
+        <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,612,12" Fill="#e16d70" Grid.Row="3"/>
+        <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,552,12" Fill="#bcc771" Grid.Row="3"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,846,10" FontSize="10" FontWeight="SemiBold" TextWrapping="Wrap" Text="Unscheduled" VerticalAlignment="Center" Height="15" Width="65" Grid.Row="3"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,766,10" FontSize="10"  FontWeight="SemiBold" TextWrapping="Wrap" Text="Scheduled" VerticalAlignment="Center" Height="15" Width="65" Grid.Row="3"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,691,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="On Track" VerticalAlignment="Center" Height="15" Width="65" Grid.Row="3"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,615,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="In jeopardy" VerticalAlignment="Center" Height="15" Width="65" Grid.Row="3"/>
+        <TextBlock  HorizontalAlignment="Right"  Margin="0,0,528,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="Done" VerticalAlignment="Center" Height="15" Width="65" Grid.Row="3"/>
     </Grid>
 
 

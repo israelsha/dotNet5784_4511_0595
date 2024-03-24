@@ -36,7 +36,11 @@ internal static class Tools
     internal static BO.Status calcStatus(DO.Task doTask, DateTime clockDate)
     {
         if (doTask.ScheduledDate == null) return Status.Unscheduled;
-        if (doTask.StartDate == null) return Status.Scheduled;
+        if (doTask.StartDate == null)
+            if (doTask.DeadlineDate != null && clockDate > doTask.DeadlineDate)
+                return Status.InJeopardy;
+            else
+                return Status.Scheduled;
         if (doTask.CompleteDate == null)
             if (clockDate > doTask.DeadlineDate)
                 return Status.InJeopardy;
