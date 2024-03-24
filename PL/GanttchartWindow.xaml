@@ -5,46 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="GantWindow" Height="650" Width="1000"
+        Title="GanttWindow" Height="650" Width="1000"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
+    <!-- Main layout grid -->
     <Grid Background="#FF0E1C43">
+        <!-- Row definitions -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Gant chart" FontSize="35" VerticalAlignment="Top" HorizontalAlignment="Center" Height="50" Foreground="White" FontWeight="Bold" FontStyle="Italic" />
 
+        <!-- Title -->
+        <TextBlock Text="Gantt chart" FontSize="35" VerticalAlignment="Top" HorizontalAlignment="Center" Height="50" Foreground="White" FontWeight="Bold" FontStyle="Italic" />
 
+        <!-- Home button -->
+        <Button Width="50" Height="50" Background="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,20,0" Click="Home_Click"  BorderThickness="0">
+            <StackPanel>
+                <Image Source="/Imeges/home.png" Height="45" Width="45" />
+            </StackPanel>
+        </Button>
 
-
-
-        <ListView ItemsSource="{Binding TaskListGant}" Grid.Row="2" Background="#FF0E1C43">
+        <!-- ListView to display tasks -->
+        <ListView ItemsSource="{Binding TaskListGant}" Grid.Row="1" Background="#FF0E1C43">
             <ListView.ItemTemplate>
                 <DataTemplate>
+                    <!-- Grid for each task -->
                     <Grid >
-
+                        <!-- Column definitions -->
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- Task ID -->
+                        <!-- Display Task ID -->
                         <TextBlock Text="{Binding Id}" Width="auto" VerticalAlignment="Center" Foreground="White"/>
 
-                       
-                        
                         <!-- Task duration represented by Border -->
                         <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1"
                             Width="{Binding RequiredEffortTime, Converter={StaticResource DateToWidthConverterKey}}"
                             Margin="{Binding ScheduledDate, Converter={StaticResource ScheduledDateToMarginConverterKey}}"
                             Height="25">
+                            <!-- Inner Grid for more layout -->
                             <Grid>
+                                <!-- Rectangle representing task status -->
                                 <Rectangle Fill="{Binding Status, Converter={StaticResource StatusToColorConverterKey}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                <!-- Task Alias -->
                                 <TextBlock Text="{Binding Alias}" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontWeight="Bold"/>
                             </Grid>
+                            <!-- ToolTip with task details -->
                             <ToolTipService.ToolTip>
                                 <StackPanel >
                                     <TextBlock Text="{Binding Id, StringFormat='Id: {0}'}" FontWeight="Bold"/>
@@ -61,6 +71,7 @@
                                     <TextBlock Text="{Binding Remarks, StringFormat='Remarks: {0}'}" FontWeight="Bold"/>
                                     <TextBlock Text="{Binding Engineer.Name, StringFormat='This Task belong to: {0}'}" FontWeight="Bold"/>
                                     <TextBlock Text="Depends on tasks:" FontWeight="Bold"/>
+                                    <!-- Display task dependencies -->
                                     <ItemsControl ItemsSource="{Binding Dependencies}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
@@ -80,21 +91,21 @@
             </ListView.ItemTemplate>
         </ListView>
 
+        <!-- Legend for task statuses -->
         <Rectangle Fill="White" Width="400" Height="20" Margin="0,0,535,10" HorizontalAlignment="Right" VerticalAlignment="Center" Opacity="0.8" Grid.Row="3" 
                RadiusX="9" RadiusY="9"/>
-        <!-- Colored circle -->
+        <!-- Colored circles representing different statuses -->
         <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,839,12" Fill="#cfbc79" Grid.Row="3"/>
         <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,767,12" Fill="#ecbe62" Grid.Row="3"/>
         <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,699,12" Fill="#60b0d1" Grid.Row="3"/>
         <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,612,12" Fill="#e16d70" Grid.Row="3"/>
         <Ellipse Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,552,12" Fill="#bcc771" Grid.Row="3"/>
+        <!-- Text labels for task statuses -->
         <TextBlock  HorizontalAlignment="Right"  Margin="0,0,846,10" FontSize="10" FontWeight="SemiBold" TextWrapping="Wrap" Text="Unscheduled" VerticalAlignment="Center" Height="15" Width="65" Grid.Row="3"/>
         <TextBlock  HorizontalAlignment="Right"  Margin="0,0,766,10" FontSize="10"  FontWeight="SemiBold" TextWrapping="Wrap" Text="Scheduled" VerticalAlignment="Center" Height="15" Width="65" Grid.Row="3"/>
         <TextBlock  HorizontalAlignment="Right"  Margin="0,0,691,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="On Track" VerticalAlignment="Center" Height="15" Width="65" Grid.Row="3"/>
         <TextBlock  HorizontalAlignment="Right"  Margin="0,0,615,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="In jeopardy" VerticalAlignment="Center" Height="15" Width="65" Grid.Row="3"/>
         <TextBlock  HorizontalAlignment="Right"  Margin="0,0,528,10" FontSize="10" FontWeight="SemiBold"  TextWrapping="Wrap" Text="Done" VerticalAlignment="Center" Height="15" Width="65" Grid.Row="3"/>
     </Grid>
-
-
 
 </Window>
