@@ -99,7 +99,7 @@ public partial class EngineerView : Window
     {
         if(CurrentTask.Id == 0)
         {
-            MessageBox.Show("You don't have a task yet");
+            MessageBox.Show("You don't have a task yet"); ; ; ; ;
             return;
         }
         try

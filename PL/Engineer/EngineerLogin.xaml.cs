@@ -13,8 +13,8 @@ public partial class EngineerLoginWindow : Window
     static readonly BlApi.IBl s_bl = BlApi.Factory.Get();
 
     // Variables to store user input
-    private string EngineerName = "Israel Shaashua";//string.Empty;;
-    private int id = 213074522;//0;
+    private string EngineerName = string.Empty;
+    private int id = 0;
 
     public EngineerLoginWindow()
     {
@@ -24,19 +24,19 @@ public partial class EngineerLoginWindow : Window
 
     private void TextBox_UserName(object sender, TextChangedEventArgs e)
     {
-        // Retrieve the user name entered in the TextBox
-        //EngineerName = ((TextBox)sender).Text;
+        //Retrieve the user name entered in the TextBox
+        EngineerName = ((TextBox)sender).Text;
     }
 
 
     private void TextBox_Id(object sender, TextChangedEventArgs e)
     {
-        //TextBox textBox = sender as TextBox;
-        //// Parse the entered text as an integer and store it in the id variable
-        //if (int.TryParse(textBox.Text, out int result))
-        //    id = result;
-        //else 
-        //    id = 0;
+        TextBox textBox = sender as TextBox;
+        // Parse the entered text as an integer and store it in the id variable
+        if (int.TryParse(textBox.Text, out int result))
+            id = result;
+        else
+            id = 0;
     }
 
     private void EngineerLogin_Click(object sender, RoutedEventArgs e)

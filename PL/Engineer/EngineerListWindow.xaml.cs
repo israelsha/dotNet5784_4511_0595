@@ -61,5 +61,11 @@ namespace PL.Engineer
                 new EngineerWindow(engineer!.Id).ShowDialog();
             }
         }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            new AdminViewWindow().Show();
+        }
     }
 }

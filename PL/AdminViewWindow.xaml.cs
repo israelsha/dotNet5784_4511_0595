@@ -26,12 +26,14 @@ namespace PL
         // Handler for Task button click event.
         private void Task_Click(object sender, RoutedEventArgs e)
         {
+            Close();
             new TaskForListWindow().Show();  // Showing Task List window.
         }
 
         // Handler for Engineer button click event.
         private void Engineer_Click(object sender, RoutedEventArgs e)
         {
+            Close();
             new EngineerListWindow().Show();  // Showing Engineer List window.
         }
 
@@ -121,6 +123,7 @@ namespace PL
                 MessageBox.Show("A schedule has to be set first")   ;  // Notifying if a schedule is already set.
                 return;
             }
+            Close();
             new GanttchartWindow().Show();  // Opening Ganttchart window.
         }
     }

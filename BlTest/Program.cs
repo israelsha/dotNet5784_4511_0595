@@ -133,7 +133,6 @@ internal class Program
             CreatedAtDate = DateTime.Now,
             Status = BO.Status.Unscheduled,
             Dependencies = dependency,
-            Milestone = null,
             RequiredEffortTime = requiredEffortTime,
             StartDate = null,
             ScheduledDate = null,

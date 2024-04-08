@@ -1,5 +1,8 @@
 ﻿using BO;
+using PL.Task;
+using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 
 
 namespace PL.Engineer
@@ -29,6 +32,17 @@ namespace PL.Engineer
         }
         public static readonly DependencyProperty TaskInListProperty =
             DependencyProperty.Register("TaskInList", typeof(IEnumerable<TaskInList>), typeof(AddTaskForEngineer), new PropertyMetadata(s_bl.Task.ReadAll()));
+
+        // Event handler for CheckBox loaded state.
+        private void CheckBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Set CheckBox checked state based on SelectedIds.
+            CheckBox checkBox = sender as CheckBox;
+            if (checkBox != null && checkBox.Content is int id && CurrentTask.Dependencies != null && CurrentTask.Dependencies.Select(d => d.Id).Contains(id)) 
+            {
+                checkBox.IsChecked = true;
+            }
+        }
 
         // Current engineer instance
         public BO.Engineer currentEngineer = new BO.Engineer();
@@ -64,7 +78,7 @@ namespace PL.Engineer
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             Close();
-            new EngineerView(currentEngineer.Id).ShowDialog();
+            new EngineerView(currentEngineer.Id).Show();
         }
     }
 }

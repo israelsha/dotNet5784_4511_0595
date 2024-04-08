@@ -218,6 +218,7 @@ namespace PL.Task
             if (!Flag) //bexk to admnin view
             {
                 Close();
+                new AdminViewWindow().Show();
             }
             else  //beck to engineer view
             {

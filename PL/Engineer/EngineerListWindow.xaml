@@ -5,27 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
+         Icon="/Imeges/logo.png"
         Title="EngineerListWindow" Height="640" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <!--Internal, Upper Grid-->
     <!--Extrnal Grid-->
     <Grid Style="{StaticResource  CommonGridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2.5*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+      
         </Grid.ColumnDefinitions>
 
         <!-- Label to prompt user to select -->
-        <Label Content="Select:" HorizontalAlignment="Left" VerticalAlignment="Center" Width="400" Height="40" FontSize="20" />
+        <Label Content="Select:" HorizontalAlignment="Right" Margin="0,0,10,0"  Style="{StaticResource CommonLabelStyle}" />
         <!-- ComboBox to choose level of engineer -->
         <ComboBox SelectedValue="{Binding Level,Mode=TwoWay}"
                   ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" FontSize="18" SelectionChanged="Level_SelectionChanged" />
+         <!--Button to navigate to home--> 
+        <Button Width="50" Height="50" Background="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,20,0" Click="Home_Click"  BorderThickness="0">
+            <StackPanel>
+                <Image Source="/Imeges/home.png" Height="45" Width="45" />
+            </StackPanel>
+        </Button>
 
         <!-- ListView to display engineer list -->
         <ListView Grid.Row="1" ItemsSource="{Binding EngineerList}" MouseDoubleClick="UpdateEngineer_Button" Grid.ColumnSpan="3" FontSize="16" >

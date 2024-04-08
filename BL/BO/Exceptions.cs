@@ -38,11 +38,13 @@ public class cannotDeleteException : Exception
     public cannotDeleteException(string? message) : base(message) { }
 }
 
+[Serializable]
 public class errorInDateException : Exception
 {
     public errorInDateException(string? message) : base(message) { }
 }
 
+[Serializable]
 public class LoopsInDependentTaskEwxeption : Exception
 {
     public LoopsInDependentTaskEwxeption(string? message) : base(message) { }

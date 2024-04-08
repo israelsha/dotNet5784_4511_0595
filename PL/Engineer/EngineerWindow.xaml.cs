@@ -96,5 +96,6 @@ public partial class EngineerWindow : Window
     private void Home_Click(object sender, RoutedEventArgs e)
     {
         Close();
+        new AdminViewWindow().Show();
     }
 }

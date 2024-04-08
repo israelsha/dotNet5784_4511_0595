@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        Icon="/Imeges/logo.png"
         mc:Ignorable="d"
         Title="GanttWindow" Height="650" Width="1000"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
@@ -21,7 +22,7 @@
         <TextBlock Text="Gantt chart" FontSize="35" VerticalAlignment="Top" HorizontalAlignment="Center" Height="50" Foreground="White" FontWeight="Bold" FontStyle="Italic" />
 
         <!-- Home button -->
-        <Button Width="50" Height="50" Background="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,20,0" Click="Home_Click"  BorderThickness="0">
+        <Button Width="50" Height="50" Background="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,20,0" Click="Home_Click"  BorderThickness="0">
             <StackPanel>
                 <Image Source="/Imeges/home.png" Height="45" Width="45" />
             </StackPanel>

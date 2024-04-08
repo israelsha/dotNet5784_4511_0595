@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
+         Icon="/Imeges/logo.png"
         Title="EngineerWindow" Height="698" Width="614"
         DataContext="{Binding CurrentEngineer, RelativeSource={RelativeSource Mode=Self}, Mode=TwoWay}">
 
@@ -17,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <!-- Button to navigate back to the home screen -->
-        <Button Width="50" Height="50" Background="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,20,20,0" Click="Home_Click"  BorderThickness="0">
+        <Button Width="50" Height="50" Background="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0" Click="Home_Click"  BorderThickness="0">
             <StackPanel >
                 <Image Source="/Imeges/home.png" Height="45" Width="45" />
             </StackPanel>

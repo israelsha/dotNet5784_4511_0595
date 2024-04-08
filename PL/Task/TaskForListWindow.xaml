@@ -5,24 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Task"
         mc:Ignorable="d"
+         Icon="/Imeges/logo.png"
         Title="TaskForListWindow" Height="640" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
     <!-- Main grid layout -->
     <Grid Style="{StaticResource CommonGridStyle}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2.5*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="2.5*"/>
         </Grid.RowDefinitions>
 
+        <!--Button to navigate to home-->
+        <Button Width="50" Height="50" Background="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,20,0" Click="Home_Click"  BorderThickness="0">
+            <StackPanel>
+                <Image Source="/Imeges/home.png" Height="45" Width="45" />
+            </StackPanel>
+        </Button>
+        
         <!-- Label for selection -->
-        <Label Content="Select:" Style="{StaticResource CommonLabelStyle}"  VerticalAlignment="Center"  />
+        <Label Content="Select:" Style="{StaticResource CommonLabelStyle}"  Margin="0,0,10,0" HorizontalAlignment="Right" />
 
         <!-- ComboBox for Engineer Level selection -->
         <ComboBox SelectedValue="{Binding Level, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" 
@@ -43,7 +51,7 @@
         </ListView>
 
         <!-- Button to add a new task -->
-        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2"  Grid.Column="1" Click="AddTask_Button" Style="{StaticResource CommonButtonStyle}" Width="auto" Height="auto"
+        <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2"  Grid.ColumnSpan="3" Click="AddTask_Button" Style="{StaticResource CommonButtonStyle}"  Height="auto"
                  Visibility="{Binding startProject, Converter={StaticResource HasScheduleConvertKey}}">
             <TextBlock Text="Add" FontWeight="Bold"/>
         </Button>

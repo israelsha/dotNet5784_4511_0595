@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Task"
         mc:Ignorable="d"
+         Icon="/Imeges/logo.png"
         Title="TaskAddOrUpdate" Height="auto" Width="800"
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
 
@@ -19,7 +20,7 @@
             </Grid.RowDefinitions>
 
             <!-- Home button -->
-            <Button Width="50" Height="50" Background="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,20,20,0" Click="Home_Click"  BorderThickness="0">
+            <Button Width="50" Height="50" Background="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,20,0,0" Click="Home_Click"  BorderThickness="0">
                 <StackPanel >
                     <Image Source="/Imeges/home.png" Height="45" Width="45" />
                 </StackPanel>
@@ -73,7 +74,7 @@
                 <TextBox Text="{Binding CompleteDate}" IsEnabled="False" Visibility="{Binding Id,Converter={StaticResource AddOrUpdateConvertorKey}}" Style="{StaticResource CommonTextBoxStyle}"/>
                 <TextBox Text="{Binding Deliverables, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Style="{StaticResource CommonTextBoxStyle}"/>
                 <TextBox Text="{Binding Remarks, Mode=TwoWay, NotifyOnValidationError=true,  ValidatesOnExceptions=true}" Style="{StaticResource CommonTextBoxStyle}"/>
-                <TextBox Text="{Binding EngineerId, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:TaskAddOrUpdate}}, Mode=TwoWay}" Style="{StaticResource CommonTextBoxStyle}"/>
+                <TextBox Text="{Binding EngineerId, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:TaskAddOrUpdate}}, Mode=TwoWay}" IsEnabled="False" Style="{StaticResource CommonTextBoxStyle}"/>
                 <!-- ComboBox for selecting task complexity -->
                 <ComboBox  ItemsSource="{Binding Source={StaticResource EngineerLevelKey}}" SelectedValue="{Binding Path=Copmlexity, Mode=TwoWay}" 
                   Height="50" Foreground="#FF1A337A" Background="#FFBEC9CA" FontSize="20" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,70"/>

@@ -147,6 +147,7 @@ namespace PL
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             Close(); // Closing the window
+            new AdminViewWindow().Show();
         }
     }
 }

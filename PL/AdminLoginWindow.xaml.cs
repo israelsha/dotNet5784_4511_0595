@@ -39,16 +39,16 @@ namespace PL
             try
             {
                 // Check if the entered username and password match the admin credentials.
-                //if (adminPassword == "8" && adminName == "e")
-                //{
-                //    // Open the AdminViewWindow.
-                  new AdminViewWindow().Show();
+                if (adminPassword == "45" && adminName == "e")
+                {
+                    // Open the AdminViewWindow.
+                    new AdminViewWindow().Show();
                    Close();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("User does not exist");
-                //}
+                }
+                else
+                {
+                    MessageBox.Show("User does not exist");
+                }
             }
             catch
             {

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Engineer"
         mc:Ignorable="d"
+         Icon="/Imeges/logo.png"
         Title="EngineerView" Height="auto" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}">
     <Grid  DataContext="{Binding CurrentTask}" Style="{StaticResource CommonGridStyle}">
